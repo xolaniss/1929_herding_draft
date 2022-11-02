@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.10.4)  19 OCT 2022 13:55
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.10.4)  2 NOV 2022 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -795,66 +795,40 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/preprint/fullpage.sty
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip76
-) (/usr/local/texlive/2019/texmf-dist/tex/latex/tabu/tabu.sty
-Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/varwidth/varwidth.sty
-Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box57
-\sift@deathcycles=\count310
-\@vwid@loff=\dimen189
-\@vwid@roff=\dimen190
-)
-\c@taburow=\count311
-\tabu@nbcols=\count312
-\tabu@cnt=\count313
-\tabu@Xcol=\count314
-\tabu@alloc=\count315
-\tabu@nested=\count316
-\tabu@target=\dimen191
-\tabu@spreadtarget=\dimen192
-\tabu@naturalX=\dimen193
-\tabucolX=\dimen194
-\tabu@Xsum=\dimen195
-\extrarowdepth=\dimen196
-\abovetabulinesep=\dimen197
-\belowtabulinesep=\dimen198
-\tabustrutrule=\dimen199
-\tabu@thebody=\toks26
-\tabu@footnotes=\toks27
-\tabu@box=\box58
-\tabu@arstrutbox=\box59
-\tabu@hleads=\box60
-\tabu@vleads=\box61
-\tabu@cellskip=\skip77
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2019/01/01 v2.4 Span multiple rows of a table
-\multirow@colwidth=\skip78
-\multirow@cntb=\count317
-\multirow@dima=\skip79
-\bigstrutjot=\dimen256
+\multirow@colwidth=\skip77
+\multirow@cntb=\count310
+\multirow@dima=\skip78
+\bigstrutjot=\dimen189
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2018/12/27 v1.8v multicolumn formatting (FMi)
-\c@tracingmulticols=\count318
-\mult@box=\box62
-\multicol@leftmargin=\dimen257
-\c@unbalance=\count319
-\c@collectmore=\count320
-\doublecol@number=\count321
-\multicoltolerance=\count322
-\multicolpretolerance=\count323
-\full@width=\dimen258
-\page@free=\dimen259
-\premulticols=\dimen260
-\postmulticols=\dimen261
-\multicolsep=\skip80
-\multicolbaselineskip=\skip81
-\partial@page=\box63
-\last@line=\box64
-\maxbalancingoverflow=\dimen262
-\mult@rightbox=\box65
-\mult@grightbox=\box66
-\mult@gfirstbox=\box67
-\mult@firstbox=\box68
+\c@tracingmulticols=\count311
+\mult@box=\box57
+\multicol@leftmargin=\dimen190
+\c@unbalance=\count312
+\c@collectmore=\count313
+\doublecol@number=\count314
+\multicoltolerance=\count315
+\multicolpretolerance=\count316
+\full@width=\dimen191
+\page@free=\dimen192
+\premulticols=\dimen193
+\postmulticols=\dimen194
+\multicolsep=\skip79
+\multicolbaselineskip=\skip80
+\partial@page=\box58
+\last@line=\box59
+\maxbalancingoverflow=\dimen195
+\mult@rightbox=\box60
+\mult@grightbox=\box61
+\mult@gfirstbox=\box62
+\mult@firstbox=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
 \@tempa=\box69
 \@tempa=\box70
 \@tempa=\box71
@@ -867,44 +841,39 @@ Package: multicol 2018/12/27 v1.8v multicolumn formatting (FMi)
 \@tempa=\box78
 \@tempa=\box79
 \@tempa=\box80
-\@tempa=\box81
-\@tempa=\box82
-\@tempa=\box83
-\@tempa=\box84
-\@tempa=\box85
-\c@columnbadness=\count324
-\c@finalcolumnbadness=\count325
-\last@try=\dimen263
-\multicolovershoot=\dimen264
-\multicolundershoot=\dimen265
-\mult@nat@firstbox=\box86
-\colbreak@box=\box87
-\mc@col@check@num=\count326
+\c@columnbadness=\count317
+\c@finalcolumnbadness=\count318
+\last@try=\dimen196
+\multicolovershoot=\dimen197
+\multicolundershoot=\dimen198
+\mult@nat@firstbox=\box81
+\colbreak@box=\box82
+\mc@col@check@num=\count319
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2018/12/12 v1.0d Color table columns (DPC)
-\everycr=\toks28
-\minrowclearance=\skip82
+\everycr=\toks26
+\minrowclearance=\skip81
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/hhline.sty
 Package: hhline 2014/10/28 v2.03 Table rule package (DPC)
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count327
-\float@exts=\toks29
-\float@box=\box88
-\@float@everytoks=\toks30
-\@floatcapt=\box89
+\c@float@type=\count320
+\float@exts=\toks27
+\float@box=\box83
+\@float@everytoks=\toks28
+\@floatcapt=\box84
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen266
-\WF@size=\dimen267
-\c@WF@wrappedlines=\count328
-\WF@box=\box90
-\WF@everypar=\toks31
+\wrapoverhang=\dimen199
+\WF@size=\dimen256
+\c@WF@wrappedlines=\count321
+\WF@box=\box85
+\WF@everypar=\toks29
 Package: wrapfig 2003/01/31  v 3.6
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/bookmark.sty
 Package: bookmark 2016/05/17 v1.26 PDF bookmarks (HO)
 (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/bkm-dvipdfm.def
 File: bkm-dvipdfm.def 2016/05/17 v1.26 bookmark driver for dvipdfm (HO)
-\BKM@id=\count329
+\BKM@id=\count322
 )) (/usr/local/texlive/2019/texmf-dist/tex/latex/xurl/xurl.sty
 Package: xurl 2018/12/23 v 0.07 modify URL breaks
 )
@@ -913,7 +882,11 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 110.
 LaTeX Warning: Unused global option(s):
     [12].
 
-(./1929_herding.aux)
+(./1929_herding.aux
+
+LaTeX Warning: Label `tab:desc' multiply defined.
+
+)
 \openout1 = `1929_herding.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
@@ -1213,19 +1186,19 @@ Package microtype Info: No adjustment of kerning.
 File: mt-LatinModernRoman.cfg 2013/03/13 v1.0 microtype config. file: Latin Mod
 ern Roman (RS)
 )
-\AtBeginShipoutBox=\box91
+\AtBeginShipoutBox=\box86
 Package hyperref Info: Link coloring ON on input line 115.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count330
+\c@section@level=\count323
 )
 LaTeX Info: Redefining \ref on input line 115.
 LaTeX Info: Redefining \pageref on input line 115.
 LaTeX Info: Redefining \nameref on input line 115.
-\c@maskedRefs=\count331
+\c@maskedRefs=\count324
 (/usr/local/texlive/2019/texmf-dist/tex/latex/apacite/english.apc
 File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
@@ -1313,7 +1286,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 126.
 [1
 
-] [2]
+]
 
 Package fontspec Info: Helvetica scale = 0.8272610121836926.
 
@@ -1350,9 +1323,9 @@ Package fontspec Info: Font family 'Helvetica(0)' created for font 'Helvetica'
 (fontspec)             <->s*[1]"Helvetica/BI/AAT:mapping=tex-text;"
 (fontspec)             - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
 
-LaTeX Info: Redefining \rmfamily on input line 161.
+LaTeX Info: Redefining \rmfamily on input line 156.
 LaTeX Font Info:    Font shape `TU/Helvetica(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 161.
+(Font)              scaled to size 8.0pt on input line 156.
 
 Package fontspec Info: Helvetica scale = 1.
 
@@ -1389,17 +1362,17 @@ Package fontspec Info: Font family 'Helvetica(1)' created for font 'Helvetica'
 (fontspec)             - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/Helvetica(1)/m/n on input line 161.
+(Font)                  TU/lmr/m/n --> TU/Helvetica(1)/m/n on input line 156.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  TU/lmr/m/it --> TU/Helvetica(1)/m/it on input line 161.
+(Font)                  TU/lmr/m/it --> TU/Helvetica(1)/m/it on input line 156.
 
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  TU/lmr/bx/n --> TU/Helvetica(1)/bx/n on input line 161.
+(Font)                  TU/lmr/bx/n --> TU/Helvetica(1)/bx/n on input line 156.
 
 
 Package fontspec Info: Helvetica scale = 0.8272610121836926.
 
-LaTeX Info: Redefining \rmfamily on input line 161.
+LaTeX Info: Redefining \rmfamily on input line 156.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
@@ -1438,91 +1411,911 @@ Package fontspec Info: Font family 'TimesNewRoman(0)' created for font 'Times
 
 (fontspec)             - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
 
-LaTeX Info: Redefining \rmfamily on input line 165.
+LaTeX Info: Redefining \rmfamily on input line 160.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 165.
+(Font)              scaled to size 8.0pt on input line 160.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 165.
+LaTeX Info: Redefining \rmfamily on input line 160.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 171.
+LaTeX Info: Redefining \rmfamily on input line 160.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 177.
+LaTeX Info: Redefining \rmfamily on input line 160.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 177.
+LaTeX Info: Redefining \rmfamily on input line 160.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 183.
+LaTeX Info: Redefining \rmfamily on input line 160.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 183.
+LaTeX Info: Redefining \rmfamily on input line 160.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 189.
+LaTeX Info: Redefining \rmfamily on input line 166.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 189.
+LaTeX Info: Redefining \rmfamily on input line 166.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 195.
+LaTeX Info: Redefining \rmfamily on input line 166.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 195.
+LaTeX Info: Redefining \rmfamily on input line 172.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 201.
+LaTeX Info: Redefining \rmfamily on input line 172.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 201.
+LaTeX Info: Redefining \rmfamily on input line 172.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 207.
+LaTeX Info: Redefining \rmfamily on input line 172.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 207.
+LaTeX Info: Redefining \rmfamily on input line 172.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 213.
+LaTeX Info: Redefining \rmfamily on input line 172.
 
 Package fontspec Info: Times New Roman scale = 0.9636326419213974.
 
-LaTeX Info: Redefining \rmfamily on input line 213.
-[3]
+LaTeX Info: Redefining \rmfamily on input line 172.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 178.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 178.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 178.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 178.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 178.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 178.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 178.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 184.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 184.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 184.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 190.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 190.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 190.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 190.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 190.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 190.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 190.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 196.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 196.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 196.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 196.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 196.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 196.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 196.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 202.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 202.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 202.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 208.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 208.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 208.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 208.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 208.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 208.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 208.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 214.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 214.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 214.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 214.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 214.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 214.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 214.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 220.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 220.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 220.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 226.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 226.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 226.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 226.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 226.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 226.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 226.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 232.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 232.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 232.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 232.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 232.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 232.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 232.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 238.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 238.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 238.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 244.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 244.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 244.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 244.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 244.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 244.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 244.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 250.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 250.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 250.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 250.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 250.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 250.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 250.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 256.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 256.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 256.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 262.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 262.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 262.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 262.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 262.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 262.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 262.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 268.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 268.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 268.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 268.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 268.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 268.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 268.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 274.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 274.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 274.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 280.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 280.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 280.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 280.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 280.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 280.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 280.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 286.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 286.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 286.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 286.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 286.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 286.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 286.
+[2] [3]
+
+Package fontspec Info: Helvetica scale = 0.8272610121836926.
+
+LaTeX Info: Redefining \rmfamily on input line 307.
+
+Package fontspec Info: Helvetica scale = 0.8272610121836926.
+
+LaTeX Info: Redefining \rmfamily on input line 307.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 311.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 311.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 311.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 311.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 311.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 311.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 311.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 311.
+
+Package fontspec Info: Helvetica scale = 0.8272610121836926.
+
+LaTeX Info: Redefining \rmfamily on input line 317.
+
+Package fontspec Info: Helvetica scale = 0.8272610121836926.
+
+LaTeX Info: Redefining \rmfamily on input line 317.
+
+Package fontspec Info: Helvetica scale = 0.8272610121836926.
+
+LaTeX Info: Redefining \rmfamily on input line 317.
+
+Package fontspec Info: Helvetica scale = 0.8272610121836926.
+
+LaTeX Info: Redefining \rmfamily on input line 317.
+
+Package fontspec Info: Helvetica scale = 0.8272610121836926.
+
+LaTeX Info: Redefining \rmfamily on input line 323.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 329.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 329.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 329.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 329.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 329.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 329.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 329.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 329.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 335.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 335.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 335.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 335.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 335.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 335.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 335.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 335.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 341.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 341.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 341.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 341.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 341.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 341.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 341.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 341.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 347.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 347.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 347.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 347.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 347.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 347.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 347.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 347.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 353.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 353.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 353.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 353.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 353.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 353.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 353.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 353.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 359.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 359.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 359.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 359.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 359.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 359.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 359.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 359.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 365.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 365.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 365.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 365.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 365.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 365.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 365.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 365.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 371.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 371.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 371.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 371.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 371.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 371.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 371.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 371.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 377.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 377.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 377.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 377.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 377.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 377.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 377.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 377.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 383.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 383.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 383.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 383.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 383.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 383.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 383.
+
+Package fontspec Info: Times New Roman scale = 0.9636326419213974.
+
+LaTeX Info: Redefining \rmfamily on input line 383.
+[4]
 File: 1929_herding_files/figure-latex/rol-1.pdf Graphic file (type pdf)
 <use 1929_herding_files/figure-latex/rol-1.pdf>
-[4] [5] (./1929_herding.bbl) [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 257.
-[7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 257.
+[5] [6] (./1929_herding.bbl) [7]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 427.
+[8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 427.
 (./1929_herding.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 257.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 257.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 427.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 427.
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 32213 strings out of 492916
- 577416 string characters out of 6133345
- 857588 words of memory out of 5000000
- 35895 multiletter control sequences out of 15000+600000
+ 31518 strings out of 492916
+ 567323 string characters out of 6133345
+ 864761 words of memory out of 5000000
+ 35208 multiletter control sequences out of 15000+600000
  537014 words of font info for 85 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 65i,12n,152p,790b,724s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 65i,12n,152p,1956b,724s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 1929_herding.pdf (7 pages).
+Output written on 1929_herding.pdf (8 pages).

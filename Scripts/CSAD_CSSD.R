@@ -174,7 +174,7 @@ results_mines_group_gg <-
 # Export ---------------------------------------------------------------
 artifacts_csad_cssd <- list (
   data = list(
-    results_all_industries_tbl = results_tbl,
+    results_all_industries_tbl = results_all_industries_tbl,
     results_consumables_group_tbl = results_consumables_group_tbl,
     results_durables_group_tbl = results_durables_group_tbl,
     results_manuf_group_tbl = results_manuf_group_tbl,

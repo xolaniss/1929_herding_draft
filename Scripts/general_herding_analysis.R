@@ -54,15 +54,19 @@ unnest_rol_col <- function(data, rol_column) {
 }
 
 # Import -------------------------------------------------------------
-result_csad_cssd <- read_rds(here("Outputs", "artifacts_csad_cssd.rds"))
-result_csad_cssd_tbl <- result_csad_cssd$data$results_tbl
+result_csad_cssd <- read_rds(here("Outputs", "artifacts_descriptives.rds"))
+combined_resuls_tbl <- result_csad_cssd$combined_results_tbl
 
 # Static regressions ------------------------------------------------------
 # # OLS -------------------------------------------------------------------
-CSSD_model <-
- lm(CSSD ~ abs(Mkt) + I(Mkt ^ 2), data = result_csad_cssd_tbl)
-CSAD_model <-
-  lm(CSAD ~ abs(Mkt) + I(Mkt ^ 2), data = result_csad_cssd_tbl) 
+fitted_models <- combined_resuls_tbl %>% 
+  rename("Mkt" = "Market Return") %>% 
+  group_by(Category) %>% 
+  do(model = lm(CSAD ~ abs(Mkt) + I(Mkt ^ 2), data = .))
+
+fitted_csad_models <- 
+  fitted_models$model %>% 
+  set_names(unique(combined_resuls_tbl$Category))
 
 # # # QR --------------------------------------------------------------------
 # quants <- c(.01, .25, .5, .75, .99)
@@ -97,65 +101,64 @@ CSAD_model <-
 #  Rolling regressions ----------------------------------------------------
 # # OLS -------------------------------------------------------------------
 
-rolling_reg_spec <-
-  slidify(
-    .f =  ~coeftest(lm(..1 ~ ..2 + ..3)),
-    .period = 250,
-    .align = "right",
-    .unlist = FALSE,
-    .partial = FALSE
-  )
-
-models_rol <-
-  result_csad_cssd_tbl %>% 
-  mutate(CSAD_model_rolling  = rolling_reg_spec(CSAD, abs(Mkt), I(Mkt ^ 2))) %>% 
-  mutate(CSSD_model_rolling  = rolling_reg_spec(CSSD, abs(Mkt), I(Mkt ^ 2)))
-CSAD_model_rol_tbl <- 
-  unnest_rol_col(data = models_rol, rol_column = CSAD_model_rolling)
-CSSD_model_rol_tbl <- 
-  unnest_rol_col(data = models_rol, rol_column = CSSD_model_rolling)
-
-# Graphing ---------------------------------------------------------------
-CSAD_model_rol_gg <- 
-  CSAD_model_rol_tbl %>% 
-  pivot() %>% 
-  mutate(Series = dplyr::recode(
-    Series,
-    "a0" = "gamma[0]",
-    "a1" = "gamma[1]",
-    "a2" = "gamma[2]",
-    "t-statistic a0" = "t-statistic:gamma[0]",
-    "t-statistic a1" = "t-statistic:gamma[1]",
-    "t-statistic a2" = "t-statistic:gamma[2]"
-  )) %>% 
-  fx_recode_plot(variables_color = 6)
-
-CSSD_model_rol_gg <- 
-  CSSD_model_rol_tbl %>% 
-  pivot() %>% 
-  mutate(Series = dplyr::recode(
-    Series,
-    "a0" = "gamma[0]",
-    "a1" = "gamma[1]",
-    "a2" = "gamma[2]",
-    "t-statistic a0" = "t-statistic:gamma[0]",
-    "t-statistic a1" = "t-statistic:gamma[1]",
-    "t-statistic a2" = "t-statistic:gamma[2]"
-  )) %>% 
-  fx_recode_plot(variables_color = 6)
+# rolling_reg_spec <-
+#   slidify(
+#     .f =  ~coeftest(lm(..1 ~ ..2 + ..3)),
+#     .period = 250,
+#     .align = "right",
+#     .unlist = FALSE,
+#     .partial = FALSE
+#   )
+# 
+# models_rol <-
+#   result_csad_cssd_tbl %>% 
+#   mutate(CSAD_model_rolling  = rolling_reg_spec(CSAD, abs(Mkt), I(Mkt ^ 2))) %>% 
+#   mutate(CSSD_model_rolling  = rolling_reg_spec(CSSD, abs(Mkt), I(Mkt ^ 2)))
+# CSAD_model_rol_tbl <- 
+#   unnest_rol_col(data = models_rol, rol_column = CSAD_model_rolling)
+# CSSD_model_rol_tbl <- 
+#   unnest_rol_col(data = models_rol, rol_column = CSSD_model_rolling)
+# 
+# # Graphing ---------------------------------------------------------------
+# CSAD_model_rol_gg <- 
+#   CSAD_model_rol_tbl %>% 
+#   pivot() %>% 
+#   mutate(Series = dplyr::recode(
+#     Series,
+#     "a0" = "gamma[0]",
+#     "a1" = "gamma[1]",
+#     "a2" = "gamma[2]",
+#     "t-statistic a0" = "t-statistic:gamma[0]",
+#     "t-statistic a1" = "t-statistic:gamma[1]",
+#     "t-statistic a2" = "t-statistic:gamma[2]"
+#   )) %>% 
+#   fx_recode_plot(variables_color = 6)
+# 
+# CSSD_model_rol_gg <- 
+#   CSSD_model_rol_tbl %>% 
+#   pivot() %>% 
+#   mutate(Series = dplyr::recode(
+#     Series,
+#     "a0" = "gamma[0]",
+#     "a1" = "gamma[1]",
+#     "a2" = "gamma[2]",
+#     "t-statistic a0" = "t-statistic:gamma[0]",
+#     "t-statistic a1" = "t-statistic:gamma[1]",
+#     "t-statistic a2" = "t-statistic:gamma[2]"
+#   )) %>% 
+#   fx_recode_plot(variables_color = 6)
 
 
 # Export ---------------------------------------------------------------
 artifacts_general_herding <- list (
   models = list(
-    CSSD_model = CSSD_model,
-    CSAD_model = CSAD_model,
-    CSAD_model_rol_tbl = CSAD_model_rol_tbl,
-    CSSD_model_rol_tbl = CSSD_model_rol_tbl
+    fitted_csad_models = fitted_csad_models
+    # CSAD_model_rol_tbl = CSAD_model_rol_tbl,
+    # CSSD_model_rol_tbl = CSSD_model_rol_tbl
   ),
   graphs = list(
-    CSSD_model_rol_gg = CSSD_model_rol_gg,
-    CSAD_model_rol_gg = CSAD_model_rol_gg
+    # CSSD_model_rol_gg = CSSD_model_rol_gg,
+    # CSAD_model_rol_gg = CSAD_model_rol_gg
   )
 )
 
