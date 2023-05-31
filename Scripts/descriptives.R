@@ -29,7 +29,6 @@ library(skimr)
 # econometrics
 library(tseries)
 library(strucchange)
-library(fDMA)
 library(vars)
 library(urca)
 library(mFilter)
@@ -44,7 +43,7 @@ results <- read_rds(here("Outputs", "artifacts_csad_cssd.rds"))
 combined_results_list <- list(
   "All industries" = results$data$results_all_industries_tbl,
   "Consumables group" = results$data$results_consumables_group_tbl,
-  "Durables group" = results$data$results_durables_group_tbl,
+  # "Durables group" = results$data$results_durables_group_tbl,
   "Health group"  = results$data$results_health_group_tbl,
   "Manufacturing group"  = results$data$results_manuf_group_tbl,
   "Mines group" = results$data$results_mines_group_tbl,

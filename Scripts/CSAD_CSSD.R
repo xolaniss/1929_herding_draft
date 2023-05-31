@@ -29,7 +29,6 @@ library(skimr)
 # econometrics
 library(tseries)
 library(strucchange)
-library(fDMA)
 library(vars)
 library(urca)
 library(mFilter)
@@ -75,14 +74,15 @@ results_all_industries_gg <-
                        "CSSD" = "CSSD[t]",
                        "CSAD" = "CSAD[t]",
                        "Mkt" = "R[mt]")) %>% 
-  fx_recode_plot(variables_color = 3)
-
+  fx_recode_plot(variables_color = 3) +
+  labs(title = "All industries")
 
 # 3.0 Consumable_group ----------------------------------------------------
 
 # 3.1 Data ----------------------------------------------------------------
 
-returns_consumables_group_tbl <- returns$groups$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl # including some NAs in some categories
+returns_consumables_group_tbl <- 
+  returns$groups$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl # including some NAs in some categories
 returns_consumables_group_tbl %>% skim()
 
 # 3.2 CSAD and CSSD -------------------------------------------------------
@@ -92,23 +92,8 @@ results_consumables_group_tbl <- results_tbl(data = returns_consumables_group_tb
 # 3.3 Graphing ------------------------------------------------------------
 results_consumables_group_gg <- 
   results_consumables_group_tbl %>% 
-  results_gg()
-
-
-# 4.0 Durables_group -----------------------------------------------------
-
-# 4.1 Data ----------------------------------------------------------------
-returns_durables_group_tbl <- 
-returns$groups$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl
-
-# 4.2 CSAD and CSSD -------------------------------------------------------
-results_durables_group_tbl <- results_tbl(data = returns_durables_group_tbl)
-
-
-# 4.3 Graphing ------------------------------------------------------------
-results_durables_group_gg <- 
-  results_durables_group_tbl %>% 
-  results_gg()
+  results_gg() +
+  labs(title = "Consumables group")
 
 
 # 5.0 Manuf_group ---------------------------------------------------------
@@ -123,7 +108,8 @@ results_manuf_group_tbl <- results_tbl(data = returns_manuf_group_tbl)
 # 5.3 Graphing ------------------------------------------------------------
 results_manuf_group_gg <- 
   results_manuf_group_tbl %>% 
-  results_gg()
+  results_gg() +
+  labs(title = "Manufacturing group")
 
 
 # 6.0 Bus_group -----------------------------------------------------------
@@ -138,7 +124,8 @@ results_bus_group_tbl <- results_tbl(data = returns_bus_group_tbl)
 # 6.3 Graphing ------------------------------------------------------------
 results_bus_group_gg <- 
   results_bus_group_tbl %>% 
-  results_gg()
+  results_gg() +
+  labs(title = "Business services group")
 
 
 # 7.0 Health_group --------------------------------------------------------
@@ -153,7 +140,8 @@ results_health_group_tbl <- results_tbl(data = returns_health_group_tbl)
 # 7.3 Graphing ------------------------------------------------------------
 results_health_group_gg <- 
   results_health_group_tbl %>% 
-  results_gg()
+  results_gg() +
+  labs(title = "Health group")
 
 # 8.0 Mines_group  --------------------------------------------------------------
 
@@ -168,15 +156,24 @@ results_mines_group_tbl <- results_tbl(data = returns_mines_group_tbl)
 # 8.3 Graphing ------------------------------------------------------------
 results_mines_group_gg <- 
   results_mines_group_tbl %>% 
-  results_gg()
+  results_gg() +
+  labs(title = "Mines group")
 
+# 9. Combined -------------------------------------------------------------
+results_all_gg <- 
+  results_all_industries_gg / 
+  results_consumables_group_gg / 
+  results_health_group_gg /
+  results_manuf_group_gg /
+  results_mines_group_gg /
+  results_bus_group_gg
 
 # Export ---------------------------------------------------------------
 artifacts_csad_cssd <- list (
   data = list(
     results_all_industries_tbl = results_all_industries_tbl,
     results_consumables_group_tbl = results_consumables_group_tbl,
-    results_durables_group_tbl = results_durables_group_tbl,
+    # results_durables_group_tbl = results_durables_group_tbl,
     results_manuf_group_tbl = results_manuf_group_tbl,
     results_bus_group_tbl = results_bus_group_tbl,
     results_health_group_tbl = results_health_group_tbl,
@@ -186,11 +183,11 @@ artifacts_csad_cssd <- list (
   graphs = list(
     results_all_industries_gg = results_all_industries_gg,
     results_consumables_group_gg = results_consumables_group_gg,
-    results_durables_group_gg  = results_durables_group_gg,
     results_manuf_group_gg = results_manuf_group_gg,
     results_bus_group_gg = results_bus_group_gg,
     results_health_group_gg = results_health_group_gg,
-    results_mines_group_gg = results_mines_group_gg 
+    results_mines_group_gg = results_mines_group_gg,
+    results_all_gg = results_all_gg
   )
 )
 

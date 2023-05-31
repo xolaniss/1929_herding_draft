@@ -29,7 +29,6 @@ library(skimr)
 # econometrics
 library(tseries)
 library(strucchange)
-library(fDMA)
 library(vars)
 library(urca)
 library(mFilter)
@@ -196,6 +195,16 @@ mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_vec <-
   )
 
 
+# Aggregation scheme ----------------------------------------------------
+
+aggregation_scheme_tbl <- 
+  tibble(
+  "Consumables group" = c(Consumer_durables_nondurables_wholesale_retail_some_services_group_vec, rep("", 5)),
+  "Health group" = c(healthcare_medical_equipment_and_drugs_group_vec, rep("", 15)),
+  "Manufacturing group" = c(manufacturing_energy_utilities_group_vec, rep("", 9)),
+  "Mines group" = mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_vec, 
+  "Business services group" = c(business_equipment_telephone_and_television_transmission_group_vec, rep("", 11))
+)
 
 
 # Group 1 -----------------------------------------------------------------
@@ -323,7 +332,8 @@ mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_weighted_t
 artifacts_returns_data <- list (
   full_data = list(
     equal_returns_tbl = equal_returns_tbl,
-    weighted_returns_tbl = weighted_returns_tbl
+    weighted_returns_tbl = weighted_returns_tbl,
+    aggregation_scheme_tbl = aggregation_scheme_tbl
   ),
   groups = list(
     Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl = Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl,

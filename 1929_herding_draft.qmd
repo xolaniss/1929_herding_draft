@@ -6,7 +6,11 @@ format:
     fig-pos: "H"
     number-sections: true
     cite-method: natbib
+    include-in-header: preamble.tex
     include-before-body: title.tex
+pdf-engine: xelatex
+monofont: "DejaVu Sans Mono"
+mainfont: "Times New Roman"
 execute: 
   echo: false
   warning: false
@@ -14,14 +18,13 @@ editor: source
 bibliography: references.bib
 biblio-style: apalike
 natbiboptions: round
-link-citations: yes
+link-citations: true
 linkcolor: blue!000!black
 urlcolor: blue!000!black
 citecolor: blue!000!black
 linestretch: 1.5
 indent: TRUE
 ---
-
 
 ```{r}
 #| label: setup
@@ -35,8 +38,6 @@ knitr::opts_chunk$set(
                       ft.latex.float = "none",
                       ft.arraystretch = 0.6
                       )
-
-options(pillar.sigfig = 2)
 library(tidyverse)
 library(readr)
 library(readxl)
@@ -75,28 +76,25 @@ set_flextable_defaults(font.size = 7,
                        line_spacing = 0)
 ```
 
-```{r}
-#| label: data
-#| cache: TRUE
-general_herding <- read_rds(here("Outputs", "artifacts_general_herding.rds"))
-```
-
 # Introduction
+
+@duygun2021
 
 # Methodology
 
-@sim2015oil
-
 # Data
 
+\newpage
+
+# Results
 
 ```{r}
-#| label: desc
-#| tbl-cap: "Descriptives"
+#| label: tbl-desc
+#| tbl-cap: "Descriptive statistics"
+#| cache: true
 
 descriptives <- read_rds(here("Outputs", "artifacts_descriptives.rds"))
 descriptives_tbl <- descriptives$descriptives_tbl 
-
 descriptives_tbl %>%
   as_grouped_data(groups = c("Category")) %>%
   as_flextable(hide_grouplabel = TRUE) %>%
@@ -113,22 +111,26 @@ descriptives_tbl %>%
   align(i = 13, align = "center") %>%
   merge_at(i = 16, j = 1:7) %>%
   align(i = 16, align = "center") %>% 
-  merge_at(i = 19, j = 1:7) %>%
-  align(i = 19, align = "center") %>% 
-  autofit(add_w = 0.6, add_h = 0)
+  autofit(add_w = 0.7)
 
 ```
 
-
-
-\newpage
-# Empirical Results
-
-
+```{r}
+#| label: fig-results-all
+#| fig-cap: "Cross sectional deviations"
+#| fig-height: 10
+#| fig-width: 8
+#| cache: true
+cross_sectionals <- read_rds(here("Outputs", "artifacts_csad_cssd.rds"))
+results_all_gg <- cross_sectionals$graphs$results_all_gg
+results_all_gg
+```
 
 ```{r}
 #| label: tbl-gen
 #| tbl-cap: "General heding"
+#| eval: false
+#| include: false
 fitted_csad_models <- read_rds(here("Outputs", "artifacts_general_herding.rds")) 
 models <- fitted_csad_models$models$fitted_csad_models
 estimates <- c(
@@ -139,9 +141,7 @@ estimates <- c(
   "R^2",
   "R^2 Adj"
 )
-
 equation_1 <- as_equation(c("CSAD_{t} = \\gamma_0 + \\gamma_1|R_{m, t}| +  \\gamma_2R_{m, t}^2  + \\epsilon_{t}"))
-
 modelsummary <-  models %>% 
   modelsummary_pdf(
     decimals = 4,
@@ -155,8 +155,8 @@ modelsummary <-  models %>%
   value = as_paragraph(
     "Notes:", " The results flow from the ", equation_1,   " equation as defined above. " 
    )) %>% 
-  autofit(add_w = -1, add_h = 0) %>% 
-  border(border.bottom = NULL, part = "footer")
+  autofit(add_w = -1, add_h = 0) 
+  # border(border.bottom = NULL, part = "footer")
   
 modelsummary
   
@@ -164,10 +164,54 @@ modelsummary
 
 
 
+```{r}
+#| label: tbl-ols
+#| tbl-cap: "General herding ols regression"
+
+equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1|R_{m, t}| +  \\gamma_2R_{m, t}^2 +  \\epsilon_{t}"))
+estimates <- c(
+  "\\alpha",
+  "\\gamma_1 ",
+  "\\gamma_2"
+)
+
+general_herding_qmodels <- read_rds(here("Outputs", "artifacts_general_herding.rds"))
+general_herding_qmodels$models$results_models %>% 
+  add_column(.data = tibble(rep(" ", 6))) %>% 
+  relocate(`rep(" ", 6)`, .after = Category) %>% 
+  rename(" " = `rep(" ", 6)`) %>% 
+  as_grouped_data(groups = c("Category")) %>% 
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  autofit(add_w = 1) %>% 
+  mk_par(i =, j = c(2, 3, 4), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
+    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 4) %>% 
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))
+
+```
+
 \newpage
 
 ```{r}
-#| label: fig-rol,
+#| label: tbl-general_quantiles
+#| tbl-cap: General herding quantile regressions
+
+general_herding_qmodels$models$results_qmodels_tbl %>%  
+  as_grouped_data(groups = c("Category")) %>% 
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  autofit(add_w = 1) %>% 
+  set_header_labels(
+    tau = " "
+  ) %>% 
+  mk_par(i =, j = c(2, 3, 4), part = "header", value = as_paragraph(as_equation(estimates))) %>%     
+  add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 4) %>% 
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))
+  
+```
+
+\newpage
+
+```{r}
+#| label: fig-rol
 #| fig.cap: "CSAD rolling"
 #| fig.height: 4
 #| cache: TRUE
@@ -176,8 +220,84 @@ CSAD_model_rol_gg <- general_herding$graphs$
 CSAD_model_rol_gg
 ```
 
+
 \newpage
+
 # Conclusion
 
 \newpage
+
+# Appendix
+
+## Industries aggregation
+
+```{r}
+#| label: tbl-aggregation
+#| tbl-cap: "Industry aggregation using the Fama-French factor scheme"
+#| tbl-colwidths: auto
+
+returns_data <- read_rds(here("Outputs", "artifacts_returns_data.rds"))
+aggregation_scheme_tbl <- returns_data$full_data$aggregation_scheme_tbl
+aggregation_scheme_tbl %>% 
+  flextable() %>% 
+  align(align = "left", part = "all") %>% 
+  autofit()
+```
+
+\newpage
+
+## Returns
+
+```{r}
+#| label: fig-cons-returns
+#| fig-cap: "Consumables group returns"
+#| fig-height: 6
+#| fig-width: 6
+#| cache: true
+
+returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg
+```
+
+```{r}
+#| label: fig-health-returns
+#| fig-cap: "Health group returns"
+#| fig-height: 3
+#| fig-width: 6
+#| cache: true
+
+returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
+```
+
+```{r}
+#| label: fig-manufacturing-returns
+#| fig-cap: "Manufacturing group returns"
+#| fig-height: 6
+#| fig-width: 6
+#| cache: true
+
+returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
+```
+
+```{r}
+#| label: fig-business-returns
+#| fig-cap: "Business services group returns"
+#| fig-height: 6
+#| fig-width: 6
+#| cache: true
+
+returns_data$graphs$business_equipment_telephone_and_television_transmission_group_equal_gg
+```
+
+```{r}
+#| label: fig-mines-returns
+#| fig-cap: "Mines group returns"
+#| fig-height: 8
+#| fig-width: 8
+#| cache: true
+
+returns_data$graphs$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg
+```
+
+\newpage
+
 # References
