@@ -37,18 +37,31 @@ library(mFilter)
 library(car)
 
 # Functions ---------------------------------------------------------------
-source(here("Functions", "fx_plot.R"))
+source(here("Functions", "group_ols_functions.R"))
+source(here("Functions", "group_qr_functions.R"))
+source(here("Functions", "group_ols_slidify_functions.R")
 
 # Import -------------------------------------------------------------
-
-
-# Cleaning -----------------------------------------------------------------
+result_csad_cssd <- read_rds(here("Outputs", "artifacts_descriptives.rds"))
+combined_resuls_tbl <- result_csad_cssd$combined_results_tbl
 
 
 # Transformations --------------------------------------------------------
 
 
-# EDA ---------------------------------------------------------------
+# Regressions ---------------------------------------------------------------
+
+
+## OLS ---------------------------------------------------------------------
+
+
+
+## QR ----------------------------------------------------------------------
+
+
+
+## Rolling -----------------------------------------------------------------
+
 
 
 # Graphing ---------------------------------------------------------------

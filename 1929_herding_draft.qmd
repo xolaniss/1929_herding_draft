@@ -178,7 +178,7 @@ estimates <- c(
 )
 
 general_herding <- read_rds(here("Outputs", "artifacts_general_herding.rds"))
-general_herding$models$results_models %>% 
+general_herding$models$ols_tbl %>% 
   add_column(.data = tibble(rep(" ", 6))) %>% 
   relocate(`rep(" ", 6)`, .after = Category) %>% 
   rename(" " = `rep(" ", 6)`) %>% 
@@ -197,7 +197,7 @@ general_herding$models$results_models %>%
 #| label: tbl-general_quantiles
 #| tbl-cap: General herding quantile regressions
 
-general_herding$models$results_qmodels_tbl %>%  
+general_herding$models$qr_tbl %>%  
   as_grouped_data(groups = c("Category")) %>% 
   as_flextable(hide_grouplabel = TRUE) %>% 
   autofit(add_w = 1) %>% 
@@ -220,10 +220,12 @@ general_herding$models$results_qmodels_tbl %>%
 #| cache: true
 
 
-CSAD_model_rol_gg <- general_herding$graphs$CSAD_model_rol_gg
+CSAD_model_rol_gg <- general_herding$graphs$rol_gg
 CSAD_model_rol_gg
 ```
 ## Herding and financial crises
+
+
 
 ## Fundamental herding
 

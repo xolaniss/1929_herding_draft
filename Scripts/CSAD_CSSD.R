@@ -36,7 +36,7 @@ library(car)
 
 # 0.0 Functions ---------------------------------------------------------------
 source(here("Functions", "fx_plot.R"))
-source(here("Functions", "results_functions.R"))
+source(here("Functions", "cross_deviations_functions.R"))
 
 # 1.0 Import -------------------------------------------------------------
 returns <- read_rds(here("Outputs", "artifacts_returns_data.rds"))
