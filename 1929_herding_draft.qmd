@@ -223,7 +223,9 @@ general_herding$models$results_qmodels_tbl %>%
 CSAD_model_rol_gg <- general_herding$graphs$CSAD_model_rol_gg
 CSAD_model_rol_gg
 ```
+## Herding and financial crises
 
+## Fundamental herding
 
 \newpage
 
