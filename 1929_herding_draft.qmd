@@ -88,6 +88,8 @@ set_flextable_defaults(font.size = 7,
 
 # Results
 
+## Descriptive analysis
+
 ```{r}
 #| label: tbl-desc
 #| tbl-cap: "Descriptive statistics"
@@ -162,7 +164,7 @@ modelsummary
   
 ```
 
-
+## General herding
 
 ```{r}
 #| label: tbl-ols
@@ -175,8 +177,8 @@ estimates <- c(
   "\\gamma_2"
 )
 
-general_herding_qmodels <- read_rds(here("Outputs", "artifacts_general_herding.rds"))
-general_herding_qmodels$models$results_models %>% 
+general_herding <- read_rds(here("Outputs", "artifacts_general_herding.rds"))
+general_herding$models$results_models %>% 
   add_column(.data = tibble(rep(" ", 6))) %>% 
   relocate(`rep(" ", 6)`, .after = Category) %>% 
   rename(" " = `rep(" ", 6)`) %>% 
@@ -195,7 +197,7 @@ general_herding_qmodels$models$results_models %>%
 #| label: tbl-general_quantiles
 #| tbl-cap: General herding quantile regressions
 
-general_herding_qmodels$models$results_qmodels_tbl %>%  
+general_herding$models$results_qmodels_tbl %>%  
   as_grouped_data(groups = c("Category")) %>% 
   as_flextable(hide_grouplabel = TRUE) %>% 
   autofit(add_w = 1) %>% 
@@ -212,11 +214,13 @@ general_herding_qmodels$models$results_qmodels_tbl %>%
 
 ```{r}
 #| label: fig-rol
-#| fig.cap: "CSAD rolling"
-#| fig.height: 4
-#| cache: TRUE
+#| fig-cap: "CSAD rolling regressions with 250 day window"
+#| fig-height: 6
+#| fig-width: 8
+#| cache: true
 
-CSAD_model_rol_gg <- general_herding$graphs$
+
+CSAD_model_rol_gg <- general_herding$graphs$CSAD_model_rol_gg
 CSAD_model_rol_gg
 ```
 

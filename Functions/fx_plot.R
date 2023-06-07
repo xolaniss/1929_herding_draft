@@ -34,7 +34,7 @@ fx_recode_plot <-
   function (data, plotname = " ", variables_color = 12, ncol = NULL, nrow = NULL) {
     ggplot(
       data,
-      aes(x = Date, y = Value, col = Series)
+      aes(x = Date, y = Value, color = Category, group = Category)
     ) +
       geom_line() +
       facet_wrap (. ~ Series, scale = "free", labeller = label_parsed, ncol, nrow) +
@@ -49,9 +49,10 @@ fx_recode_plot <-
         strip.background = element_rect(colour = "white", fill = "white"),
         axis.text.x = element_text(angle = 90),
         axis.title = element_text(size = 8),
-        plot.tag = element_text(size = 8)
+        plot.tag = element_text(size = 8),
+        legend.position = "bottom"
       ) +
-      labs(x = "", y = plotname) +
+      labs(x = "", y = plotname, color = NULL) +
       scale_color_manual(values = pnw_palette("Cascades", variables_color))
   }
 
