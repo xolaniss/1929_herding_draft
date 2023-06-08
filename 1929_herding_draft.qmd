@@ -223,7 +223,63 @@ general_herding$models$qr_tbl %>%
 CSAD_model_rol_gg <- general_herding$graphs$rol_gg
 CSAD_model_rol_gg
 ```
+\newpage
 ## Herding and financial crises
+
+### Great financial crisis
+
+
+```{r}
+#| label: tbl-gfs_ols
+#| tbl-cap: "Herding during GFC ols"
+#| ft.arraystretch: 0.6
+
+equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + 
+                           \\gamma_2 (1- D^{crisis})|R_{m, t}| +
+                           \\gamma_3D^{crisis}R_{m, t}^2 + \\gamma_4(1-D^{crisis})R_{m, t}^2 + \\epsilon_{t}"))
+estimates <- c(
+  "\\alpha",
+  "\\gamma_1 ",
+  "\\gamma_2",
+  "\\gamma_3",
+  "\\gamma_4"
+)
+
+herding_crisis <- read_rds(here("Outputs", "artifacts_herding_crisis.rds"))
+herding_crisis$models$ols_tbl %>% 
+  add_column(.data = tibble(rep(" ", 6))) %>%
+  relocate(`rep(" ", 6)`, .after = Category) %>%
+  rename(" " = `rep(" ", 6)`) %>%
+  as_grouped_data(groups = c("Category")) %>% 
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  autofit(add_w = 0.1) %>% 
+  mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
+    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))  
+  
+
+
+```
+\newpage
+
+```{r}
+#| label: tbl-gfs_qr
+#| tbl-cap: "Herding during GFC quantile regressions"
+#| ft.arraystretch: 0.6
+
+herding_crisis$models$qr_tbl %>%  
+  as_grouped_data(groups = c("Category")) %>% 
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  autofit(add_w = 0.1) %>% 
+  set_header_labels(
+    tau = " "
+  ) %>% 
+  mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>%     
+  add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))
+
+```
+
 
 
 
