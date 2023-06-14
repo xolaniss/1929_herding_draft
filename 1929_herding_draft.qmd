@@ -36,7 +36,7 @@ knitr::opts_chunk$set(
                       ft.align = "left",
                       ft.tabcolsep= 0, 
                       ft.latex.float = "none",
-                      ft.arraystretch = 0.6
+                      ft.arraystretch = 0.4
                       )
 library(tidyverse)
 library(readr)
@@ -93,7 +93,7 @@ set_flextable_defaults(font.size = 7,
 ```{r}
 #| label: tbl-desc
 #| tbl-cap: "Descriptive statistics"
-#| cache: true
+#| cache: false
 
 descriptives <- read_rds(here("Outputs", "artifacts_descriptives.rds"))
 descriptives_tbl <- descriptives$descriptives_tbl 
@@ -122,7 +122,7 @@ descriptives_tbl %>%
 #| fig-cap: "Cross sectional deviations"
 #| fig-height: 10
 #| fig-width: 8
-#| cache: true
+#| cache: false
 cross_sectionals <- read_rds(here("Outputs", "artifacts_csad_cssd.rds"))
 results_all_gg <- cross_sectionals$graphs$results_all_gg
 results_all_gg
@@ -190,7 +190,6 @@ general_herding$models$ols_tbl %>%
   hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))
 
 ```
-
 \newpage
 
 ```{r}
@@ -209,15 +208,14 @@ general_herding$models$qr_tbl %>%
   hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))
   
 ```
-
 \newpage
 
 ```{r}
-#| label: fig-rol
+#| label: fig-rol_gen
 #| fig-cap: "CSAD rolling regressions with 250 day window"
 #| fig-height: 6
 #| fig-width: 8
-#| cache: true
+#| cache: false
 
 
 CSAD_model_rol_gg <- general_herding$graphs$rol_gg
@@ -226,13 +224,11 @@ CSAD_model_rol_gg
 \newpage
 ## Herding and financial crises
 
-### Great financial crisis
-
+### The great depression
 
 ```{r}
-#| label: tbl-gfs_ols
-#| tbl-cap: "Herding during GFC ols"
-#| ft.arraystretch: 0.6
+#| label: tbl-gd_ols
+#| tbl-cap: "Herding during the Great Depression ols"
 
 equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + 
                            \\gamma_2 (1- D^{crisis})|R_{m, t}| +
@@ -245,16 +241,154 @@ estimates <- c(
   "\\gamma_4"
 )
 
-herding_crisis <- read_rds(here("Outputs", "artifacts_herding_crisis.rds"))
-herding_crisis$models$ols_tbl %>% 
-  add_column(.data = tibble(rep(" ", 6))) %>%
-  relocate(`rep(" ", 6)`, .after = Category) %>%
-  rename(" " = `rep(" ", 6)`) %>%
+herding_gd_crisis <- read_rds(here("Outputs", "artifacts_herding_gd_crisis.rds"))
+herding_gd_crisis$models$ols_tbl %>% 
+  add_column(.data = tibble(rep(" ", 6))) %>% 
+  relocate(`rep(" ", 6)`, .after = Category) %>% 
+  rename(" " = `rep(" ", 6)`) %>% 
   as_grouped_data(groups = c("Category")) %>% 
   as_flextable(hide_grouplabel = TRUE) %>% 
-  autofit(add_w = 0.1) %>% 
+  autofit(add_w = 0) %>% 
   mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
     add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  width(j = c(1,2,3,4, 5, 6), width = 1) %>% 
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))  
+  
+
+
+```
+
+\newpage
+
+```{r}
+#| label: tbl-gd_qr
+#| tbl-cap: "Herding during Great Depression quantile regressions"
+#| ft.arraystretch: 0.4
+
+herding_gd_crisis$models$qr_tbl %>%  
+  as_grouped_data(groups = c("Category")) %>% 
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  autofit(add_w = 0) %>% 
+  set_header_labels(
+    tau = " "
+  ) %>% 
+  mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>%     
+  add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  width(j = c(1:6), width = 1) %>%
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))
+
+```
+
+\newpage
+```{r}
+#| label: fig-rol_gd
+#| fig-cap: "Great Depression CSAD rolling regressions with 250 day window"
+#| fig-height: 5
+#| fig-width: 8
+#| cache: false
+
+herding_gd_crisis$graphs$rol_gg 
+
+
+```
+
+
+### The dot-com bubble
+
+```{r}
+#| label: tbl-gd_dot
+#| tbl-cap: "Herding during the Dot-com Bubble ols"
+
+equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + 
+                           \\gamma_2 (1- D^{crisis})|R_{m, t}| +
+                           \\gamma_3D^{crisis}R_{m, t}^2 + \\gamma_4(1-D^{crisis})R_{m, t}^2 + \\epsilon_{t}"))
+estimates <- c(
+  "\\alpha",
+  "\\gamma_1 ",
+  "\\gamma_2",
+  "\\gamma_3",
+  "\\gamma_4"
+)
+
+herding_dot_crisis <- read_rds(here("Outputs", "artifacts_herding_dot_crisis.rds"))
+herding_dot_crisis$models$ols_tbl %>% 
+  add_column(.data = tibble(rep(" ", 6))) %>% 
+  relocate(`rep(" ", 6)`, .after = Category) %>% 
+  rename(" " = `rep(" ", 6)`) %>% 
+  as_grouped_data(groups = c("Category")) %>% 
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  autofit(add_w = 0) %>% 
+  mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
+    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  width(j = c(1,2,3,4, 5, 6), width = 1) %>% 
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))  
+  
+
+
+```
+
+\newpage
+
+```{r}
+#| label: tbl-dot_qr
+#| tbl-cap: "Herding during Dot-com Bubble quantile regressions"
+#| ft.arraystretch: 0.4
+
+herding_dot_crisis$models$qr_tbl %>%  
+  as_grouped_data(groups = c("Category")) %>% 
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  autofit(add_w = 0) %>% 
+  set_header_labels(
+    tau = " "
+  ) %>% 
+  mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>%     
+  add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  width(j = c(1:6), width = 1) %>%
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))
+
+```
+
+\newpage
+```{r}
+#| label: fig-rol_dot
+#| fig-cap: "Dot-com bubble CSAD rolling regressions with 250 day window"
+#| fig-height: 5
+#| fig-width: 8
+#| cache: false
+
+herding_dot_crisis$graphs$rol_gg 
+
+
+```
+
+
+### Great financial crisis
+```{r}
+#| label: tbl-gfs_ols
+#| tbl-cap: "Herding during GFC ols"
+
+equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + 
+                           \\gamma_2 (1- D^{crisis})|R_{m, t}| +
+                           \\gamma_3D^{crisis}R_{m, t}^2 + \\gamma_4(1-D^{crisis})R_{m, t}^2 + \\epsilon_{t}"))
+estimates <- c(
+  "\\alpha",
+  "\\gamma_1 ",
+  "\\gamma_2",
+  "\\gamma_3",
+  "\\gamma_4"
+)
+
+herding_gfc_crisis <- read_rds(here("Outputs", "artifacts_herding_gfc_crisis.rds"))
+herding_gfc_crisis$models$ols_tbl %>% 
+  add_column(.data = tibble(rep(" ", 6))) %>% 
+  relocate(`rep(" ", 6)`, .after = Category) %>% 
+  rename(" " = `rep(" ", 6)`) %>% 
+  as_grouped_data(groups = c("Category")) %>% 
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  autofit(add_w = 0) %>% 
+  mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
+    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  width(j = c(1,2,3,4, 5, 6), width = 1) %>% 
   hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))  
   
 
@@ -265,26 +399,103 @@ herding_crisis$models$ols_tbl %>%
 ```{r}
 #| label: tbl-gfs_qr
 #| tbl-cap: "Herding during GFC quantile regressions"
-#| ft.arraystretch: 0.6
+#| ft.arraystretch: 0.4
 
-herding_crisis$models$qr_tbl %>%  
+herding_gfc_crisis$models$qr_tbl %>%  
   as_grouped_data(groups = c("Category")) %>% 
   as_flextable(hide_grouplabel = TRUE) %>% 
-  autofit(add_w = 0.1) %>% 
+  autofit(add_w = 0) %>% 
   set_header_labels(
     tau = " "
   ) %>% 
   mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>%     
   add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  width(j = c(1:6), width = 1) %>%
   hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))
 
 ```
 
 
+```{r}
+#| label: fig-rol_gfc
+#| fig-cap: "GFC CSAD rolling regressions with 250 day window"
+#| fig-height: 5
+#| fig-width: 8
+#| cache: false
+
+herding_gfc_crisis$graphs$rol_gg 
 
 
-## Fundamental herding
+```
+\newpage
 
+### Covid crisis
+```{r}
+#| label: tbl-covid_ols
+#| tbl-cap: "Herding during Covid crisis ols"
+
+equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + 
+                           \\gamma_2 (1- D^{crisis})|R_{m, t}| +
+                           \\gamma_3D^{crisis}R_{m, t}^2 + \\gamma_4(1-D^{crisis})R_{m, t}^2 + \\epsilon_{t}"))
+estimates <- c(
+  "\\alpha",
+  "\\gamma_1 ",
+  "\\gamma_2",
+  "\\gamma_3",
+  "\\gamma_4"
+)
+
+herding_crisis_covid <- read_rds(here("Outputs", "artifacts_herding_covid_crisis.rds"))
+herding_crisis_covid$models$ols_tbl %>% 
+  add_column(.data = tibble(rep(" ", 6))) %>% 
+  relocate(`rep(" ", 6)`, .after = Category) %>% 
+  rename(" " = `rep(" ", 6)`) %>% 
+  as_grouped_data(groups = c("Category")) %>% 
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  autofit(add_w = 0) %>% 
+  mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
+    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  width(j = c(1,2,3,4, 5, 6), width = 1) %>% 
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))  
+  
+
+
+```
+\newpage
+
+```{r}
+#| label: tbl-covid_qr
+#| tbl-cap: "Herding during Covid crisis quantile regressions"
+#| ft.arraystretch: 0.4
+
+herding_crisis_covid$models$qr_tbl %>%  
+  as_grouped_data(groups = c("Category")) %>% 
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  autofit(add_w = 0) %>% 
+  set_header_labels(
+    tau = " "
+  ) %>% 
+  mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>%     
+  add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  width(j = c(1:6), width = 1) %>%
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1))
+
+```
+
+
+```{r}
+#| label: fig-rol_covid
+#| fig-cap: "Covid CSAD rolling regressions with 250 day window"
+#| fig-height: 5
+#| fig-width: 8
+#| cache: false
+
+herding_crisis_covid$graphs$rol_gg 
+
+
+```
+
+<!-- ## Fundamental herding -->
 \newpage
 
 # Conclusion
@@ -307,7 +518,6 @@ aggregation_scheme_tbl %>%
   align(align = "left", part = "all") %>% 
   autofit()
 ```
-
 \newpage
 
 ## Returns
@@ -317,7 +527,7 @@ aggregation_scheme_tbl %>%
 #| fig-cap: "Consumables group returns"
 #| fig-height: 6
 #| fig-width: 6
-#| cache: true
+#| cache: false
 
 returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg
 ```
@@ -327,7 +537,7 @@ returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services
 #| fig-cap: "Health group returns"
 #| fig-height: 3
 #| fig-width: 6
-#| cache: true
+#| cache: false
 
 returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
 ```
@@ -337,7 +547,7 @@ returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
 #| fig-cap: "Manufacturing group returns"
 #| fig-height: 6
 #| fig-width: 6
-#| cache: true
+#| cache: false
 
 returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
 ```
@@ -347,7 +557,7 @@ returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
 #| fig-cap: "Business services group returns"
 #| fig-height: 6
 #| fig-width: 6
-#| cache: true
+#| cache: false
 
 returns_data$graphs$business_equipment_telephone_and_television_transmission_group_equal_gg
 ```
@@ -361,7 +571,6 @@ returns_data$graphs$business_equipment_telephone_and_television_transmission_gro
 
 returns_data$graphs$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg
 ```
-
 \newpage
 
 # References

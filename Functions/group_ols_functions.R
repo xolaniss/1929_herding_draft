@@ -28,6 +28,7 @@ function(data_fitted_models){
     mutate(across(2:4, ~str_replace_all(., "\\[0]", "[0.00]"))) %>% 
     dplyr::select(-name)
 }
+
 ols_group_workflow <-
 function(data) {
   data %>% 
