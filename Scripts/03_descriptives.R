@@ -82,6 +82,7 @@ artifacts_descriptives <- list (
   descriptives_tbl = descriptives_tbl
 )
 
+
 write_rds(artifacts_descriptives, file = here("Outputs", "artifacts_descriptives.rds"))
 
 

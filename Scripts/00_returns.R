@@ -44,6 +44,8 @@ equal_returns <-
     na = c("-99.99", "999")
   ) %>%
   rename("Date" = ...1)
+
+
 weighted_returns <-
   read_csv(
     here("Data", "49_Industry_Portfolios_Daily_weighted.csv"),
@@ -195,7 +197,7 @@ mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_vec <-
   )
 
 
-# Aggregation scheme ----------------------------------------------------
+# Aggregation scheme table ----------------------------------------------------
 
 aggregation_scheme_tbl <- 
   tibble(
@@ -212,47 +214,51 @@ aggregation_scheme_tbl <-
 Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl <-
   equal_returns_tbl %>%
   dplyr::select(Date,
-                Consumer_durables_nondurables_wholesale_retail_some_services_group_vec)
+                all_of(Consumer_durables_nondurables_wholesale_retail_some_services_group_vec)) 
+Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl %>% skim()
 
 Consumer_durables_nondurables_wholesale_retail_some_services_group_weighted_tbl <-
   weighted_returns_tbl  %>%
   dplyr::select(Date,
-                Consumer_durables_nondurables_wholesale_retail_some_services_group_vec)
+                all_of(Consumer_durables_nondurables_wholesale_retail_some_services_group_vec))
 
 # Group 2 -----------------------------------------------------------------
 manufacturing_energy_utilities_group_equal_tbl <-
   equal_returns_tbl %>%
   dplyr::select(Date,
-                manufacturing_energy_utilities_group_vec)
+                all_of(manufacturing_energy_utilities_group_vec))
 
+manufacturing_energy_utilities_group_equal_tbl %>% skim()
 manufacturing_energy_utilities_group_weighted_tbl <-
   weighted_returns_tbl  %>%
   dplyr::select(Date,
-                manufacturing_energy_utilities_group_vec)
+                all_of(manufacturing_energy_utilities_group_vec))
 
 # Group 3 -----------------------------------------------------------------
 
 business_equipment_telephone_and_television_transmission_group_equal_tbl <-
   equal_returns_tbl %>%
   dplyr::select(Date,
-                business_equipment_telephone_and_television_transmission_group_vec)
+                all_of(business_equipment_telephone_and_television_transmission_group_vec))
 
+business_equipment_telephone_and_television_transmission_group_equal_tbl %>% skim()
 business_equipment_telephone_and_television_transmission_group_weighted_tbl <-
   weighted_returns_tbl  %>%
   dplyr::select(Date,
-                business_equipment_telephone_and_television_transmission_group_vec)
+                all_of(business_equipment_telephone_and_television_transmission_group_vec))
 
 
 # Group 4 -----------------------------------------------------------------
 healthcare_medical_equipment_and_drugs_group_equal_tbl <-
   equal_returns_tbl %>%
   dplyr::select(Date,
-                healthcare_medical_equipment_and_drugs_group_vec)
+                all_of(healthcare_medical_equipment_and_drugs_group_vec))
+healthcare_medical_equipment_and_drugs_group_equal_tbl %>% skim()
 
 healthcare_medical_equipment_and_drugs_group_weighted_tbl <-
   weighted_returns_tbl  %>%
   dplyr::select(Date,
-                healthcare_medical_equipment_and_drugs_group_vec)
+                all_of(healthcare_medical_equipment_and_drugs_group_vec))
 
 
 # Group 5 -----------------------------------------------------------------
@@ -260,73 +266,80 @@ healthcare_medical_equipment_and_drugs_group_weighted_tbl <-
 mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_tbl <-
   equal_returns_tbl %>%
   dplyr::select(Date,
-                mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_vec)
+                all_of(mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_vec))
+mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_tbl %>% skim()
 
 mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_weighted_tbl <-
   weighted_returns_tbl  %>%
   dplyr::select(Date,
-                mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_vec)
+                all_of(mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_vec))
 
 
 # Graphing ---------------------------------------------------------------
-equal_returns_part_1_gg <-
-  equal_returns_tbl %>%
-  dplyr::select(Date, 2:25) %>%
-  fx_plot(plotname = "%", variables_color = 24)
-ggsave(here("Outputs", "equal_returns_part_1_gg.png"), dpi = 500)
-
-equal_returns_part_2_gg <-
-  equal_returns_tbl %>%
-  dplyr::select(Date, 26:49) %>%
-  fx_plot(plotname = "%", variables_color = 25)
-ggsave(here("Outputs", "equal_returns_part_2_gg.png"), dpi = 500)
-
-weighted_returns_part_1_gg <-
-  weighted_returns_tbl %>%
-  dplyr::select(Date, 2:25) %>%
-  fx_plot(plotname = "%", variables_color = 24)
-ggsave(here("Outputs", "weighted_returns_part_1_gg.png"), dpi = 500)
-
-weighted_returns_part_2_gg <-
-  weighted_returns_tbl %>%
-  dplyr::select(Date, 26:49) %>%
-  fx_plot(plotname = "%", variables_color = 25)
-ggsave(here("Outputs", "weighted_returns_part_2_gg.png"), dpi = 500)
+# equal_returns_part_1_gg <-
+#   equal_returns_tbl %>%
+#   dplyr::select(Date, 2:25) %>%
+#   fx_plot(plotname = "%", variables_color = 24)
+# ggsave(here("Outputs", "equal_returns_part_1_gg.png"), dpi = 500)
+# 
+# equal_returns_part_2_gg <-
+#   equal_returns_tbl %>%
+#   dplyr::select(Date, 26:49) %>%
+#   fx_plot(plotname = "%", variables_color = 25)
+# ggsave(here("Outputs", "equal_returns_part_2_gg.png"), dpi = 500)
+# 
+# weighted_returns_part_1_gg <-
+#   weighted_returns_tbl %>%
+#   dplyr::select(Date, 2:25) %>%
+#   fx_plot(plotname = "%", variables_color = 24)
+# ggsave(here("Outputs", "weighted_returns_part_1_gg.png"), dpi = 500)
+# 
+# weighted_returns_part_2_gg <-
+#   weighted_returns_tbl %>%
+#   dplyr::select(Date, 26:49) %>%
+#   fx_plot(plotname = "%", variables_color = 25)
+# ggsave(here("Outputs", "weighted_returns_part_2_gg.png"), dpi = 500)
 
 Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg <- 
 Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl %>% 
-  fx_plot(variables_color = 13)
+  fx_plot(variables_color = 13) +
+  labs(y = "%")
 Consumer_durables_nondurables_wholesale_retail_some_services_group_weighted_gg <- 
 Consumer_durables_nondurables_wholesale_retail_some_services_group_weighted_tbl %>% 
-  fx_plot(variables_color = 13)
-
+  fx_plot(variables_color = 13) +
+  labs(y = "%")
 manufacturing_energy_utilities_group_equal_gg <- 
 manufacturing_energy_utilities_group_equal_tbl %>% 
-  fx_plot(variables_color = 9)
+  fx_plot(variables_color = 9) +
+  labs(y = "%")
 manufacturing_energy_utilities_group_weighted_gg <- 
 manufacturing_energy_utilities_group_weighted_tbl %>% 
-  fx_plot(variables_color = 9)
-
+  fx_plot(variables_color = 9) +
+  labs(y = "%")
 business_equipment_telephone_and_television_transmission_group_equal_gg <- 
 business_equipment_telephone_and_television_transmission_group_equal_tbl %>% 
-  fx_plot(variables_color = 6)
+  fx_plot(variables_color = 6) +
+  labs(y = "%")
 business_equipment_telephone_and_television_transmission_group_gg <- 
 business_equipment_telephone_and_television_transmission_group_weighted_tbl %>% 
-  fx_plot(variables_color = 6)
-
+  fx_plot(variables_color = 6) +
+  labs(y = "%")
 healthcare_medical_equipment_and_drugs_group_equal_gg <- 
 healthcare_medical_equipment_and_drugs_group_equal_tbl %>% 
-  fx_plot(variables_color = 3)
+  fx_plot(variables_color = 3) +
+  labs(y = "%")
 healthcare_medical_equipment_and_drugs_group_weighted_gg <- 
 healthcare_medical_equipment_and_drugs_group_weighted_tbl %>% 
-  fx_plot(variables_color = 3)
-
+  fx_plot(variables_color = 3)+
+  labs(y = "%")
 mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg <- 
 mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_tbl %>% 
-  fx_plot(variables_color = 18)
+  fx_plot(variables_color = 18) +
+  labs(y = "%")
 mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_weighted_gg <- 
 mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_weighted_tbl %>% 
-  fx_plot(variables_color = 18)
+  fx_plot(variables_color = 18) +
+  labs(y = "%")
 
 # Export ---------------------------------------------------------------
 artifacts_returns_data <- list (
@@ -364,21 +377,21 @@ artifacts_returns_data <- list (
 write_rds(artifacts_returns_data,
           file = here("Outputs", "artifacts_returns_data.rds"))
 
-artifacts_returns_graphs_equal <- list (equal_returns_part_1_gg = equal_returns_part_1_gg,
-                                        equal_returns_part_2_gg = equal_returns_part_2_gg)
-write_rds(
-  artifacts_returns_graphs_equal,
-  file = here("Outputs", "artifacts_returns_graphs_equal.rds")
-)
+# artifacts_returns_graphs_equal <- list (equal_returns_part_1_gg = equal_returns_part_1_gg,
+#                                         equal_returns_part_2_gg = equal_returns_part_2_gg)
+# write_rds(
+#   artifacts_returns_graphs_equal,
+#   file = here("Outputs", "artifacts_returns_graphs_equal.rds")
+# )
 
-artifacts_returns_graphs_weighted_part_1 <- list (weighted_returns_part_1_gg = weighted_returns_part_1_gg)
-write_rds(
-  artifacts_returns_graphs_weighted_part_1,
-  file = here("Outputs", "artifacts_returns_graphs_weighted_part_1.rds")
-)
+# artifacts_returns_graphs_weighted_part_1 <- list (weighted_returns_part_1_gg = weighted_returns_part_1_gg)
+# write_rds(
+#   artifacts_returns_graphs_weighted_part_1,
+#   file = here("Outputs", "artifacts_returns_graphs_weighted_part_1.rds")
+# )
 
-artifacts_returns_graphs_weighted_part_2 <- list (weighted_returns_part_2_gg = weighted_returns_part_2_gg)
-write_rds(
-  artifacts_returns_graphs_weighted_part_2,
-  file = here("Outputs", "artifacts_returns_graphs_weighted_part_2.rds")
-)
+# artifacts_returns_graphs_weighted_part_2 <- list (weighted_returns_part_2_gg = weighted_returns_part_2_gg)
+# write_rds(
+#   artifacts_returns_graphs_weighted_part_2,
+#   file = here("Outputs", "artifacts_returns_graphs_weighted_part_2.rds")
+# )

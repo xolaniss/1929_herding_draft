@@ -1,11 +1,13 @@
 csad <-
 function (data, market_return) {
-  rowSums(abs((data - as.numeric(market_return))), na.rm = TRUE) / nrow(data)
+  rowSums(abs(data[, -1] - as.numeric(market_return)), na.rm = TRUE) / nrow(data)
 }
 cssd <-
 function (data, market_return) {
-  sqrt(rowSums((data - as.numeric(market_return)) ^ 2, na.rm = TRUE) / nrow(data - 1))
+  sqrt(rowSums((data[, -1] - as.numeric(market_return)) ^ 2, na.rm = TRUE) / nrow(data - 1))
 }
+
+
 cross_deviations_tbl <-
 function(data){
   # Market return
@@ -13,7 +15,7 @@ function(data){
     rowMeans(data[, -1], na.rm = TRUE )
   
   # CSAD and CSSD
-  csad_matrix <- csad(data = data[, -1], 
+  csad_matrix <- csad(data = data, 
                       market_return = market_return_matrix)
   # cssd_matrix <- cssd(data = data[, -1], 
   #                     market_return = market_return_matrix)
@@ -34,14 +36,12 @@ function(data){
   # Result
   results_tbl
 }
-results_gg <-
-function(results){
-    results %>% 
-    pivot() %>% 
-    mutate(Series = dplyr::recode(Series,
+results_gg <- function(cross_deviations_tbl){
+  cross_deviations_tbl %>% 
+  pivot() %>% 
+  mutate(Series = dplyr::recode(Series,
                                   # "CSSD" = "CSSD[t]",
                                   "CSAD" = "CSAD[t]",
                                   "Mkt" = "R[mt]")) %>% 
-    fx_recode_plot(variables_color = 2)
-  
+  fx_recode_plot(variables_color = 2)
 }

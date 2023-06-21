@@ -65,8 +65,8 @@ results_all_industries_gg <-
 # 3.1 Data ----------------------------------------------------------------
 
 returns_consumables_group_tbl <- 
-  returns$groups$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl # including some NAs in some categories
-returns_consumables_group_tbl %>% skim()
+  returns$groups$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl  # including some NAs in some categories %>% 
+ 
 
 # 3.2 CSAD and CSSD -------------------------------------------------------
 results_consumables_group_tbl <- cross_deviations_tbl(data = returns_consumables_group_tbl)
@@ -78,6 +78,8 @@ results_consumables_group_gg <-
   results_gg() +
   labs(title = "Consumables group")
 
+rowSums(abs(returns_consumables_group_tbl[1:2, -1] - as.numeric(rowMeans(returns_consumables_group_tbl[1:2, -1], 
+                                                                 na.rm = TRUE))), na.rm = TRUE)
 
 # 5.0 Manuf_group ---------------------------------------------------------
 
