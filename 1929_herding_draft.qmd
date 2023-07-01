@@ -502,6 +502,25 @@ herding_crisis_covid$graphs$rol_gg
 
 \newpage
 
+
+
+
+# References {.unnumbered}
+::: {#refs}
+:::
+
+
+\setcounter{section}{0}
+\renewcommand{\thesection}{\Alph{section}}
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{A\arabic{figure}}
+
+\newpage
+
 # Appendix
 
 ## Industries aggregation
@@ -520,7 +539,7 @@ aggregation_scheme_tbl %>%
 ```
 \newpage
 
-## Returns
+## Data
 
 ```{r}
 #| label: fig-cons-returns
@@ -572,5 +591,19 @@ returns_data$graphs$business_equipment_telephone_and_television_transmission_gro
 returns_data$graphs$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg
 ```
 \newpage
+
+## Descritive statistics
+```{r}
+#| label: tbl-data_descriptives
+#| tbl-cap: "Data Descriptive Statistics"
+#| tbl-colwidths: auto
+
+eda_tbl <- returns_data$full_data$eda_tbl
+eda_tbl %>% 
+  flextable() %>% 
+  align(align = "left", part = "all") %>% 
+  autofit()
+```
+
 
 # References

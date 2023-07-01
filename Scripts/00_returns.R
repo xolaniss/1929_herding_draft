@@ -56,7 +56,7 @@ weighted_returns <-
 
 
 # Cleaning -----------------------------------------------------------------
-names_vec <- as_vector(colnames(weighted_returns))
+names_vec <- as_vector(colnames(equal_returns))
 replace_vec <- c(
   "Agriculture" = "Agric",
   "Food Products" = "Food",
@@ -119,8 +119,30 @@ weighted_returns_tbl <-
   mutate(Date = parse_date_time(Date, orders = "Ymd"))
 
 # EDA --------------------------------------------------------
-equal_returns_tbl %>%  skim()
+eda_tbl <- 
+  equal_returns_tbl %>%  
+  skim() %>% 
+  dplyr::select(-skim_type, 
+                -contains("POSIXct"), 
+                -numeric.p0,
+                -numeric.hist) %>% 
+  rename(
+    "Variable" = "skim_variable",
+    "Missing obs." = "n_missing",
+    "Obs. complete rate" = "complete_rate",
+    "Mean" = "numeric.mean",
+    "SD" = "numeric.sd",
+    "25th percentile" = "numeric.p25",
+    "50th percentile" = "numeric.p50",
+    "75th percentile" = "numeric.p75",
+    "100th percentile" = "numeric.p100"
+  ) %>% 
+  slice(-1)
+
+
 weighted_returns_tbl %>% skim()
+
+
 
 
 # Grouping ----------------------------------------------------------------
@@ -346,7 +368,8 @@ artifacts_returns_data <- list (
   full_data = list(
     equal_returns_tbl = equal_returns_tbl,
     weighted_returns_tbl = weighted_returns_tbl,
-    aggregation_scheme_tbl = aggregation_scheme_tbl
+    aggregation_scheme_tbl = aggregation_scheme_tbl,
+    eda_tbl = eda_tbl
   ),
   groups = list(
     Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl = Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_tbl,
