@@ -52,9 +52,9 @@ fx_recode_plot <-
       theme(
         text = element_text(size = 8),
         strip.background = element_rect(colour = "white", fill = "white"),
-        axis.text.x = element_text(angle = 90),
-        axis.title = element_text(size = 8),
-        plot.tag = element_text(size = 8),
+        axis.text.x = element_text(angle = 180),
+        axis.title = element_text(size = 7),
+        plot.tag = element_text(size = 7),
         legend.position = "none"
       ) +
       labs(x = "", y = plotname) +

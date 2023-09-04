@@ -41,13 +41,13 @@ source(here("Functions", "fx_plot.R"))
 results <- read_rds(here("Outputs", "artifacts_csad_cssd.rds"))
 
 combined_results_list <- list(
-  "All industries" = results$data$results_all_industries_tbl,
-  "Consumables group" = results$data$results_consumables_group_tbl,
+  "All industries" = results$csad_crisis$results_all_industries_crisis_csad_tbl,
+  "Consumables group" = results$csad_crisis$results_consumables_group_crisis_csad_tbl,
   # "Durables group" = results$data$results_durables_group_tbl,
-  "Health group"  = results$data$results_health_group_tbl,
-  "Manufacturing group"  = results$data$results_manuf_group_tbl,
-  "Mines group" = results$data$results_mines_group_tbl,
-  "Business services group" = results$data$results_bus_group_tbl
+  "Health group"  = results$csad_crisis$results_health_group_crisis_csad_tbl,
+  "Manufacturing group"  = results$csad_crisis$results_manuf_group_crisis_csad_tbl,
+  "Mines group" = results$csad_crisis$results_mines_group_crisis_csad_tbl,
+  "Business services group" = results$csad_crisis$results_bus_group_crisis_csad_tbl
 )
 
 # Cleaning -----------------------------------------------------------------
@@ -56,15 +56,14 @@ combined_results_tbl <-
   map(~rename(., "Market Return" = "Mkt")) %>% 
   bind_rows(.id = "Category") %>% 
   relocate(Date, .before = "Category")
-  # dplyr::select(-CSSD)
 
 # Descriptives -------------------------------------------------------------
 
 descriptives_tbl <- 
   combined_results_tbl %>% 
   drop_na() %>% 
-  pivot_longer(cols = -c(Date, Category), names_to = "Variables", values_to = "Value") %>% 
-  group_by(Category, Variables) %>% 
+  pivot_longer(cols = -c(Date, Category, Crisis), names_to = "Variables", values_to = "Value") %>% 
+  group_by(Category, Crisis, Variables) %>% 
   summarise(across(.cols = -c(Date),
                    .fns = list(Median = median, 
                                SD = sd,

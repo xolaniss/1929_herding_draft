@@ -54,7 +54,7 @@ combined_results_tbl <- result_csad_cssd$combined_results_tbl
 # Dummies --------------------------------------------------------
 
 ## Financial Crisis --------------------------------------------------------
-start <- as.Date("2007-09-9")
+start <- as.Date("2007-09-09")
 end <- as.Date("2009-03-31")
 
 dummy_tbl <- tibble(

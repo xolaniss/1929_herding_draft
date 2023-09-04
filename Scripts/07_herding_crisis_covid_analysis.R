@@ -53,8 +53,8 @@ combined_results_tbl <- result_csad_cssd$combined_results_tbl
 
 # Dummies --------------------------------------------------------
 
-## Financial Crisis --------------------------------------------------------
-start <- as.Date("2020-3-9")
+## Covid Crisis --------------------------------------------------------
+start <- as.Date("2020-3-09")
 end <- as.Date("2020-12-31")
 
 dummy_tbl <- tibble(

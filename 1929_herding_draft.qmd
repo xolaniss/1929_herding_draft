@@ -80,29 +80,68 @@ set_flextable_defaults(font.size = 7,
 
 @duygun2021
 
-# Methodology
 
-# Data
+# Literature Review
 
-\newpage
+#  Data and Methodology
+## Data
+The analysis utilises Kenneth French's 49 industry portfolio returns^[\url{http://mba.tuck.dartmouth.edu/pages/faculty/ken.french}]. Through his website Kenneth French provides a variety of financial market related data for research purposes, which include the famous Fama/French factors data. These data have two main advantages for researchers. First, the industry portfolio data varies in detail from 5 industry to 49 industry data-sets. Second, the data cover long periods of time, typically to pre World War II. Specifically, the daily data covers the period 1 July 1926 to ends in 29 July 2022. The significant length and breadth of this data is essential for our analysis.   
+
+We create 5 industry groups from the 49 industries in order to calculate the cross sectional dispersions as outlined in the methodology. In the data, stocks are assigned^[At the end of June each year] from the NYSE, AMEX, NASDAQ to an industry portfolio using a four-digit Centre for Research in Security Prices Standard Industry Classification Codes (CSRP-SIC). Essentially, the CSRP-SICs determine the level of industry aggregation in the data. Therefore, in @tbl-grouping we group the industries using the CSRP-SICs^[These are also available from \url{http://mba.tuck.dartmouth.edu/pages/faculty/ken.french}]. Lastly, @fig-cons to @fig-mines, and @tbl-data_descriptives show the described industry data. 
+
+## Methodology
+Empirically herding is defined in line with @chang2000examination. Herding is measured by first calculating returns:
+
+$$ R_{t} = \left(\dfrac{E_t}{E_{t-1}} - 1\right) \times 100,$$
+
+
+where $R_{t}$ is a return at time $t$, $E_t$ and $E_{t-1}$ is index value at time $t$ and $t-1$. Returns form the foundation of the analysis as they contain all information on the market, including shocks and investor sentiment. 
+
+Following @christie1995following and @chang2000examination we calculate two dispersion metrics. The cross-sectional standards deviation ($CSSD_{t}$) and the cross-sectional absolute standard deviations ($CSAD_{t}$). **add** The dispersion measures are calculated for all markets as follows:
+
+$$CSSD_{t} = \sqrt{\sum_{i = 1}^{N}w_{i,t}(R_{i,t} - R_{m, t})^2},$$
+
+$$CSAD_{t} = \sum_{i =1}^{N}w_{i,t}{|R_{i,t} - R_{m,t}|},$$
+
+where $R_{i,t}$ observed currency returns from market $i$ at time $t$, $R_{m,t}$ is a trade weighted average of the $R_{i,t}$ or the market return, $w_{i,t}$ is the respective trade weight of each market over time with the South Africa, and the $\sum_{i}w_{i,t}= 1$. The return dispersion measures capture the directional similarity across currency returns at a given point in time with respect to the aggregate market. Herding tests, in turn, are based on the pattern of return dispersions during periods of large price movements. Usually, the return dispersion metrics tend to be positively associated with market returns in the absence of herding. 
+
+Next, the pattern of return dispersions during periods of large price movements is examined. The rationale behind the testing methodology is that, if herding is present, the correlated trades by investors will lead to greater directional similarity in currency returns, thus leading to lower dispersion in returns. This can be measured by the sign of the coefficients of the relationship between the return dispersion and $R_{m, t}$ and $R_{m, t}^2$ (or market return measures) in these equations for the general market herding:
+
+$$CSSD_{t} = \alpha_0 +  \alpha_1|R_{m, t}| +  \alpha_2R_{m, t}^2 + \epsilon_{t},$$
+$$CSAD_{t} =  \alpha_0 +  \alpha_1|R_{m, t}| +  \alpha_2R_{m, t}^2 + \epsilon_{t},$$
+
+where $\alpha_2$ is the herding coefficient. The expectation is that $\alpha_1 > 0$ and $\alpha_2=0$, indicating the absence of herding. However, herding would be implied by $\alpha_2 < 0$, which indicates that return dispersions are significantly lower during market stress due to correlated trading behaviour, leading to greater directional similarity in returns. Likewise, $\alpha_2 > 0$ would indicate anti-herding, indicating that traders go against the market consensus [@stavroyiannis2015time]. The purpose of the $CSSD_t$ and the $CSAD_t$ regressions is not to determine the best fit but to test the directional similarity of returns. This is possible because returns data are typically highly correlated and stationary. To ensure that the results are not spurious, all the $CSSD_t$ and the $CSAD_t$ regressions in this study use Heteroskedasticity and Autocorrelation Consistent (HAC) standard errors as defined by @zeileis2004econometric. 
+
+
+
+
 
 # Results
 
 ## Descriptive analysis
 
+\newpage
+
 ```{r}
 #| label: tbl-desc
 #| tbl-cap: "Descriptive statistics"
+#| ft.arraystretch: 0.4
 #| cache: false
 
 descriptives <- read_rds(here("Outputs", "artifacts_descriptives.rds"))
-descriptives_tbl <- descriptives$descriptives_tbl 
+descriptives_tbl <- descriptives$descriptives_tbl %>% 
+  ungroup() %>% 
+  mutate(Category_Crisis = paste(Category, ": ", Crisis)) %>% 
+  relocate(Category_Crisis, .before = Category) %>% 
+  dplyr::select(-Category, -Crisis)
+
 descriptives_tbl %>%
-  as_grouped_data(groups = c("Category")) %>%
-  as_flextable(hide_grouplabel = TRUE) %>%
-  align(align = "left", j = 1) %>%
-  merge_at(i = 1, j = 1:7) %>%
-  align(i = 1, align = "center") %>%
+  as_grouped_data(groups = c("Category_Crisis")) %>%
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  align(align = "center", part = "all") %>% 
+  align(align = "left", j = 1, part = "all") %>% 
+  merge_at(i = 1, j = 1:7) %>% 
+  align(i = 1, align = "center") %>% 
   merge_at(i = 4, j = 1:7) %>%
   align(i = 4, align = "center") %>%
   merge_at(i = 7, j = 1:7) %>%
@@ -113,6 +152,54 @@ descriptives_tbl %>%
   align(i = 13, align = "center") %>%
   merge_at(i = 16, j = 1:7) %>%
   align(i = 16, align = "center") %>% 
+  merge_at(i = 19, j = 1:7) %>% 
+  align(i = 19, align = "center") %>% 
+  merge_at(i = 22, j = 1:7) %>%
+  align(i = 22, align = "center") %>%
+  merge_at(i = 25, j = 1:7) %>%
+  align(i = 25, align = "center") %>%
+  merge_at(i = 28, j = 1:7) %>%
+  align(i = 28, align = "center") %>%
+  merge_at(i = 31, j = 1:7) %>%
+  align(i = 31, align = "center") %>%
+  merge_at(i = 34, j = 1:7) %>%
+  align(i = 34, align = "center") %>% 
+  merge_at(i = 37, j = 1:7) %>% 
+  align(i = 37, align = "center") %>% 
+  merge_at(i = 40, j = 1:7) %>%
+  align(i = 40, align = "center") %>%
+  merge_at(i = 43, j = 1:7) %>%
+  align(i = 43, align = "center") %>%
+  merge_at(i = 46, j = 1:7) %>%
+  align(i = 46, align = "center") %>%
+  merge_at(i = 49, j = 1:7) %>%
+  align(i = 49, align = "center") %>%
+  merge_at(i = 52, j = 1:7) %>%
+  align(i = 52, align = "center") %>% 
+  merge_at(i = 55, j = 1:7) %>% 
+  align(i = 55, align = "center") %>% 
+  merge_at(i = 58, j = 1:7) %>%
+  align(i = 58, align = "center") %>%
+  merge_at(i = 61, j = 1:7) %>%
+  align(i = 61, align = "center") %>%
+  merge_at(i = 64, j = 1:7) %>%
+  align(i = 64, align = "center") %>%
+  merge_at(i = 67, j = 1:7) %>%
+  align(i = 67, align = "center") %>%
+  merge_at(i = 70, j = 1:7) %>%
+  align(i = 70, align = "center") %>% 
+    merge_at(i = 73, j = 1:7) %>% 
+  align(i = 73, align = "center") %>% 
+  merge_at(i = 76, j = 1:7) %>%
+  align(i = 76, align = "center") %>%
+  merge_at(i = 79, j = 1:7) %>%
+  align(i = 79, align = "center") %>%
+  merge_at(i = 82, j = 1:7) %>%
+  align(i = 82, align = "center") %>%
+  merge_at(i = 85, j = 1:7) %>%
+  align(i = 85, align = "center") %>%
+  merge_at(i = 88, j = 1:7) %>%
+  align(i = 88, align = "center") %>% 
   autofit(add_w = 0.7)
 
 ```
@@ -120,12 +207,12 @@ descriptives_tbl %>%
 ```{r}
 #| label: fig-results-all
 #| fig-cap: "Cross sectional deviations"
-#| fig-height: 10
-#| fig-width: 8
+#| fig-height: 14
+#| fig-width: 10
 #| cache: false
 cross_sectionals <- read_rds(here("Outputs", "artifacts_csad_cssd.rds"))
-results_all_gg <- cross_sectionals$graphs$results_all_gg
-results_all_gg
+results_all_crisis_gg <- cross_sectionals$graphs$results_all_crisis_gg
+results_all_crisis_gg
 ```
 
 ```{r}
@@ -169,6 +256,7 @@ modelsummary
 ```{r}
 #| label: tbl-ols
 #| tbl-cap: "General herding ols regression"
+#| cache: true
 
 equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1|R_{m, t}| +  \\gamma_2R_{m, t}^2 +  \\epsilon_{t}"))
 estimates <- c(
@@ -195,6 +283,7 @@ general_herding$models$ols_tbl %>%
 ```{r}
 #| label: tbl-general_quantiles
 #| tbl-cap: General herding quantile regressions
+#| cache: true
 
 general_herding$models$qr_tbl %>%  
   as_grouped_data(groups = c("Category")) %>% 
@@ -215,7 +304,7 @@ general_herding$models$qr_tbl %>%
 #| fig-cap: "CSAD rolling regressions with 250 day window"
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 
 CSAD_model_rol_gg <- general_herding$graphs$rol_gg
@@ -229,6 +318,7 @@ CSAD_model_rol_gg
 ```{r}
 #| label: tbl-gd_ols
 #| tbl-cap: "Herding during the Great Depression ols"
+#| cache: true
 
 equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + 
                            \\gamma_2 (1- D^{crisis})|R_{m, t}| +
@@ -264,6 +354,7 @@ herding_gd_crisis$models$ols_tbl %>%
 #| label: tbl-gd_qr
 #| tbl-cap: "Herding during Great Depression quantile regressions"
 #| ft.arraystretch: 0.4
+#| cache: true
 
 herding_gd_crisis$models$qr_tbl %>%  
   as_grouped_data(groups = c("Category")) %>% 
@@ -285,7 +376,7 @@ herding_gd_crisis$models$qr_tbl %>%
 #| fig-cap: "Great Depression CSAD rolling regressions with 250 day window"
 #| fig-height: 5
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 herding_gd_crisis$graphs$rol_gg 
 
@@ -298,6 +389,7 @@ herding_gd_crisis$graphs$rol_gg
 ```{r}
 #| label: tbl-gd_dot
 #| tbl-cap: "Herding during the Dot-com Bubble ols"
+#| cache: true
 
 equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + 
                            \\gamma_2 (1- D^{crisis})|R_{m, t}| +
@@ -333,6 +425,7 @@ herding_dot_crisis$models$ols_tbl %>%
 #| label: tbl-dot_qr
 #| tbl-cap: "Herding during Dot-com Bubble quantile regressions"
 #| ft.arraystretch: 0.4
+#| cache: true
 
 herding_dot_crisis$models$qr_tbl %>%  
   as_grouped_data(groups = c("Category")) %>% 
@@ -354,7 +447,7 @@ herding_dot_crisis$models$qr_tbl %>%
 #| fig-cap: "Dot-com bubble CSAD rolling regressions with 250 day window"
 #| fig-height: 5
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 herding_dot_crisis$graphs$rol_gg 
 
@@ -366,6 +459,7 @@ herding_dot_crisis$graphs$rol_gg
 ```{r}
 #| label: tbl-gfs_ols
 #| tbl-cap: "Herding during GFC ols"
+#| cache: true
 
 equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + 
                            \\gamma_2 (1- D^{crisis})|R_{m, t}| +
@@ -400,6 +494,7 @@ herding_gfc_crisis$models$ols_tbl %>%
 #| label: tbl-gfs_qr
 #| tbl-cap: "Herding during GFC quantile regressions"
 #| ft.arraystretch: 0.4
+#| cache: true
 
 herding_gfc_crisis$models$qr_tbl %>%  
   as_grouped_data(groups = c("Category")) %>% 
@@ -421,7 +516,7 @@ herding_gfc_crisis$models$qr_tbl %>%
 #| fig-cap: "GFC CSAD rolling regressions with 250 day window"
 #| fig-height: 5
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 herding_gfc_crisis$graphs$rol_gg 
 
@@ -433,6 +528,7 @@ herding_gfc_crisis$graphs$rol_gg
 ```{r}
 #| label: tbl-covid_ols
 #| tbl-cap: "Herding during Covid crisis ols"
+#| cache: true
 
 equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + 
                            \\gamma_2 (1- D^{crisis})|R_{m, t}| +
@@ -467,6 +563,7 @@ herding_crisis_covid$models$ols_tbl %>%
 #| label: tbl-covid_qr
 #| tbl-cap: "Herding during Covid crisis quantile regressions"
 #| ft.arraystretch: 0.4
+#| cache: true
 
 herding_crisis_covid$models$qr_tbl %>%  
   as_grouped_data(groups = c("Category")) %>% 
@@ -488,7 +585,7 @@ herding_crisis_covid$models$qr_tbl %>%
 #| fig-cap: "Covid CSAD rolling regressions with 250 day window"
 #| fig-height: 5
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 herding_crisis_covid$graphs$rol_gg 
 
@@ -523,12 +620,13 @@ herding_crisis_covid$graphs$rol_gg
 
 # Appendix
 
-## Industries aggregation
+## Industries grouping
 
 ```{r}
-#| label: tbl-aggregation
-#| tbl-cap: "Industry aggregation using the Fama-French factor scheme"
+#| label: tbl-grouping
+#| tbl-cap: "Industry grouping using CRSP SICs"
 #| tbl-colwidths: auto
+#| cache: true
 
 returns_data <- read_rds(here("Outputs", "artifacts_returns_data.rds"))
 aggregation_scheme_tbl <- returns_data$full_data$aggregation_scheme_tbl
@@ -542,47 +640,47 @@ aggregation_scheme_tbl %>%
 ## Data
 
 ```{r}
-#| label: fig-cons-returns
+#| label: fig-cons
 #| fig-cap: "Consumables group returns"
 #| fig-height: 6
 #| fig-width: 6
-#| cache: false
+#| cache: true
 
 returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg
 ```
 
 ```{r}
-#| label: fig-health-returns
+#| label: fig-health
 #| fig-cap: "Health group returns"
 #| fig-height: 3
 #| fig-width: 6
-#| cache: false
+#| cache: true
 
 returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
 ```
 
 ```{r}
-#| label: fig-manufacturing-returns
+#| label: fig-manufacturing
 #| fig-cap: "Manufacturing group returns"
 #| fig-height: 6
 #| fig-width: 6
-#| cache: false
+#| cache: true
 
 returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
 ```
 
 ```{r}
-#| label: fig-business-returns
+#| label: fig-business
 #| fig-cap: "Business services group returns"
 #| fig-height: 6
 #| fig-width: 6
-#| cache: false
+#| cache: true
 
 returns_data$graphs$business_equipment_telephone_and_television_transmission_group_equal_gg
 ```
 
 ```{r}
-#| label: fig-mines-returns
+#| label: fig-mines
 #| fig-cap: "Mines group returns"
 #| fig-height: 8
 #| fig-width: 8
@@ -592,11 +690,12 @@ returns_data$graphs$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finan
 ```
 \newpage
 
-## Descritive statistics
+
 ```{r}
 #| label: tbl-data_descriptives
-#| tbl-cap: "Data Descriptive Statistics"
+#| tbl-cap: "Data Summary"
 #| tbl-colwidths: auto
+#| cache: true
 
 eda_tbl <- returns_data$full_data$eda_tbl
 eda_tbl %>% 

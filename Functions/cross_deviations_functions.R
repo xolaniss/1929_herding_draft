@@ -36,6 +36,14 @@ function(data){
   # Result
   results_tbl
 }
+group_cross_deviations_tbl <- 
+  function(group_data){
+    group_data %>% 
+      nest(.by = Crisis) %>% 
+      mutate(deviations = map(data, ~cross_deviations_tbl(data = .))) %>% 
+      unnest(cols = deviations) %>% 
+      dplyr::select(-data)
+  }
 results_gg <- function(cross_deviations_tbl){
   cross_deviations_tbl %>% 
   pivot() %>% 
@@ -45,3 +53,37 @@ results_gg <- function(cross_deviations_tbl){
                                   "Mkt" = "R[mt]")) %>% 
   fx_recode_plot(variables_color = 2)
 }
+group_results_gg <-  
+  function (data, 
+            plotname = "%", 
+            variables_color = 5
+  ) {
+    data %>% 
+      pivot_longer(-c(Crisis, Date), names_to = "Series", values_to = "Value") %>% 
+      mutate(Series = dplyr::recode(Series,
+                                    "CSAD" = "CSAD",
+                                    "Mkt" = "Market Returns")) %>% 
+      ggplot(
+        aes(x = Date, y = Value, color = Crisis)
+      ) +
+      geom_line() +
+      facet_grid(Series ~ Crisis, 
+                 scale = "free") +
+      theme_bw() +
+      theme(
+        legend.position = "none",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+      ) +
+      theme(
+        text = element_text(size = 8),
+        strip.background = element_rect(colour = "white", fill = "white"),
+        axis.text.x = element_text(angle = 90),
+        axis.title = element_text(size = 8),
+        plot.tag = element_text(size = 8),
+        legend.position = "none"
+      ) +
+      labs(x = "", y = plotname) +
+      scale_color_manual(values = pnw_palette("Cascades", variables_color))  +
+      scale_x_date(date_labels = "%b-%Y " )
+  }
