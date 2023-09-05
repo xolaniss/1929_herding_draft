@@ -1,8 +1,8 @@
-nest_prep <-
+ols_nest_prep <-
 function(data){
   data %>%
     dplyr::relocate(Date, .after = "Category") %>% 
-    group_by(Category) %>% 
+    group_by(Category, Crisis) %>% 
     nest()
 }
 ols_tidy_group_models <-
@@ -17,13 +17,13 @@ ols_pretty_results <-
 function(data_fitted_models){
   data_fitted_models %>% 
     unnest(cols = models_coef, names_repair = "universal") %>% 
-    dplyr::select(Category, term, estimate, p.value)  %>%  
+    dplyr::select(Category, Crisis, term, estimate, p.value) %>% 
     mutate(across(2:3, as.character)) %>% 
-    mutate(across(2, ~strtrim(., 8))) %>% 
+    mutate(across(2, ~strtrim(., 8))) %>%   
     mutate(across(3, ~strtrim(., 4))) %>% 
     mutate(comb = paste0(estimate, " ", "[", p.value, "]")) %>% 
-    dplyr::select(Category, term, comb) %>% 
-    pivot_longer(-c(Category, term)) %>% 
+    dplyr::select(Category,Crisis, term, comb) %>% 
+    pivot_longer(-c(Category,Crisis, term)) %>% 
     spread(key = term, value = value) %>% 
     mutate(across(2:4, ~str_replace_all(., "\\[0]", "[0.00]"))) %>% 
     dplyr::select(-name)
@@ -32,7 +32,7 @@ function(data_fitted_models){
 ols_group_workflow <-
 function(data) {
   data %>% 
-    nest_prep() %>% 
+    ols_nest_prep() %>% 
     ols_tidy_group_models(formula = formula) %>% 
     ols_pretty_results()
 }

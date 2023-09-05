@@ -74,7 +74,10 @@ results_all_industries_gg <-
 results_all_industries_group_crisis_gg <- 
   results_all_industries_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "All industries")
+  labs(title = "All industries") +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank() 
+  )
   
 # 3.0 Consumable_group ----------------------------------------------------
 
@@ -99,7 +102,11 @@ results_consumables_group_gg <-
 results_consumables_group_crisis_gg <- 
   results_consumables_group_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "Consumables group")
+  labs(title = "Consumables group") +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        strip.text.x = element_blank()
+  )
 
 # 5.0 Manuf_group ---------------------------------------------------------
 
@@ -124,7 +131,11 @@ results_manuf_group_gg <-
 results_manuf_group_crisis_gg <- 
   results_manuf_group_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "Manufacturing group")
+  labs(title = "Manufacturing group") +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        strip.text.x = element_blank()
+  )
 
 
 # 6.0 Bus_group -----------------------------------------------------------
@@ -149,7 +160,11 @@ results_bus_group_gg <-
 results_bus_group_crisis_gg <- 
   results_bus_group_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "Business services group")
+  labs(title = "Business services group") +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        strip.text.x = element_blank()
+  )
 
 # 7.0 Health_group --------------------------------------------------------
 
@@ -173,22 +188,26 @@ results_health_group_gg <-
 results_health_group_crisis_gg <- 
   results_health_group_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "Health group")
+  labs(title = "Health group") +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        strip.text.x = element_blank()
+  )
 
 # 8.0 Mines_group  --------------------------------------------------------------
 
-# 8.1 Data ----------------------------------------------------------------
+## 8.1 Data ----------------------------------------------------------------
 returns_mines_group_tbl <- 
 returns$groups$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_tbl
 returns_mines_group_crisis_tbl <- 
   returns$groups$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_tbl %>% 
   crisis_periods()
 
-# 8.2 CSAD and CSSD -------------------------------------------------------
+## 8.2 CSAD and CSSD -------------------------------------------------------
 results_mines_group_csad_tbl <- cross_deviations_tbl(data = returns_mines_group_tbl)
 results_mines_group_crisis_csad_tbl <- group_cross_deviations_tbl(returns_mines_group_crisis_tbl)
 
-# 8.3 Graphing ------------------------------------------------------------
+## 8.3 Graphing ------------------------------------------------------------
 results_mines_group_gg <- 
   results_mines_group_csad_tbl %>% 
   results_gg() +
@@ -197,7 +216,9 @@ results_mines_group_gg <-
 results_mines_group_crisis_gg <- 
   results_mines_group_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "Mines group")
+  labs(title = "Mines group") +
+  theme(strip.text.x = element_blank())
+  
 
 # 9. Combined -------------------------------------------------------------
 results_all_gg <- 
@@ -205,16 +226,16 @@ results_all_gg <-
   results_consumables_group_gg / 
   results_health_group_gg /
   results_manuf_group_gg /
-  results_mines_group_gg /
-  results_bus_group_gg
+  results_bus_group_gg /
+  results_mines_group_gg 
 
 results_all_crisis_gg <- 
   results_all_industries_group_crisis_gg / 
   results_consumables_group_crisis_gg / 
   results_health_group_crisis_gg /
   results_manuf_group_crisis_gg /
-  results_mines_group_crisis_gg /
-  results_bus_group_crisis_gg
+  results_bus_group_crisis_gg /
+  results_mines_group_crisis_gg 
 
 # Export ---------------------------------------------------------------
 artifacts_csad_cssd <- list (

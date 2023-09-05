@@ -1,4 +1,4 @@
-nest_prep <-
+qmodels_nest_prep <-
 function(data){
   data %>%
     dplyr::relocate(Date, .after = "Category") %>% 
@@ -80,7 +80,7 @@ function(data_fitted_models){
 qmodels_group_workflow <-
 function(data){
   data %>%   
-    nest_prep() %>% 
+    qmodels_nest_prep() %>% 
     qmodel_tidy_group_models(formula = formula) %>% 
     qmodels_pretty_results()
 }

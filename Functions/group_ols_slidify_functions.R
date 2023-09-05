@@ -10,7 +10,7 @@ ols_slidify_models_crisis <-
       )
     
     data %>% 
-      group_by(Category) %>% 
+      group_by(Category, Crisis) %>% 
       mutate(models = rolling_reg_spec(CSAD, 
                                         dummy_abs, 
                                         anti_dummy_abs,
@@ -32,15 +32,14 @@ function(data, window = 250){
   
   data %>% 
     group_by(Category) %>% 
-    mutate(models = rolling_reg_spec(CSAD, abs(`Market Return`), I(`Market Return` ^ 2))) %>% 
-    unnest_rol_col_standard(rol_column = models)
+    mutate(models = rolling_reg_spec(CSAD, abs(`Market Return`), I(`Market Return` ^ 2))) 
 }
 unnest_rol_col_standard <-
 function(data, rol_column) {
   data %>% 
     mutate(tidy = map({{ rol_column }}, broom::tidy)) %>% 
-    unnest(tidy) %>% 
-    dplyr::select(Date, term:estimate, statistic) %>% 
+    unnest(cols = tidy) %>% 
+    dplyr::select(Date, Category, Crisis, term:estimate, statistic) %>% # added for category and crisis for new approach
     drop_na() %>% 
     pivot_wider(names_from = term, values_from = c(estimate, statistic)) %>% 
     dplyr::rename("a0" = `estimate_(Intercept)`,
@@ -72,7 +71,7 @@ unnest_rol_col_crisis <-
 fx_recode_prep_standard <-
 function(data){
   data %>% 
-    pivot_longer(c(-Date, -Category), names_to = "Series", values_to = "Value") %>% 
+    pivot_longer(c(-Date, -Category, -Crisis), names_to = "Series", values_to = "Value") %>% 
     mutate(Series = dplyr::recode(
       Series,
       "a0" = "alpha",
@@ -102,13 +101,13 @@ fx_recode_prep_crisis <-
       ))
   }
 fx_recode_plot <-
-function (data, plotname = " ", variables_color = 12, col_pallet = "Cascades",  ncol = NULL, nrow = NULL) {
+function (data, plotname = " ", variables_color = 6, col_pallet = "Cascades") {
     ggplot(
       data,
       aes(x = Date, y = Value, color = Category, group = Category)
     ) +
       geom_line() +
-      facet_wrap (. ~ Series, scale = "free", labeller = label_parsed, ncol, nrow) +
+      facet_grid (Series ~ Crisis, scale = "free") +
       theme_bw() +
       theme(
         legend.position = "none",
@@ -124,7 +123,8 @@ function (data, plotname = " ", variables_color = 12, col_pallet = "Cascades",  
         legend.position = "bottom"
       ) +
       labs(x = "", y = plotname, color = NULL) +
-      scale_color_manual(values = pnw_palette(col_pallet, variables_color))
+      scale_color_manual(values = pnw_palette(col_pallet, variables_color)) +
+      scale_x_date(date_labels = "%Y:%b")
   }
 slidyfy_gg_workflow_standard <-
 function(data_model_rol){

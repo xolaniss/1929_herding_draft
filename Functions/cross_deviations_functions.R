@@ -62,13 +62,15 @@ group_results_gg <-
       pivot_longer(-c(Crisis, Date), names_to = "Series", values_to = "Value") %>% 
       mutate(Series = dplyr::recode(Series,
                                     "CSAD" = "CSAD",
-                                    "Mkt" = "Market Returns")) %>% 
+                                    "Mkt" = "Mkt Returns")) %>% 
       ggplot(
         aes(x = Date, y = Value, color = Crisis)
       ) +
       geom_line() +
       facet_grid(Series ~ Crisis, 
-                 scale = "free") +
+                 scale = "free",
+                 space = "fixed"
+                 ) +
       theme_bw() +
       theme(
         legend.position = "none",
@@ -76,11 +78,11 @@ group_results_gg <-
         panel.grid.minor = element_blank()
       ) +
       theme(
-        text = element_text(size = 8),
+        text = element_text(size = 9),
         strip.background = element_rect(colour = "white", fill = "white"),
         axis.text.x = element_text(angle = 90),
-        axis.title = element_text(size = 8),
-        plot.tag = element_text(size = 8),
+        axis.title = element_text(size = 9),
+        plot.tag = element_text(size = 9),
         legend.position = "none"
       ) +
       labs(x = "", y = plotname) +

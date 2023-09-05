@@ -23,7 +23,6 @@ function (data, plotname = " ", variables_color = 12) {
     scale_color_manual(values = pnw_palette("Cascades", variables_color))
 }
 
-
 pivot <- function(data){
   result <- 
   pivot_longer(data,-Date, names_to = "Series", values_to = "Value") 

@@ -51,27 +51,33 @@ formula <-  as.formula(CSAD ~ abs(`Market Return`) + I(`Market Return` ^ 2))
 ols_tbl <- 
   combined_results_tbl %>% 
   ols_group_workflow()
+  
+##  Rolling regressions ----------------------------------------------------
+models_rol <-
+  combined_results_tbl %>%
+  ols_slidify_models_standard() %>% 
+  unnest_rol_col_standard(rol_column = models) 
 
-## QR --------------------------------------------------------------------
-qr_tbl <- 
-  combined_results_tbl %>% 
-  qmodels_group_workflow()
 
-#  Rolling regressions ----------------------------------------------------
-models_rol <- 
-  combined_results_tbl %>% 
-  ols_slidify_models_standard() 
-
-# Graphing ---------------------------------------------------------------
+## Graphing ---------------------------------------------------------------
 rol_gg <-
   models_rol %>%
   slidyfy_gg_workflow_standard()
 
+
+
+# ## QR --------------------------------------------------------------------
+# qr_tbl <- 
+#   combined_results_tbl %>% 
+#   qmodels_group_workflow()
+# 
+
+
 # Export ---------------------------------------------------------------
 artifacts_general_herding <- list (
   models = list(
-    ols_tbl  = ols_tbl,
-    qr_tbl = qr_tbl
+    ols_tbl  = ols_tbl
+    # qr_tbl = qr_tbl
   ),
   graphs = list(
     rol_gg = rol_gg
