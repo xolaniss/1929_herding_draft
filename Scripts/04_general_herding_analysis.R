@@ -73,24 +73,25 @@ models_rol <-
   unnest_rol_col_standard(rol_column = models) 
 
 ## Graphing ---------------------------------------------------------------
-rol_gg <-
+rol_coeff_gg <-
   models_rol %>%
-  dplyr::select(-Crisis) %>% 
-  # mutate(Category = str_replace_all(Category, "All industries", "'All industries'"),
-  #        Category = str_replace_all(Category, "Business services group", "'Business services group'"),
-  #        Category = str_replace_all(Category, "Consumables group", "'Consumables group'"),
-  #        Category = str_replace_all(Category, "Health group", "'Health group'"),
-  #        Category = str_replace_all(Category, "Manufacturing group", "'Manufacturing group'"),
-  #        Category = str_replace_all(Category, "Mines group", "'Mines group'")
-         # ) %>% 
-  slidyfy_gg_workflow_standard()
+  dplyr::select(-Crisis, - starts_with("t")) %>% 
+  slidyfy_gg_workflow_standard() +
+  theme(
+    legend.position = "none")
 
+rol_tstats_gg <-
+  models_rol %>%
+  dplyr::select(-Crisis, - starts_with("a")) %>% 
+  slidyfy_gg_workflow_standard() +
+  geom_hline(yintercept = 1.96, colour = "grey10", linetype = 2, linewidth = 0.3) +
+  geom_hline(yintercept = -1.96, colour = "grey10", linetype = 2, linewidth = 0.3) 
+rol_gg <- rol_coeff_gg / rol_tstats_gg
 
 # Export ---------------------------------------------------------------
 artifacts_general_herding <- list (
   models = list(
     ols_tbl  = ols_tbl
-    # qr_tbl = qr_tbl
   ),
   graphs = list(
     rol_gg = rol_gg

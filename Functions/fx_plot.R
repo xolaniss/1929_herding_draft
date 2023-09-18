@@ -20,7 +20,7 @@ function (data, plotname = " ", variables_color = 12) {
       plot.tag = element_text(size = 7)
     ) +
     labs(x = "", y = plotname) +
-    scale_color_manual(values = pnw_palette("Cascades", variables_color))
+    scale_color_manual(values = pnw_palette("Shuksan2", variables_color))
 }
 
 pivot <- function(data){
@@ -78,7 +78,7 @@ fx_recode_plot <-
         legend.position = "none"
       ) +
       labs(x = "", y = plotname) +
-      scale_color_manual(values = pnw_palette("Cascades", variables_color))
+      scale_color_manual(values = pnw_palette("Shuksan2", variables_color))
   }
 
 fx_recode_group_plot <-
@@ -110,7 +110,7 @@ fx_recode_group_plot <-
         legend.position = "bottom"
       ) +
       labs(x = "", y = plotname, color = NULL) +
-      scale_color_manual(values = pnw_palette("Cascades", variables_color))
+      scale_color_manual(values = pnw_palette("Shuksan2", variables_color))
 }
 
 
@@ -139,5 +139,5 @@ fx_nopivot_plot <-
         plot.tag = element_text(size = 8)
       ) +
       labs(x = "", y = plotname) +
-      scale_fill_manual(name = "", values = pnw_palette("Winter", variables_color))
+      scale_fill_manual(name = "", values = pnw_palette("Shuksan2", variables_color))
   }

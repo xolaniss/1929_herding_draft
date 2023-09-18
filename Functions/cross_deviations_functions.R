@@ -86,6 +86,6 @@ group_results_gg <-
         legend.position = "none"
       ) +
       labs(x = "", y = plotname) +
-      scale_color_manual(values = pnw_palette("Cascades", variables_color))  +
+      scale_color_manual(values = pnw_palette("Shuksan2", variables_color))  +
       scale_x_date(date_labels = "%b-%Y " )
   }

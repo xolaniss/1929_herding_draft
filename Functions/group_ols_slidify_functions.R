@@ -103,7 +103,7 @@ fx_recode_prep_crisis <-
 fx_recode_plot <-
 function (data, plotname = " ", 
           variables_color = 6, 
-          col_pallet = "Cascades"
+          col_pallet = "Shuksan2"
        ) {
   crisis_tbl = tibble(
     "recession_start" = c(as.POSIXct("1929-10-01"), 

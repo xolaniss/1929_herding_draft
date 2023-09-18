@@ -211,7 +211,7 @@ general_herding$models$ols_tbl %>%
 
 ```{r}
 #| label: fig-rol_gen
-#| fig-cap: "CSAD rolling regressions with 250 day window"
+#| fig-cap: "CSAD rolling regressions with 250 day window. Note: Shaded regions represent crisis periods and the perforated lines represents a 5% level of significance."
 #| fig-height: 8
 #| fig-width: 8
 #| cache: false
@@ -264,7 +264,7 @@ CSAD_model_rol_gg
 #| label: tbl-grouping
 #| tbl-cap: "Industry grouping using CRSP SICs"
 #| tbl-colwidths: auto
-#| cache: true
+#| cache: false
 
 returns_data <- read_rds(here("Outputs", "artifacts_returns_data.rds"))
 aggregation_scheme_tbl <- returns_data$full_data$aggregation_scheme_tbl
@@ -282,7 +282,7 @@ aggregation_scheme_tbl %>%
 #| fig-cap: "Consumables group returns"
 #| fig-height: 6
 #| fig-width: 6
-#| cache: true
+#| cache: false
 
 returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg
 ```
@@ -292,7 +292,7 @@ returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services
 #| fig-cap: "Health group returns"
 #| fig-height: 3
 #| fig-width: 6
-#| cache: true
+#| cache: false
 
 returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
 ```
@@ -302,7 +302,7 @@ returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
 #| fig-cap: "Manufacturing group returns"
 #| fig-height: 6
 #| fig-width: 6
-#| cache: true
+#| cache: false
 
 returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
 ```
@@ -312,7 +312,7 @@ returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
 #| fig-cap: "Business services group returns"
 #| fig-height: 6
 #| fig-width: 6
-#| cache: true
+#| cache: false
 
 returns_data$graphs$business_equipment_telephone_and_television_transmission_group_equal_gg
 ```
@@ -322,7 +322,7 @@ returns_data$graphs$business_equipment_telephone_and_television_transmission_gro
 #| fig-cap: "Mines group returns"
 #| fig-height: 8
 #| fig-width: 8
-#| cache: true
+#| cache: false
 
 returns_data$graphs$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg
 ```
@@ -333,7 +333,7 @@ returns_data$graphs$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finan
 #| label: tbl-data_descriptives
 #| tbl-cap: "Data Summary"
 #| tbl-colwidths: auto
-#| cache: true
+#| cache: false
 
 eda_tbl <- returns_data$full_data$eda_tbl
 eda_tbl %>% 
