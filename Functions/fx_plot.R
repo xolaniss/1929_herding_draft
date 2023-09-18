@@ -36,12 +36,33 @@ fx_recode_plot <-
             ncol = NULL,
             nrow = NULL
             ) {
+    
+    crisis_tbl = tibble(
+      "recession_start" = c(as.POSIXct("1929-10-01"), 
+                            as.POSIXct("2000-04-1"),
+                            as.POSIXct("2007-09-09"),
+                            as.POSIXct("2020-3-09")
+      ),
+      "recession_end" = c(as.POSIXct("1954-11-30"), 
+                          as.POSIXct("2002-12-31"),
+                          as.POSIXct("2009-03-31"),
+                          as.POSIXct("2020-12-31")
+      )
+    )    
+    
     ggplot(
       data,
       aes(x = Date, y = Value, color = Series)
     ) +
+      geom_rect(
+        data = crisis_tbl,
+        inherit.aes = F,
+        aes(xmin=recession_start, xmax=recession_end, ymin=-Inf, ymax=Inf), 
+        alpha=0.5, 
+        fill = "grey70"
+      )  +
       geom_line() +
-      facet_wrap (. ~ Series, scale = "free", labeller = label_parsed, ncol = ncol, nrow = nrow) +
+      facet_wrap (. ~ Series, scale = "free", ncol = ncol, nrow = nrow) +
       theme_bw() +
       theme(
         legend.position = "none",
@@ -51,7 +72,7 @@ fx_recode_plot <-
       theme(
         text = element_text(size = 8),
         strip.background = element_rect(colour = "white", fill = "white"),
-        axis.text.x = element_text(angle = 180),
+        axis.text.x = element_text(angle = 90),
         axis.title = element_text(size = 7),
         plot.tag = element_text(size = 7),
         legend.position = "none"

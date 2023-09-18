@@ -34,7 +34,7 @@ function(data, window = 250){
     group_by(Category) %>% 
     mutate(models = rolling_reg_spec(CSAD, abs(`Market Return`), I(`Market Return` ^ 2))) 
 }
-unnest_rol_col_standard <-
+unnest_rol_col_standard<-
 function(data, rol_column) {
   data %>% 
     mutate(tidy = map({{ rol_column }}, broom::tidy)) %>% 
@@ -71,7 +71,7 @@ unnest_rol_col_crisis <-
 fx_recode_prep_standard <-
 function(data){
   data %>% 
-    pivot_longer(c(-Date, -Category, -Crisis), names_to = "Series", values_to = "Value") %>% 
+    pivot_longer(c(-Date, -Category), names_to = "Series", values_to = "Value") %>% 
     mutate(Series = dplyr::recode(
       Series,
       "a0" = "alpha",
@@ -85,7 +85,7 @@ function(data){
 fx_recode_prep_crisis <-
   function(data){
     data %>% 
-      pivot_longer(c(-Date, -Category), names_to = "Series", values_to = "Value") %>% 
+      pivot_longer(c(-Date, -Category, -Crisis), names_to = "Series", values_to = "Value") %>% 
       mutate(Series = dplyr::recode(
         Series,
         "a0" = "alpha",
@@ -101,13 +101,36 @@ fx_recode_prep_crisis <-
       ))
   }
 fx_recode_plot <-
-function (data, plotname = " ", variables_color = 6, col_pallet = "Cascades") {
+function (data, plotname = " ", 
+          variables_color = 6, 
+          col_pallet = "Cascades"
+       ) {
+  crisis_tbl = tibble(
+    "recession_start" = c(as.POSIXct("1929-10-01"), 
+                          as.POSIXct("2000-04-1"),
+                          as.POSIXct("2007-09-09"),
+                          as.POSIXct("2020-3-09")
+    ),
+    "recession_end" = c(as.POSIXct("1954-11-30"), 
+                        as.POSIXct("2002-12-31"),
+                        as.POSIXct("2009-03-31"),
+                        as.POSIXct("2020-12-31")
+    )
+  )  
+  
     ggplot(
       data,
       aes(x = Date, y = Value, color = Category, group = Category)
     ) +
+      geom_rect(
+        data = crisis_tbl,
+        inherit.aes = F,
+        aes(xmin=recession_start, xmax=recession_end, ymin=-Inf, ymax=Inf), 
+        alpha=0.5, 
+        fill = "grey70"
+      ) +
       geom_line() +
-      facet_grid (Series ~ Crisis, scale = "free") +
+      facet_wrap(. ~ Series , scales = "free", labeller = label_parsed) +
       theme_bw() +
       theme(
         legend.position = "none",
@@ -123,8 +146,7 @@ function (data, plotname = " ", variables_color = 6, col_pallet = "Cascades") {
         legend.position = "bottom"
       ) +
       labs(x = "", y = plotname, color = NULL) +
-      scale_color_manual(values = pnw_palette(col_pallet, variables_color)) +
-      scale_x_date(date_labels = "%Y:%b")
+      scale_color_manual(values = pnw_palette(col_pallet, variables_color))
   }
 slidyfy_gg_workflow_standard <-
 function(data_model_rol){

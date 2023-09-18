@@ -67,9 +67,11 @@ results_all_industries_crisis_csad_tbl <-
 
 ## 2.2 Graphing ---------------------------------------------------------------
 results_all_industries_gg <- 
-  results_all_industries_csad_tbl %>% 
+  results_all_industries_csad_tbl %>%
   results_gg() +
-  labs(title = "All industries")
+  labs(title = "All industries") 
+
+  
 
 results_all_industries_group_crisis_gg <- 
   results_all_industries_crisis_csad_tbl %>% 

@@ -59,7 +59,24 @@ combined_results_tbl <-
 
 # Descriptives -------------------------------------------------------------
 
-descriptives_tbl <- 
+descriptives_full_tbl <- 
+  combined_results_tbl %>% 
+  dplyr::select(-Crisis) %>% 
+  drop_na() %>% 
+  pivot_longer(cols = -c(Date, Category), names_to = "Variables", values_to = "Value") %>% 
+  group_by(Category, Variables) %>% 
+  summarise(across(.cols = -c(Date),
+                   .fns = list(Median = median, 
+                               SD = sd,
+                               Min = min,
+                               Max = max,
+                               IQR = IQR,
+                               Obs = ~ n()), 
+                   .names = "{.fn}")) %>% 
+  mutate(Crisis = "Full Sample")
+
+
+descriptives_crisis_tbl <- 
   combined_results_tbl %>% 
   drop_na() %>% 
   pivot_longer(cols = -c(Date, Category, Crisis), names_to = "Variables", values_to = "Value") %>% 
@@ -71,7 +88,14 @@ descriptives_tbl <-
                                Max = max,
                                IQR = IQR,
                                Obs = ~ n()), 
-                   .names = "{.fn}"))
+                   .names = "{.fn}")) %>% 
+  filter(!Crisis == "No Crisis")
+
+descriptives_tbl <- 
+  rbind(descriptives_full_tbl, descriptives_crisis_tbl) %>% 
+  arrange(Category)  %>% 
+  relocate(Crisis, .before = Variables)
+
   
 
 # Export ---------------------------------------------------------------

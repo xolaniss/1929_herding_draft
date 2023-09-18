@@ -44,14 +44,14 @@ group_cross_deviations_tbl <-
       unnest(cols = deviations) %>% 
       dplyr::select(-data)
   }
-results_gg <- function(cross_deviations_tbl){
+results_gg <- function(cross_deviations_tbl, variables_color = 2){
   cross_deviations_tbl %>% 
   pivot() %>% 
   mutate(Series = dplyr::recode(Series,
                                   # "CSSD" = "CSSD[t]",
                                   "CSAD" = "CSAD[t]",
                                   "Mkt" = "R[mt]")) %>% 
-  fx_recode_plot(variables_color = 2)
+  fx_recode_plot(variables_color = variables_color)
 }
 group_results_gg <-  
   function (data, 

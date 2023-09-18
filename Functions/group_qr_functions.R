@@ -2,7 +2,7 @@ qmodels_nest_prep <-
 function(data){
   data %>%
     dplyr::relocate(Date, .after = "Category") %>% 
-    group_by(Category) %>% 
+    group_by(Category, Crisis) %>% 
     nest()
 }
 tau_mapper <-
@@ -18,11 +18,11 @@ function(nested_data, formula){
     mutate(models_3 = map(data, tau_mapper(tau = .5))) %>% 
     mutate(models_4 = map(data, tau_mapper(tau = .95))) %>% 
     mutate(models_5 = map(data, tau_mapper(.99))) %>% 
-    mutate(models_coef_1 = map(models_1, ~tidy(.))) %>% 
-    mutate(models_coef_2 = map(models_2, ~tidy(.))) %>% 
-    mutate(models_coef_3 = map(models_3, ~tidy(.))) %>% 
-    mutate(models_coef_4 = map(models_4, ~tidy(.))) %>% 
-    mutate(models_coef_5 = map(models_5, ~tidy(.))) 
+    mutate(models_coef_1 = map(models_1, ~summary(.,se = "nid"))) %>% 
+    mutate(models_coef_2 = map(models_2, ~summary(.,se = "nid"))) %>% 
+    mutate(models_coef_3 = map(models_3, ~summary(.,se = "nid"))) %>% 
+    mutate(models_coef_4 = map(models_4, ~summary(.,se = "nid"))) %>% 
+    mutate(models_coef_5 = map(models_5, ~summary(.,se = "nid"))) 
 }
 qmodels_pretty_results <-
 function(data_fitted_models){
@@ -40,18 +40,19 @@ function(data_fitted_models){
                   starts_with("estimate"),
                   starts_with("p.value")
     ) %>% 
-    mutate(across(.col = 2:11, .fns = ~format(., digits = 4))) %>% 
-    mutate(across(.col = 2:11, .fns = as.character)) %>% 
-    mutate(across(.col = 2:6, .fns = ~strtrim(., 8))) %>% 
-    mutate(across(.col = 7:11, .fns = ~strtrim(., 4))) %>% 
-    mutate(comb_10 = paste0(estimate...9, " ", "[", p.value...12,"]")) %>% 
-    mutate(comb_25 = paste0(estimate...15, " ", "[", p.value...18,"]")) %>% 
-    mutate(comb_50 = paste0(estimate...21, " ", "[", p.value...24,"]")) %>% 
-    mutate(comb_95 = paste0(estimate...27, " ", "[", p.value...30,"]")) %>% 
-    mutate(comb_99 = paste0(estimate...33, " ", "[", p.value...36,"]")) %>% 
+    mutate(across(.col = 2:13, .fns = ~format(., digits = 4))) %>% 
+    mutate(across(.col = 2:13, .fns = as.character)) %>% 
+    mutate(across(.col = 4:8, .fns = ~strtrim(., 8))) %>% 
+    mutate(across(.col = 9:13, .fns = ~strtrim(., 4))) %>% 
+    mutate(comb_10 = paste0(estimate...10, " ", "[", p.value...13,"]")) %>% 
+    mutate(comb_25 = paste0(estimate...18, " ", "[", p.value...21,"]")) %>% 
+    mutate(comb_50 = paste0(estimate...26, " ", "[", p.value...29,"]")) %>% 
+    mutate(comb_95 = paste0(estimate...34, " ", "[", p.value...37,"]")) %>% 
+    mutate(comb_99 = paste0(estimate...42, " ", "[", p.value...45,"]")) %>% 
     dplyr::select(
       Category,
-      term...8,
+      Crisis,
+      term...9,
       comb_10,
       comb_25,
       comb_50,
