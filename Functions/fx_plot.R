@@ -5,7 +5,7 @@ function (data, plotname = " ", variables_color = 12) {
     aes(x = Date, y = Value, col = Series)
   ) +
     geom_line() +
-    facet_wrap (. ~ Series, scale = "free") +
+    facet_wrap (. ~ Series, scale = "free", labeller = label_parsed) +
     theme_bw() +
     theme(
       legend.position = "none",
@@ -13,11 +13,11 @@ function (data, plotname = " ", variables_color = 12) {
       panel.grid.minor = element_blank()
     ) +
     theme(
-      text = element_text(size = 7),
+      text = element_text(size = 8),
       strip.background = element_rect(colour = "white", fill = "white"),
       axis.text.x = element_text(angle = 90),
-      axis.title = element_text(size = 7),
-      plot.tag = element_text(size = 7)
+      axis.title = element_text(size = 8),
+      plot.tag = element_text(size = 8)
     ) +
     labs(x = "", y = plotname) +
     scale_color_manual(values = pnw_palette("Shuksan2", variables_color))
@@ -62,7 +62,7 @@ fx_recode_plot <-
         fill = "grey70"
       )  +
       geom_line() +
-      facet_wrap (. ~ Series, scale = "free", ncol = ncol, nrow = nrow) +
+      facet_wrap (. ~ Series, scale = "free", ncol = ncol, nrow = nrow, labeller = label_parsed) +
       theme_bw() +
       theme(
         legend.position = "none",
@@ -73,8 +73,8 @@ fx_recode_plot <-
         text = element_text(size = 8),
         strip.background = element_rect(colour = "white", fill = "white"),
         axis.text.x = element_text(angle = 90),
-        axis.title = element_text(size = 7),
-        plot.tag = element_text(size = 7),
+        axis.title = element_text(size = 8),
+        plot.tag = element_text(size = 8),
         legend.position = "none"
       ) +
       labs(x = "", y = plotname) +
@@ -121,7 +121,7 @@ fx_nopivot_plot <-
       aes(x = Date, y = Value, fill = Series)
     ) +
       geom_area() +
-      facet_wrap (. ~ Series, scale = scale) +
+      facet_wrap (. ~ Series, scale = scale, labeller = label_parsed) +
       theme_bw() +
       theme(
         legend.position = "none",
@@ -135,7 +135,7 @@ fx_nopivot_plot <-
         text = element_text(size = 8),
         strip.background = element_rect(colour = "white", fill = "white"),
         axis.text.x = element_text(angle = 90),
-        axis.title = element_text(size = 5),
+        axis.title = element_text(size = 8),
         plot.tag = element_text(size = 8)
       ) +
       labs(x = "", y = plotname) +

@@ -68,6 +68,7 @@ group_results_gg <-
       ) +
       geom_line() +
       facet_grid(Series ~ Crisis, 
+                 labeller = label_parsed,
                  scale = "free",
                  space = "fixed"
                  ) +
