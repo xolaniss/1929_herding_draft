@@ -1,5 +1,5 @@
 # Description
-# General herding analysis by Xolani Sibande - 23 Septermber 2022
+# General and extreme market herding analysis by Xolani Sibande - 1 October 2023
 
 # Preliminaries -----------------------------------------------------------
 # core
@@ -52,10 +52,44 @@ ols_full_tbl <-
   combined_results_tbl %>% 
   dplyr::select(-Crisis) %>% 
   ols_group_full_workflow() %>% 
+  mutate(Extreme = "Full market") %>% 
   ungroup() 
 
 ols_tbl <- ols_full_tbl %>%
   arrange(Category)
+
+## OLS extreme market ----------------------------------------------------
+
+### Top market --------------------------------------------------------
+combined_top_results_tbl <- 
+  combined_results_tbl %>% 
+  group_by(Category) %>% 
+  slice_max(order_by = `Market Return`, prop = 0.05) 
+
+ols_max_tbl <- 
+  combined_top_results_tbl %>% 
+  dplyr::select(-Crisis) %>% 
+  ols_group_full_workflow() %>% 
+  mutate(Extreme = "Top market (5% market returns)") %>% 
+  ungroup()
+
+### Bottom market --------------------------------------------------------
+combined_bottom_retults_tbl <- 
+  combined_results_tbl %>% 
+  group_by(Category) %>% 
+  slice_min(order_by = `Market Return`, prop = 0.05)
+
+ols_min_tbl <- 
+  combined_bottom_retults_tbl %>% 
+  dplyr::select(-Crisis) %>% 
+  ols_group_full_workflow() %>%
+  mutate(Extreme = "Bottom market (5% market returns)") %>% 
+  ungroup()
+
+## Combined --------------------------------------------------------------
+ols_combined_tbl <- rbind(ols_full_tbl, ols_max_tbl, ols_min_tbl)
+
+
   
 ##  Rolling regressions ----------------------------------------------------
 models_rol <-
@@ -84,7 +118,7 @@ rol_gg <- rol_coeff_gg / rol_tstats_gg
 # Export ---------------------------------------------------------------
 artifacts_general_herding <- list (
   models = list(
-    ols_tbl  = ols_tbl
+    ols_combined_tbl = ols_combined_tbl
   ),
   graphs = list(
     rol_gg = rol_gg
