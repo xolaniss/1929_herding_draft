@@ -52,22 +52,15 @@ ols_full_tbl <-
   combined_results_tbl %>% 
   dplyr::select(-Crisis) %>% 
   ols_group_full_workflow() %>% 
-  ungroup() %>% 
-  mutate(Crisis = "Full Sample")
+  ungroup() 
 
-ols_crisis_tbl <- 
-  combined_results_tbl %>% 
-  filter(!Crisis == "No Crisis") %>% 
-  ols_group_crisis_workflow() %>% 
-  ungroup()
-
-ols_tbl <- rbind(ols_full_tbl, ols_crisis_tbl) %>%
-  arrange(Category) %>% 
-  relocate(Crisis, .before = Category)
+ols_tbl <- ols_full_tbl %>%
+  arrange(Category)
   
 ##  Rolling regressions ----------------------------------------------------
 models_rol <-
   combined_results_tbl %>%
+  dplyr::select(-Crisis) %>% 
   mutate(Date = as.POSIXct(Date)) %>% 
   ols_slidify_models_standard() %>% 
   unnest_rol_col_standard(rol_column = models) 
@@ -75,14 +68,14 @@ models_rol <-
 ## Graphing ---------------------------------------------------------------
 rol_coeff_gg <-
   models_rol %>%
-  dplyr::select(-Crisis, - starts_with("t")) %>% 
+  dplyr::select(- starts_with("t")) %>% 
   slidyfy_gg_workflow_standard() +
   theme(
     legend.position = "none")
 
 rol_tstats_gg <-
   models_rol %>%
-  dplyr::select(-Crisis, - starts_with("a")) %>% 
+  dplyr::select(- starts_with("a")) %>% 
   slidyfy_gg_workflow_standard() +
   geom_hline(yintercept = 1.96, colour = "grey10", linetype = 2, linewidth = 0.3) +
   geom_hline(yintercept = -1.96, colour = "grey10", linetype = 2, linewidth = 0.3) 

@@ -41,10 +41,10 @@ crisis_periods <- function(data){
   data %>% 
     mutate(Date = as.Date(Date)) %>% 
     mutate(Crisis = 
-             ifelse(Date > as.Date("1929-10-1") & Date < as.Date("1954-11-30"), "Great Depression",
-                    ifelse(Date > as.Date("2000-04-1") & Date < as.Date("2002-12-31"), "Dot-com Bubble",
-                           ifelse(Date > as.Date("2007-09-09") & Date < as.Date("2009-03-31"), "Great Financial Crisis", 
-                                  ifelse(Date > as.Date("2020-3-09") & Date < as.Date("2020-12-31"), "Covid Crisis", "No Crisis")))
+             ifelse(Date > as.Date("1929-01-01") & Date < as.Date("1939-12-31"), "Great Depression",
+                    ifelse(Date > as.Date("1997-01-01") & Date < as.Date("2003-12-31"), "Dot-com Bubble",
+                           ifelse(Date > as.Date("2007-01-01") & Date < as.Date("2009-12-31"), "Financial Crisis", 
+                                  ifelse(Date > as.Date("2020-01-01") & Date < as.Date("2020-12-31"), "Covid Crisis", "No Crisis")))
              )) %>% 
     relocate(Crisis, .after = Date) 
 }
@@ -99,12 +99,12 @@ results_consumables_group_crisis_csad_tbl <-
 results_consumables_group_gg <- 
   results_consumables_group_csad_tbl %>% 
   results_gg() +
-  labs(title = "Consumables group")
+  labs(title = "Consumables")
 
 results_consumables_group_crisis_gg <- 
   results_consumables_group_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "Consumables group") +
+  labs(title = "Consumables") +
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
         strip.text.x = element_blank()
@@ -128,12 +128,12 @@ results_manuf_group_crisis_csad_tbl <-
 results_manuf_group_gg <- 
   results_manuf_group_csad_tbl %>% 
   results_gg() +
-  labs(title = "Manufacturing group")
+  labs(title = "Manufacturing")
 
 results_manuf_group_crisis_gg <- 
   results_manuf_group_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "Manufacturing group") +
+  labs(title = "Manufacturing") +
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
         strip.text.x = element_blank()
@@ -157,12 +157,12 @@ results_bus_group_crisis_csad_tbl <- group_cross_deviations_tbl(returns_bus_grou
 results_bus_group_gg <- 
   results_bus_group_csad_tbl %>% 
   results_gg() +
-  labs(title = "Business services group")
+  labs(title = "Business services")
 
 results_bus_group_crisis_gg <- 
   results_bus_group_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "Business services group") +
+  labs(title = "Business services") +
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
         strip.text.x = element_blank()
@@ -185,12 +185,12 @@ results_health_group_crisis_csad_tbl <- group_cross_deviations_tbl(returns_healt
 results_health_group_gg <- 
   results_health_group_csad_tbl %>% 
   results_gg() +
-  labs(title = "Health group")
+  labs(title = "Health")
 
 results_health_group_crisis_gg <- 
   results_health_group_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "Health group") +
+  labs(title = "Health") +
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
         strip.text.x = element_blank()
@@ -213,12 +213,12 @@ results_mines_group_crisis_csad_tbl <- group_cross_deviations_tbl(returns_mines_
 results_mines_group_gg <- 
   results_mines_group_csad_tbl %>% 
   results_gg() +
-  labs(title = "Mines group")
+  labs(title = "Other")
 
 results_mines_group_crisis_gg <- 
   results_mines_group_crisis_csad_tbl %>% 
   group_results_gg() +
-  labs(title = "Mines group") +
+  labs(title = "Other") +
   theme(strip.text.x = element_blank())
   
 

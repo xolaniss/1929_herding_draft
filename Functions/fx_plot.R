@@ -5,7 +5,7 @@ function (data, plotname = " ", variables_color = 12) {
     aes(x = Date, y = Value, col = Series)
   ) +
     geom_line() +
-    facet_wrap (. ~ Series, scale = "free", labeller = label_parsed) +
+    facet_wrap (. ~ Series, scale = "free") +
     theme_bw() +
     theme(
       legend.position = "none",
@@ -38,14 +38,14 @@ fx_recode_plot <-
             ) {
     
     crisis_tbl = tibble(
-      "recession_start" = c(as.POSIXct("1929-10-01"), 
-                            as.POSIXct("2000-04-1"),
-                            as.POSIXct("2007-09-09"),
-                            as.POSIXct("2020-3-09")
+      "recession_start" = c(as.POSIXct("1929-01-01"), 
+                            as.POSIXct("1997-01-01"),
+                            as.POSIXct("2007-01-01"),
+                            as.POSIXct("2020-01-01")
       ),
-      "recession_end" = c(as.POSIXct("1954-11-30"), 
-                          as.POSIXct("2002-12-31"),
-                          as.POSIXct("2009-03-31"),
+      "recession_end" = c(as.POSIXct("1939-12-31"), 
+                          as.POSIXct("2003-12-31"),
+                          as.POSIXct("2009-12-31"),
                           as.POSIXct("2020-12-31")
       )
     )    
@@ -54,13 +54,13 @@ fx_recode_plot <-
       data,
       aes(x = Date, y = Value, color = Series)
     ) +
-      geom_rect(
-        data = crisis_tbl,
-        inherit.aes = F,
-        aes(xmin=recession_start, xmax=recession_end, ymin=-Inf, ymax=Inf), 
-        alpha=0.5, 
-        fill = "grey70"
-      )  +
+      # geom_rect(
+      #   data = crisis_tbl,
+      #   inherit.aes = F,
+      #   aes(xmin=recession_start, xmax=recession_end, ymin=-Inf, ymax=Inf), 
+      #   alpha=0.5, 
+      #   fill = "grey70"
+      # )  +
       geom_line() +
       facet_wrap (. ~ Series, scale = "free", ncol = ncol, nrow = nrow, labeller = label_parsed) +
       theme_bw() +
@@ -79,7 +79,8 @@ fx_recode_plot <-
       ) +
       labs(x = "", y = plotname) +
       scale_color_manual(values = pnw_palette("Shuksan2", variables_color))
-  }
+  
+}
 
 fx_recode_group_plot <-
   function (data, 

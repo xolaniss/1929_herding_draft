@@ -42,12 +42,12 @@ results <- read_rds(here("Outputs", "artifacts_csad_cssd.rds"))
 
 combined_results_list <- list(
   "All industries" = results$csad_crisis$results_all_industries_crisis_csad_tbl,
-  "Consumables group" = results$csad_crisis$results_consumables_group_crisis_csad_tbl,
+  "Consumables" = results$csad_crisis$results_consumables_group_crisis_csad_tbl,
   # "Durables group" = results$data$results_durables_group_tbl,
-  "Health group"  = results$csad_crisis$results_health_group_crisis_csad_tbl,
-  "Manufacturing group"  = results$csad_crisis$results_manuf_group_crisis_csad_tbl,
-  "Mines group" = results$csad_crisis$results_mines_group_crisis_csad_tbl,
-  "Business services group" = results$csad_crisis$results_bus_group_crisis_csad_tbl
+  "Health"  = results$csad_crisis$results_health_group_crisis_csad_tbl,
+  "Manufacturing"  = results$csad_crisis$results_manuf_group_crisis_csad_tbl,
+  "Other" = results$csad_crisis$results_mines_group_crisis_csad_tbl,
+  "Business services" = results$csad_crisis$results_bus_group_crisis_csad_tbl
 )
 
 # Cleaning -----------------------------------------------------------------

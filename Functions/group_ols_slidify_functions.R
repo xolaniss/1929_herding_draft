@@ -39,7 +39,7 @@ function(data, rol_column) {
   data %>% 
     mutate(tidy = map({{ rol_column }}, broom::tidy)) %>% 
     unnest(cols = tidy) %>% 
-    dplyr::select(Date, Category, Crisis, term:estimate, statistic) %>% # added for category and crisis for new approach
+    dplyr::select(Date, Category, term:estimate, statistic) %>% # added for category and crisis for new approach
     drop_na() %>% 
     pivot_wider(names_from = term, values_from = c(estimate, statistic)) %>% 
     dplyr::rename("a0" = `estimate_(Intercept)`,
@@ -122,13 +122,13 @@ function (data, plotname = " ",
       data,
       aes(x = Date, y = Value, color = Category, group = Category)
     ) +
-      geom_rect(
-        data = crisis_tbl,
-        inherit.aes = F,
-        aes(xmin=recession_start, xmax=recession_end, ymin=-Inf, ymax=Inf), 
-        alpha=0.5, 
-        fill = "grey70"
-      ) +
+      # geom_rect(
+      #   data = crisis_tbl,
+      #   inherit.aes = F,
+      #   aes(xmin=recession_start, xmax=recession_end, ymin=-Inf, ymax=Inf), 
+      #   alpha=0.5, 
+      #   fill = "grey70"
+      # ) +
       geom_line() +
       facet_wrap(. ~ Series , scales = "free", labeller = label_parsed) +
       theme_bw() +
