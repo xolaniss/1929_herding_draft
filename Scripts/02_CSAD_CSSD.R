@@ -44,7 +44,7 @@ crisis_periods <- function(data){
              ifelse(Date > as.Date("1929-01-01") & Date < as.Date("1939-12-31"), "Great Depression",
                     ifelse(Date > as.Date("1997-01-01") & Date < as.Date("2003-12-31"), "Dot-com Bubble",
                            ifelse(Date > as.Date("2007-01-01") & Date < as.Date("2009-12-31"), "Financial Crisis", 
-                                  ifelse(Date > as.Date("2020-01-01") & Date < as.Date("2020-12-31"), "Covid Crisis", "No Crisis")))
+                                  ifelse(Date > as.Date("2020-01-01") & Date < as.Date("2021-12-31"), "Covid Crisis", "No Crisis")))
              )) %>% 
     relocate(Crisis, .after = Date) 
 }

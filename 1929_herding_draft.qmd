@@ -421,13 +421,26 @@ crisis_tbl <-
   tibble(
   "Crisis" = c("Great Depression", "Dot-com Bubble", "Financial Crisis", "Covid Crisis"),
   "Start" = c("1929-01-01", "1997-01-01", "2007-01-01", "2020-01-01"),
-  "End" = c("1939-13-31", "2003-12-31", "2009-12-31", "2020-12-31")
+  "End" = c("1939-12-31", "2003-12-31", "2009-12-31", "2021-12-31")
 ) 
 
 crisis_tbl %>% 
   flextable() %>% 
   align(j = 1, align = "left", part = "all") %>% 
   autofit(add_w = 1.5)
+
+```
+
+\newpage
+## Fama-French Factors
+
+```{r}
+#| label: tbl-famafrench
+#| tbl-cap: "Fama-French Factors"
+#| cache: false
+
+famafrench <- read_rds(here("Outputs", "artifacts_fama_french.rds"))
+famafrench$graphs$fama_french_gg
 
 ```
 

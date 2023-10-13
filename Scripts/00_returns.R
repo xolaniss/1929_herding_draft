@@ -45,7 +45,6 @@ equal_returns <-
   ) %>%
   rename("Date" = ...1)
 
-
 weighted_returns <-
   read_csv(
     here("Data", "49_Industry_Portfolios_Daily_weighted.csv"),
