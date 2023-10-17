@@ -325,8 +325,59 @@ CSAD_model_fundmamental$ols_graphs$rol_fundamental_gg
 CSAD_model_fundmamental$ols_graphs$rol_nonfundamental_gg
 ```
 
-
+\newpage
 ## Industry herding on fundamental information in crisis periods
+```{r}
+#| label: tbl-ols_crisis_fund
+#| tbl-cap: "Industry herding on fundamental information in crisis periods"
+#| cache: false
+#| include: true
+#| eval: true
+
+equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + \\gamma_2(1-D^{crisis})|R_{m, t}| + \\gamma_3D^{crisis}R_{m, t}^2 +  \\gamma_4(1-D^{crisis})R_{m, t}^2 +  \\epsilon_{t}"))
+estimates <- c(
+  "\\alpha",
+  "\\gamma_1 ",
+  "\\gamma_2",
+  "\\gamma_3 ",
+  "\\gamma_4"
+)
+
+CSAD_model_rol_crisis_fund <- read_rds(here("Outputs", "artifacts_crisis_fundamental.rds"))
+CSAD_model_rol_crisis_fund_tbl <- CSAD_model_rol_crisis_fund$ols$ols_tbl
+
+
+CSAD_model_rol_crisis_fund_tbl %>%
+    ungroup() %>% 
+  as_grouped_data(groups = c("Fund")) %>% 
+    as_flextable(hide_grouplabel = TRUE) %>%  
+   mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
+   mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
+    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1)) %>% 
+  align(j = 1, align = "left", part = "all") %>% 
+  merge_at(i = 1) %>% 
+  align(i = 1, align = "center") %>% 
+  merge_at(i = 8) %>% 
+  align(i = 8, align = "center") %>% 
+  merge_at(i = 15) %>% 
+  align(i = 15, align = "center") %>% 
+  merge_at(i = 22) %>% 
+  align(i = 22, align = "center") %>% 
+  merge_at(i = 29) %>% 
+  align(i = 29, align = "center") %>% 
+  merge_at(i = 36) %>% 
+  align(i = 36, align = "center") %>% 
+  merge_at(i = 43) %>% 
+  align(i = 43, align = "center") %>% 
+  merge_at(i = 50) %>% 
+  align(i = 50, align = "center") %>% 
+  autofit(add_w = 0.1)
+
+
+```
+
+
 
 # Conclusion
 

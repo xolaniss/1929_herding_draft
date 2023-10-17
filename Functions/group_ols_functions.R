@@ -6,8 +6,7 @@ function(data){
     nest()
 }
 ols_tidy_group_models <-
-function(nested_data, formula){
-  formula <-  formula
+function(nested_data, formula = formula){
   nested_data %>% 
     mutate(models = map(data, ~coeftest(lm(formula, data = .), 
                                         vcov = NeweyWest))) %>% 
@@ -62,10 +61,10 @@ ols_pretty_full_results <-
   }
 
 ols_group_full_workflow <-
-  function(data) {
+  function(data, formula = formula) {
     data %>% 
       ols_nest_full_prep() %>% 
-      ols_tidy_group_models(formula = formula) %>% 
+      ols_tidy_group_models(formula) %>% 
       ols_pretty_full_results()
   }
 
