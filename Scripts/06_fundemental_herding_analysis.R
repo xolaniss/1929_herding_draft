@@ -85,8 +85,8 @@ formula <-  as.formula(CSAD_fund ~ abs(`Market Return`) + I(`Market Return` ^ 2)
 ols_full_fundamental_tbl <-
   combined_fundamental_tbl %>%
   dplyr::select(-Crisis) %>%
-  ols_group_full_workflow() %>% 
-  mutate(Herd = "Fundamental Herding") %>% 
+  ols_group_full_workflow(formula = formula) %>% 
+  mutate(Herd = "Fundamental") %>% 
   ungroup()
 
 ## Non Fundamental -------------------------------------------------------
@@ -94,8 +94,8 @@ formula <-  as.formula(CSAD_nonfund ~ abs(`Market Return`) + I(`Market Return` ^
 ols_full_nonfundamental_tbl <- 
   combined_fundamental_tbl %>% 
   dplyr::select(-Crisis) %>% 
-  ols_group_full_workflow() %>% 
-  mutate(Herd = "Non Fundamental Herding") %>% 
+  ols_group_full_workflow(formula = formula) %>% 
+  mutate(Herd = "Non Fundamental") %>% 
   ungroup() 
 
 ## Combined ----------------------------------------------------------------
