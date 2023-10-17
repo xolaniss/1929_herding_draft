@@ -115,10 +115,6 @@ where $R_{i,t}$ observed currency returns from market $i$ at time $t$, $R_{m,t}$
 
 ## Descriptive analysis
 
-## Industry herding 
-
-\newpage
-
 ```{r}
 #| label: fig-results-all
 #| fig-cap: "Cross sectional deviations."
@@ -130,9 +126,9 @@ results_all_gg <- cross_sectionals$graphs$results_all_gg
 results_all_gg
 ```
 
-\newpage
 
-
+## Industry herding 
+ 
 ```{r}
 #| label: tbl-ols
 #| tbl-cap: "Industry herding ols results"
@@ -165,7 +161,6 @@ general_herding$models$ols_combined_tbl %>%
 
 ```
 
-
 ```{r}
 #| label: fig-rol_gen
 #| fig-cap: "Industry herding rolling regressions with 250 day window. Note: The perforated lines represents a 5% level of significance."
@@ -180,8 +175,8 @@ CSAD_model_rol_gg
 
 \newpage
 
-
 ## Industry herding in crisis periods
+
 
 ```{r}
 #| label: tbl-ols_crisis
@@ -220,11 +215,10 @@ CSAD_model_rol_crisis_tbl %>%
   align(i = 15, align = "center") %>% 
   merge_at(i = 22) %>% 
   align(i = 22, align = "center") %>% 
-  autofit(add_w = 0.2)
+  autofit(add_w = 0.1)
 
 
 ```
-
 
 ```{r}
 #| label: fig-rol_crisis_gd
@@ -258,7 +252,6 @@ CSAD_model_rol_crisis$graphs$rol_db_gg
 CSAD_model_rol_crisis$graphs$rol_fc_gg
 ```
 
-
 ```{r}
 #| label: fig-rol_crisis_cv
 #| fig-cap: "Industry herding during the Covid Crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
@@ -269,15 +262,71 @@ CSAD_model_rol_crisis$graphs$rol_fc_gg
 CSAD_model_rol_crisis$graphs$rol_cv_gg
 ```
 
+\newpage
 
 
+## Industry herding on fundamental information
+
+```{r}
+#| label: tbl-ols_fund
+#| tbl-cap: "Industry herding on fundamental information"
+#| cache: false
+#| include: true
+#| eval: true
+
+equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1R_{m, t}| + \\gamma_2|R_{m, t}| \\epsilon_{t}"))
+estimates <- c(
+  "\\alpha",
+  "\\gamma_1 ",
+  "\\gamma_2"
+)
+
+CSAD_model_fundmamental <- read_rds(here("Outputs", "artifacts_fundamental_herding.rds"))
+CSAD_model_fundamental_tbl <- CSAD_model_fundmamental$ols$ols_fund_tbl
 
 
+CSAD_model_fundamental_tbl %>%
+    ungroup() %>% 
+  as_grouped_data(groups = c("Herd")) %>% 
+    as_flextable(hide_grouplabel = TRUE) %>% 
+   mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
+   mk_par(i =, j = c(2, 3, 4), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
+    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 4) %>% 
+  hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1)) %>% 
+  align(j = 1, align = "left", part = "all") %>% 
+  merge_at(i = 1) %>% 
+  align(i = 1, align = "center") %>% 
+  merge_at(i = 8) %>% 
+  align(i = 8, align = "center") %>% 
+  autofit(add_w = 0.6)
 
 
+```
 
 
+```{r}
+#| label: fig-rol_fundamental
+#| fig-cap: "Industry herding on fundamental information using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
+#| fig-height: 6
+#| fig-width: 8
+#| cache: false
 
+CSAD_model_fundmamental$ols_graphs$rol_fundamental_gg
+```
+
+
+```{r}
+#| label: fig-rol_nonfundamental
+#| fig-cap: "Industry herding on non-fundamental information using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
+#| fig-height: 6
+#| fig-width: 8
+#| cache: false
+
+CSAD_model_fundmamental$ols_graphs$rol_nonfundamental_gg
+```
+
+
+## Industry herding on fundamental information in crisis periods
 
 # Conclusion
 
@@ -435,8 +484,8 @@ crisis_tbl %>%
 ## Fama-French Factors
 
 ```{r}
-#| label: tbl-famafrench
-#| tbl-cap: "Fama-French Factors"
+#| label: fig-famafrench
+#| fig-cap: "Fama-French Factors"
 #| cache: false
 
 famafrench <- read_rds(here("Outputs", "artifacts_fama_french.rds"))

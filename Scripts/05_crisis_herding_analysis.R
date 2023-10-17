@@ -60,7 +60,7 @@ start_fc <- as.Date("2007-01-01")
 end_fc <- as.Date("2009-12-31")
 
 start_cv <- as.Date("2020-01-01")
-end_cv <- as.Date("2020-12-31")
+end_cv <- as.Date("2021-12-31")
 
 dummy_tbl <- tibble(
   Date  = seq(

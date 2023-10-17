@@ -74,7 +74,7 @@ ols_max_tbl <-
   ungroup()
 
 ### Bottom market --------------------------------------------------------
-combined_bottom_retults_tbl <- 
+combined_bottom_results_tbl <- 
   combined_results_tbl %>% 
   group_by(Category) %>% 
   slice_min(order_by = `Market Return`, prop = 0.05)
@@ -89,8 +89,6 @@ ols_min_tbl <-
 ## Combined --------------------------------------------------------------
 ols_combined_tbl <- rbind(ols_full_tbl, ols_max_tbl, ols_min_tbl)
 
-
-  
 ##  Rolling regressions ----------------------------------------------------
 models_rol <-
   combined_results_tbl %>%
@@ -117,6 +115,9 @@ rol_gg <- rol_coeff_gg / rol_tstats_gg
 
 # Export ---------------------------------------------------------------
 artifacts_general_herding <- list (
+  data = list(
+    combined_results_tbl = combined_results_tbl
+  ),
   models = list(
     ols_combined_tbl = ols_combined_tbl
   ),

@@ -33,6 +33,7 @@ library(vars)
 library(urca)
 library(mFilter)
 
+options(scipen = 999)
 # Functions ---------------------------------------------------------------
 source(here("Functions", "fx_plot.R"))
 

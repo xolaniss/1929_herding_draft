@@ -149,10 +149,10 @@ function (data, plotname = " ",
       scale_color_manual(values = pnw_palette(col_pallet, variables_color))
   }
 slidyfy_gg_workflow_standard <-
-function(data_model_rol){
+function(data_model_rol,variables_color = 6){
   data_model_rol %>% 
     fx_recode_prep_standard() %>% 
-    fx_recode_plot(variables_color = 6)
+    fx_recode_plot(variables_color = variables_color)
 }
 slidyfy_gg_workflow_crisis <-
   function(data_model_rol){

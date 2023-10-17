@@ -10,7 +10,7 @@ function(nested_data, formula){
   formula <-  formula
   nested_data %>% 
     mutate(models = map(data, ~coeftest(lm(formula, data = .), 
-                                        vcov = vcovHAC))) %>% 
+                                        vcov = NeweyWest))) %>% 
     mutate(models_coef = map(models, ~tidy(.)))
 }
 ols_pretty_crisis_results <-
