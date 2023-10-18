@@ -1,5 +1,5 @@
 ols_slidify_models_crisis <-
-  function(data, window = 250){
+  function(data, dep_var = CSAD, window = 250){
     rolling_reg_spec <-
       slidify(
         .f =  ~coeftest(lm(..1 ~ ..2 + ..3 + ..4 + ..5)),
@@ -11,7 +11,7 @@ ols_slidify_models_crisis <-
     
     data %>% 
       group_by(Category, Crisis) %>% 
-      mutate(models = rolling_reg_spec(CSAD, 
+      mutate(models = rolling_reg_spec( {{ dep_var }}, 
                                         dummy_abs, 
                                         anti_dummy_abs,
                                         dummy_squared,

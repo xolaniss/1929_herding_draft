@@ -162,7 +162,7 @@ combined_fundamental_dummy_tbl <-
     anti_dummy_squared_cv = anti_dummy_cv*squared_market_returns_cv
   )
 
-# Regressions ---------------------------------------------------------------
+# Static Regressions ---------------------------------------------------------------
 ## OLS ---------------------------------------------------------------------
 ### Great depression ----------------------------------------------------
 fund_formula_gd <- as.formula(
@@ -252,11 +252,98 @@ ols_tbl <-
 ) %>% 
   ungroup()
   
+# Time varying Regressions ------------------------------------------------
+rol_crisis_fundamental <- function(data, crisis_abbre = "gd"){
+  models_rol <- 
+    data %>% 
+    dplyr::select(Date, Category, Crisis, `Market Return`, CSAD_fund, ends_with(crisis_abbre)) %>% 
+    rename(
+      dummy_abs = paste0("dummy_abs_", crisis_abbre), 
+      anti_dummy_abs = paste0("anti_dummy_abs_", crisis_abbre),
+      dummy_squared =  paste0("dummy_squared_", crisis_abbre),
+      anti_dummy_squared = paste0("anti_dummy_squared_", crisis_abbre)
+    ) %>% 
+    ols_slidify_models_crisis(dep_var = CSAD_fund) 
   
+  rol_gg_coef <-
+    models_rol %>%
+    dplyr::select(-starts_with("t")) %>% 
+    fx_recode_prep_crisis() %>% 
+    fx_recode_group_plot(variables_color = 6, ncol = 5, nrow = 2) +
+    theme(legend.position = "none")
+  
+  rol_gg_tstats <-
+    models_rol %>%
+    dplyr::select(-starts_with("a")) %>% 
+    fx_recode_prep_crisis() %>% 
+    fx_recode_group_plot(variables_color = 6, ncol = 5, nrow = 2) +
+    geom_hline(yintercept = 1.96, colour = "grey10", linetype = 2, linewidth = 0.3) +
+    geom_hline(yintercept = -1.96, colour = "grey10", linetype = 2, linewidth = 0.3) 
+  
+  rol_gg_coef / rol_gg_tstats
+}
+rol_crisis_nonfundamental <- function(data, crisis_abbre = "gd"){
+  models_rol <- 
+    data %>% 
+    dplyr::select(Date, Category, Crisis, `Market Return`, CSAD_nonfund, ends_with(crisis_abbre)) %>% 
+    rename(
+      dummy_abs = paste0("dummy_abs_", crisis_abbre), 
+      anti_dummy_abs = paste0("anti_dummy_abs_", crisis_abbre),
+      dummy_squared =  paste0("dummy_squared_", crisis_abbre),
+      anti_dummy_squared = paste0("anti_dummy_squared_", crisis_abbre)
+    ) %>% 
+    ols_slidify_models_crisis(dep_var = CSAD_nonfund) 
+  
+  rol_gg_coef <-
+    models_rol %>%
+    dplyr::select(-starts_with("t")) %>% 
+    fx_recode_prep_crisis() %>% 
+    fx_recode_group_plot(variables_color = 6, ncol = 5, nrow = 2) +
+    theme(legend.position = "none")
+  
+  rol_gg_tstats <-
+    models_rol %>%
+    dplyr::select(-starts_with("a")) %>% 
+    fx_recode_prep_crisis() %>% 
+    fx_recode_group_plot(variables_color = 6, ncol = 5, nrow = 2) +
+    geom_hline(yintercept = 1.96, colour = "grey10", linetype = 2, linewidth = 0.3) +
+    geom_hline(yintercept = -1.96, colour = "grey10", linetype = 2, linewidth = 0.3) 
+  
+  rol_gg_coef / rol_gg_tstats
+}
+
+## Great Depression ------------------------------------------------------
+rol_fund_gd_gg <- combined_fundamental_dummy_tbl %>% rol_crisis_fundamental(crisis_abbre = "gd")
+rol_nonfund_gd_gg <- combined_fundamental_dummy_tbl %>% rol_crisis_nonfundamental(crisis_abbre = "gd")
+
+## Dot-com bubble ----------------------------------------------------------
+rol_fund_db_gg <- combined_fundamental_dummy_tbl %>% rol_crisis_fundamental(crisis_abbre = "db")
+rol_nonfund_db_gg <- combined_fundamental_dummy_tbl %>% rol_crisis_nonfundamental(crisis_abbre = "db")
+
+## Financial Crisis ------------------------------------------------------
+rol_fund_fc_gg <- combined_fundamental_dummy_tbl %>% rol_crisis_fundamental(crisis_abbre = "fc")
+rol_nonfund_fc_gg <- combined_fundamental_dummy_tbl %>% rol_crisis_nonfundamental(crisis_abbre = "fc")
+
+## Covid Crisis ----------------------------------------------------------
+rol_fund_cv_gg <- combined_fundamental_dummy_tbl %>% rol_crisis_fundamental(crisis_abbre = "cv")
+rol_nonfund_cv_gg <- combined_fundamental_dummy_tbl %>% rol_crisis_nonfundamental(crisis_abbre = "cv")
+
 # Export ---------------------------------------------------------------
 artifacts_crisis_fundamental <- list (
   ols = list(
     ols_tbl = ols_tbl
+  ),
+  fundamental = list(
+    rol_fund_gd_gg = rol_fund_gd_gg,
+    rol_fund_db_gg = rol_fund_db_gg,
+    rol_fund_fc_gg = rol_fund_fc_gg,
+    rol_fund_cv_gg = rol_fund_cv_gg
+  ),
+  nonfundamental = list(
+    rol_nonfund_gd_gg = rol_nonfund_gd_gg,
+    rol_nonfund_db_gg = rol_nonfund_db_gg,
+    rol_nonfund_fc_gg = rol_nonfund_fc_gg,
+    rol_nonfund_cv_gg = rol_nonfund_cv_gg 
   )
 )
 
