@@ -274,7 +274,7 @@ CSAD_model_rol_crisis$graphs$rol_cv_gg
 #| include: true
 #| eval: true
 
-equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1R_{m, t}| + \\gamma_2|R_{m, t}| \\epsilon_{t}"))
+equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1R_{m, t}| + \\gamma_2R_{m, t}^2 + \\epsilon_{t}"))
 estimates <- c(
   "\\alpha",
   "\\gamma_1 ",
