@@ -41,6 +41,7 @@ library(rvest)
 # Functions ---------------------------------------------------------------
 source(here("Functions", "fx_plot.R"))
 
+
 # Import -------------------------------------------------------------
 terms <- read_html("https://www.enchantedlearning.com/history/us/pres/list.shtml")
 
@@ -72,7 +73,7 @@ terms_daily_tbl <- tibble(
     ifelse(
       Date >= as.Date("1921-01-01") &
         Date <= as.Date("1932-12-31"),
-      "Replublican",
+      "Republican",
       ifelse(
         Date >= as.Date("1933-01-01") &
           Date <= as.Date("1952-12-31"),
@@ -80,7 +81,7 @@ terms_daily_tbl <- tibble(
         ifelse(
           Date >= as.Date("1953-01-01") &
             Date <= as.Date("1960-12-31"),
-          "Replublican",
+          "Republican",
           ifelse(
             Date >= as.Date("1961-01-01") &
               Date <= as.Date("1968-12-31"),
@@ -88,7 +89,7 @@ terms_daily_tbl <- tibble(
             ifelse(
               Date >= as.Date("1969-01-01") &
                 Date <= as.Date("1976-12-31"),
-              "Replublican",
+              "Republican",
               ifelse(
                 Date >= as.Date("1977-01-01") &
                   Date <= as.Date("1980-12-31"),
@@ -96,7 +97,7 @@ terms_daily_tbl <- tibble(
                 ifelse(
                   Date >= as.Date("1981-01-01") &
                     Date <= as.Date("1992-12-31"),
-                  "Replublican",
+                  "Republican",
                   ifelse(
                     Date >= as.Date("1993-01-01") &
                       Date <= as.Date("2000-12-31"),
@@ -104,7 +105,7 @@ terms_daily_tbl <- tibble(
                     ifelse(
                       Date >= as.Date("2001-01-01") &
                         Date <= as.Date("2008-12-31"),
-                      "Replublican",
+                      "Republican",
                       ifelse(
                         Date >= as.Date("2009-01-01") &
                           Date <= as.Date("2016-12-31"),
@@ -131,18 +132,24 @@ terms_daily_tbl <- tibble(
       )
     )
   )
-)
+) %>% 
+  mutate(
+    Dummy = ifelse(Party == "Democrat", 1, 0)
+  )
 
 # EDA ---------------------------------------------------------------
 terms_tbl %>% skim()
 terms_daily_tbl %>%  skim()
 
 # Graphing ---------------------------------------------------------------
-
+terms_daily_tbl %>% 
+  ggplot(aes(x = Party)) +
+  geom_bar()
 
 # Export ---------------------------------------------------------------
 artifacts_presidential_terms <- list (
-  terms_tbl = terms_tbl
+  terms_tbl = terms_tbl,
+  terms_daily_tbl = terms_daily_tbl
 )
 
 write_rds(artifacts_presidential_terms, file = here("Outputs", "artifacts_presidential_terms.rds"))

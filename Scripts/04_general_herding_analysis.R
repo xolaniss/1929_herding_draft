@@ -51,9 +51,9 @@ formula <-  as.formula(CSAD ~ abs(`Market Return`) + I(`Market Return` ^ 2))
 ols_full_tbl <- 
   combined_results_tbl %>% 
   dplyr::select(-Crisis) %>% 
-  ols_group_full_workflow() %>% 
+  ols_group_full_workflow(formula = formula) %>% 
   mutate(Extreme = "Full market") %>% 
-  ungroup() 
+  ungroup()
 
 ols_tbl <- ols_full_tbl %>%
   arrange(Category)
@@ -69,7 +69,7 @@ combined_top_results_tbl <-
 ols_max_tbl <- 
   combined_top_results_tbl %>% 
   dplyr::select(-Crisis) %>% 
-  ols_group_full_workflow() %>% 
+  ols_group_full_workflow(formula = formula) %>% 
   mutate(Extreme = "Top market (5% market returns)") %>% 
   ungroup()
 
@@ -80,9 +80,9 @@ combined_bottom_results_tbl <-
   slice_min(order_by = `Market Return`, prop = 0.05)
 
 ols_min_tbl <- 
-  combined_bottom_retults_tbl %>% 
+  combined_bottom_results_tbl %>% 
   dplyr::select(-Crisis) %>% 
-  ols_group_full_workflow() %>%
+  ols_group_full_workflow(formula = formula) %>%
   mutate(Extreme = "Bottom market (5% market returns)") %>% 
   ungroup()
 
@@ -119,7 +119,8 @@ artifacts_general_herding <- list (
     combined_results_tbl = combined_results_tbl
   ),
   models = list(
-    ols_combined_tbl = ols_combined_tbl
+    ols_combined_tbl = ols_combined_tbl,
+    models_rol = models_rol
   ),
   graphs = list(
     rol_gg = rol_gg

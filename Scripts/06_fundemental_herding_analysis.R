@@ -165,7 +165,11 @@ artifacts_fundamental_herding <- list (
     combined_fundamental_tbl = combined_fundamental_tbl,
     ols_fund_tbl = ols_fund_tbl
   ),
-  ols_graphs = list(
+  ols_rol = list(
+    ols_full_fundamental_rol_tbl = ols_full_fundamental_rol_tbl,
+    ols_full_nonfundamental_rol_tbl = ols_full_nonfundamental_rol_tbl
+  ),
+  ols_rol_graphs = list(
     rol_fundamental_gg = rol_fundamental_gg,
     rol_nonfundamental_gg = rol_nonfundamental_gg
   )

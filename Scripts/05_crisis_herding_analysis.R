@@ -39,7 +39,7 @@ library(quantreg)
 options(scipen = 999)
 # Functions ---------------------------------------------------------------
 source(here("Functions", "fx_plot.R"))
-source(here("Functions", "group_ols_functions.R"))
+source(here("Functions", "group_ols_crisis_functions.R"))
 source(here("Functions", "group_ols_slidify_functions.R"))
 dummy_crisis <- function(data_date, start_date, end_date){
   ifelse(data_date > start_date & data_date < end_date, 1,0)
@@ -145,7 +145,7 @@ formula <- as.formula(
 )
 ols_gd_tbl <-
   combined_results_dummy_tbl %>% 
-  ols_group_full_workflow() %>% 
+  ols_group_full_workflow(formula = formula) %>% 
   relocate(dummy_abs_gd, .after = `(Intercept)`) %>%
   relocate(dummy_squared_gd, .before = anti_dummy_squared_gd)
 
@@ -155,7 +155,7 @@ formula <- as.formula(
 )
 ols_db_tbl <-
   combined_results_dummy_tbl %>% 
-  ols_group_full_workflow() %>% 
+  ols_group_full_workflow(formula = formula) %>% 
   relocate(dummy_abs_db, .after = `(Intercept)`) %>%
   relocate(dummy_squared_db, .before = anti_dummy_squared_db)
 
@@ -165,7 +165,7 @@ formula <- as.formula(
 )
 ols_fc_tbl <-
   combined_results_dummy_tbl %>% 
-  ols_group_full_workflow() %>% 
+  ols_group_full_workflow(formula = formula) %>% 
   relocate(dummy_abs_fc, .after = `(Intercept)`) %>%
   relocate(dummy_squared_fc, .before = anti_dummy_squared_fc)
 
@@ -175,7 +175,7 @@ formula <- as.formula(
 )
 ols_cv_tbl <-
   combined_results_dummy_tbl %>% 
-  ols_group_full_workflow() %>% 
+  ols_group_full_workflow(formula = formula) %>% 
   relocate(dummy_abs_cv, .after = `(Intercept)`) %>%
   relocate(dummy_squared_cv, .before = anti_dummy_squared_cv)
 

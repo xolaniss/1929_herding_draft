@@ -132,7 +132,7 @@ results_all_gg
 ```{r}
 #| label: tbl-ols
 #| tbl-cap: "Industry herding ols results"
-#| cache: true
+#| cache: false
 
 equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1|R_{m, t}| +  \\gamma_2R_{m, t}^2 +  \\epsilon_{t}"))
 estimates <- c(
@@ -181,7 +181,7 @@ CSAD_model_rol_gg
 ```{r}
 #| label: tbl-ols_crisis
 #| tbl-cap: "Industry herding in crisis periods"
-#| cache: true
+#| cache: false
 #| include: true
 #| eval: true
 
@@ -644,6 +644,35 @@ famafrench$graphs$fama_french_gg
 
 ```
 
+\newpage
+## Presidential terms
+
+```{r}
+#| label: tbl-terms
+#| tbl-cap: "Presidential terms"
+#| cache: false
+
+# importing presidential terms
+presidential_terms <- read_rds(here("Outputs", "artifacts_presidential_terms.rds"))
+presential_terms_tbl <- 
+  presidential_terms$terms_tbl %>% 
+  filter(Term_start >= "1920-01-01") %>%
+  rename(
+    "Start" = "Term_start",
+    "End" = "Term_end") %>% 
+  mutate(
+    "Start" = lubridate::year(Start),
+    "End" = lubridate::year(End)
+  )
+
+# creating table of presidential terms
+presential_terms_tbl %>% 
+  flextable() %>% 
+  align(j = 1, align = "left", part = "all") %>% 
+  colformat_double(j = 2:3, digits = 0, big.mark = "") %>%
+  autofit(add_w = 2)
+
+```
 
 
 # References
