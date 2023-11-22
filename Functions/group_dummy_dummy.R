@@ -23,8 +23,10 @@ dummy_dummy_pretty_results <-
         stars = ifelse(p.value < 0.001, "***", ifelse(p.value < 0.01, "**", ifelse(p.value < 0.05, "*", "")))
       ) %>% 
       mutate(
-        term = ifelse(term == "party_dummy", "Democrat", "Republican")
-      ) %>%
+        term = str_replace_all(term, "party_dummy", "Democrat"),
+        term = str_replace_all(term, "volatility", "Volatility"),
+        term = stri_replace_all_fixed(term, "(Intercept)", "Republican"),
+      ) %>% 
       dplyr::select(Category, term, estimate, p.value, stars) %>% 
       rename(
         "Party" = term,

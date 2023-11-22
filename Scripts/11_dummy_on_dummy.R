@@ -17,6 +17,7 @@ library(timetk)
 library(uniqtag)
 library(quantmod)
 library(magrittr)
+library(stringi)
 
 # graphs
 library(PNWColors)
@@ -42,7 +43,22 @@ options(scipen = 999)
 # Functions ---------------------------------------------------------------
 source(here("Functions", "fx_plot.R"))
 source(here("Functions", "group_dummy_dummy.R"))
-source(here("Functions", "group_dummy_dummy_slidify_functions.R"))
+marginal_effect <- 
+  function(data, category) {
+    glm(formula, 
+        family = binomial(link = "probit"),
+        data =  data %>%  filter(Category == category)) %>% 
+      margins::margins(data = data)
+  }
+
+industry <- list("All industries",
+                 "Business services",
+                 "Consumables",
+                 "Health",
+                 "Manufacturing",
+                 "Other"
+                 
+)
 
 # Importing -------------------------------------------------------------
 presidential <- read_rds(here("Outputs", "artifacts_presidential_terms.rds"))
@@ -50,6 +66,7 @@ general_herding <- read_rds(here("Outputs", "artifacts_general_herding.rds"))
 # herding_crisis <- read_rds(here("Outputs", "artifacts_herding_crisis.rds"))
 fundamental_herding <- read_rds(here("Outputs", "artifacts_fundamental_herding.rds"))
 # fundamental_herding_crisis <- read_rds(here("Outputs", "artifacts_crisis_fundamental.rds"))
+volatility <- read_rds(here("Outputs", "artifacts_volatility.rds"))
 
 # Cleaning -----------------------------------------------------------------
 presidential_tbl <- 
@@ -59,6 +76,15 @@ presidential_tbl <-
     "party_dummy" = "Dummy"
   )
 presidential_tbl
+
+volatility_tbl <- 
+  volatility$data$volatility_tbl %>% 
+  filter(Date >= "1920-01-01") %>% 
+  rename(
+    volatility = `Volatility of market returns (GARCH(1,1))`
+  )
+
+volatility_tbl
 
 # General herding estimation ----------------------------------------------
 # selecting date and herding (a2)
@@ -73,10 +99,11 @@ general_herding_a2_presidential_tbl <-
 general_herding_a2_presidential_tbl
 
 # OLS of a2_dummy on party_dummy
-formula <- as.formula(a2_dummy ~ party_dummy)
+formula <- as.formula(a2_dummy ~ party_dummy + volatility)
 
-ols_a2_party_dummy_model_tbl<- 
+ols_a2_party_dummy_model_tbl <- 
   general_herding_a2_presidential_tbl %>% 
+  left_join(volatility_tbl, by = c("Date" = "Date")) %>% 
   dummy_dummy_full_workflow(formula = formula) %>% 
   mutate(Group = "General Herding")
 
@@ -94,10 +121,11 @@ fundamental_herding_a2_presidential_tbl <-
 
 fundamental_herding_a2_presidential_tbl
 # OLS of a2_fund_dummy on party_dummy
-formula <- as.formula(a2_fund_dummy ~ party_dummy)
+formula <- as.formula(a2_fund_dummy ~ party_dummy + volatility)
 
 ols_a2_fund_party_dummy_model_tbl<- 
   fundamental_herding_a2_presidential_tbl %>% 
+  left_join(volatility_tbl, by = c("Date" = "Date")) %>%
   dummy_dummy_full_workflow(formula = formula) %>% 
   mutate(Group = "Fundamental Herding")
 
@@ -115,10 +143,11 @@ non_fundamental_herding_a2_presidential_tbl <-
   left_join(presidential_tbl, by = c("Date" = "Date"))
 
 # OLS of a2_nonfund_dummy on party_dummy
-formula <- as.formula(a2_nonfund_dummy ~ party_dummy)
+formula <- as.formula(a2_nonfund_dummy ~ party_dummy + volatility)
 
 ols_a2_nonfund_party_dummy_model_tbl<- 
-  non_fundamental_herding_a2_presidential_tbl %>% 
+  non_fundamental_herding_a2_presidential_tbl %>%
+  left_join(volatility_tbl, by = c("Date" = "Date")) %>%
   dummy_dummy_full_workflow(formula = formula) %>% 
   mutate(Group = "Non-Fundamental Herding")
   
@@ -138,63 +167,29 @@ ols_party_dummy_model_tbl
 # Probit - General herding ---------------------------------------------------------
 # function to estimating glm probit model a2_dummy on party_dummy
 # get the marginal effects
-formula <-  as.formula(a2_dummy ~ party_dummy)
-marginal_effect <- 
-  function(data, category) {
-    glm(formula, 
-        family = binomial(link = "probit"),
-        data =  data %>%  filter(Category == category)) %>% 
-      margins::margins(data = data)
-  }
+formula <-  as.formula(a2_dummy ~ party_dummy + volatility)
 
-industry <- list("All industries",
-                 "Consumables",
-                 "Health",
-                 "Manufacturing",
-                 "Other",
-                 "Business services"
-)
 #  marginal effects for "All industries", "Consumables", "Health", "Manufacturing", "Other", "Business services" 
 
 industry %>% 
-  map(~marginal_effect(data = general_herding_a2_presidential_tbl, .x))
-
-# ggplot function glm probit model a2_dummy on party_dummy
-dummy_dummy_gg <- 
-  function(dep_var = a2_dummy, data = data, category = category) {
-  data %>% 
-    filter(Category == {{ category }}) %>% 
-    ggplot(aes(x = party_dummy, 
-               y = {{ dep_var }})) +
-    geom_point() +
-    geom_smooth(
-      method = "glm", 
-      method.args = list(family = binomial(link = "probit")), 
-      se = FALSE) +
-    ggtitle( {{ category }})
-}
-
-industry %>% 
-  map(~dummy_dummy_gg(dep_var = a2_dummy, data = general_herding_a2_presidential_tbl, .x))
+  map(~marginal_effect(data = general_herding_a2_presidential_tbl %>% 
+                         left_join(volatility_tbl, by = c("Date" = "Date")) ,
+                       .x))
 
 # Probit - Fundamental herding  ---------------------------------------------------------
-formula <- as.formula(a2_fund_dummy ~ party_dummy)
+formula <- as.formula(a2_fund_dummy ~ party_dummy + volatility)
 industry %>% 
-  map(~marginal_effect(data = fundamental_herding_a2_presidential_tbl, .x))
+  map(~marginal_effect(data = fundamental_herding_a2_presidential_tbl %>% 
+                         left_join(volatility_tbl, by = c("Date" = "Date")), 
+                       .x))
 
-# ggplot function glm probit model a2_fund_dummy on party_dummy
-industry %>% 
-  map(~dummy_dummy_gg(dep_var = a2_fund_dummy, data = fundamental_herding_a2_presidential_tbl, .x))
 
 # Non-Fundamental herding - Probit ---------------------------------------------------------
-formula <- as.formula(a2_nonfund_dummy ~ party_dummy)
+formula <- as.formula(a2_nonfund_dummy ~ party_dummy + volatility)
 industry %>% 
-  map(~marginal_effect(data = non_fundamental_herding_a2_presidential_tbl, .x))
-
-# ggplot function glm probit model a2_nonfund_dummy on party_dummy
-
-industry %>% 
-  map(~ dummy_dummy_gg(a2_nonfund_dummy, non_fundamental_herding_a2_presidential_tbl, .x))
+  map(~marginal_effect(data = non_fundamental_herding_a2_presidential_tbl %>% 
+                         left_join(volatility_tbl, by = c("Date" = "Date")), 
+                       .x))
 
 # Export ---------------------------------------------------------------
 artifacts_party_dummy <- list (
