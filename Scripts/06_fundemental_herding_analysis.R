@@ -176,7 +176,7 @@ artifacts_fundamental_herding <- list (
 )
 
 write_rds(artifacts_fundamental_herding, 
-          file = here("Outputs", 
+          file = here("Outputs",
                       "artifacts_fundamental_herding.rds"))
 
 

@@ -36,7 +36,7 @@ knitr::opts_chunk$set(
                       ft.align = "left",
                       ft.tabcolsep= 0, 
                       ft.latex.float = "none",
-                      ft.arraystretch = 0.4
+                      ft.arraystretch = 0.3
                       )
 library(tidyverse)
 library(readr)
@@ -75,6 +75,10 @@ set_flextable_defaults(font.size = 7,
                        padding = 0,
                        line_spacing = 0)
 ```
+
+# TO DO
+- change the footers for all tables
+
 
 # Introduction
 
@@ -126,13 +130,265 @@ results_all_gg <- cross_sectionals$graphs$results_all_gg
 results_all_gg
 ```
 
+## Industry herding in general 
 
-## Industry herding 
+
+##  Industry herding and economic crises
+
+
+## Industry herding in the context of political cycles
+
+```{r}
+#| label: tbl-political
+#| tbl-cap: "Herding and political cycles."
+#| cache: true
+
+equation <-  as_equation(c("CSAD_{FUND, t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + \\gamma_2(1-D^{crisis})|R_{m, t}| + \\gamma_3D^{crisis}R_{m, t}^2 +  \\gamma_4(1-D^{crisis})R_{m, t}^2 +  \\epsilon_{t}"))
+
+equation_2 <-  as_equation(c("CSAD_{NONFUND, t} = \\alpha + \\gamma_1D^{crisis}|R_{m, t}| + \\gamma_2(1-D^{crisis})|R_{m, t}| + \\gamma_3D^{crisis}R_{m, t}^2 +  \\gamma_4(1-D^{crisis})R_{m, t}^2 +  \\epsilon_{t}"))
+estimates <- c(
+  "\\alpha",
+  "\\gamma_1 ",
+  "\\gamma_2",
+  "\\gamma_3 ",
+  "\\gamma_4"
+)
+
+political <- read_rds(here("Outputs", "artifacts_party_dummy.rds"))
+political$ols_party_dummy_model_tbl %>% 
+  ungroup() %>% 
+  as_grouped_data(groups = c("Group")) %>% 
+    as_flextable(hide_grouplabel = TRUE) %>% 
+  mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
+  # mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
+  add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation, " and ", equation_2), colwidths = 4) %>%
+  hline_bottom(part = "footer",
+               border = fp_border(
+                 color = "black",
+                 style = "solid",
+                 width = 1
+               )) %>% 
+  align(j = 1, align = "left", part = "all") %>% 
+  merge_at(i = 1) %>% 
+  align(i = 1, align = "center") %>% 
+  merge_at(i = 8) %>% 
+  align(i = 8, align = "center") %>% 
+  merge_at(i = 15) %>% 
+  align(i = 15, align = "center") %>%
+  autofit(add_w = 1)
+  
+```
+
+# Conclusion
+
+\newpage
+
+
+# References {.unnumbered}
+::: {#refs}
+:::
+
+
+\setcounter{section}{0}
+\renewcommand{\thesection}{\Alph{section}}
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{A\arabic{figure}}
+
+\newpage
+
+# Appendix: Data
+
+## Industry data
+
+```{r}
+#| label: fig-cons
+#| fig-cap: "Consumables returns"
+#| fig-height: 6
+#| fig-width: 6
+#| cache: true
+
+returns_data <- read_rds(here("Outputs", "artifacts_returns_data.rds"))
+returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg
+```
+
+```{r}
+#| label: fig-health
+#| fig-cap: "Health returns"
+#| fig-height: 3
+#| fig-width: 6
+#| cache: true
+
+returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
+```
+
+```{r}
+#| label: fig-manufacturing
+#| fig-cap: "Manufacturing returns"
+#| fig-height: 6
+#| fig-width: 6
+#| cache: true
+
+returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
+```
+
+```{r}
+#| label: fig-business
+#| fig-cap: "Business services returns"
+#| fig-height: 4
+#| fig-width: 6
+#| cache: true
+
+returns_data$graphs$business_equipment_telephone_and_television_transmission_group_equal_gg
+```
+
+```{r}
+#| label: fig-mines
+#| fig-cap: "Other returns"
+#| fig-height: 8
+#| fig-width: 8
+#| cache: true
+
+returns_data$graphs$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg
+```
+\newpage
+
+## Industry grouping
+
+```{r}
+#| label: tbl-grouping
+#| tbl-cap: "Industry grouping using CRSP SICs"
+#| tbl-colwidths: auto
+#| cache: true
+
+aggregation_scheme_tbl <- returns_data$full_data$aggregation_scheme_tbl
+aggregation_scheme_tbl %>% 
+  flextable() %>% 
+  align(align = "left", part = "all") %>% 
+  autofit(add_w = -0.1)
+```
+
+\newpage
+
+## Crises periods
+
+```{r}
+#| label: tbl-crises_description
+#| tbl-cap: "Crises periods. Source: Wikipedia (2023)"
+#| cache: true
+
+crisis_tbl <- 
+  tibble(
+  "Crisis" = c("Great Depression", "Dot-com Bubble", "Financial Crisis", "Covid Crisis"),
+  "Start" = c("1929-01-01", "1997-01-01", "2007-01-01", "2020-01-01"),
+  "End" = c("1939-12-31", "2003-12-31", "2009-12-31", "2021-12-31")
+) 
+
+crisis_tbl %>% 
+  flextable() %>% 
+  align(j = 1, align = "left", part = "all") %>% 
+  autofit(add_w = 1.5)
+
+```
+
+\newpage
+## Fama-French factors
+
+```{r}
+#| label: fig-famafrench
+#| fig-cap: "Fama-French Factors"
+#| cache: true
+
+famafrench <- read_rds(here("Outputs", "artifacts_fama_french.rds"))
+famafrench$graphs$fama_french_gg
+
+```
+
+\newpage
+## Presidential terms
+
+```{r}
+#| label: tbl-terms
+#| tbl-cap: "Presidential terms"
+#| cache: true
+
+# importing presidential terms
+presidential_terms <- read_rds(here("Outputs", "artifacts_presidential_terms.rds"))
+presential_terms_tbl <- 
+  presidential_terms$terms_tbl %>% 
+  filter(Term_start >= "1920-01-01") %>%
+  rename(
+    "Start" = "Term_start",
+    "End" = "Term_end") %>% 
+  mutate(
+    "Start" = lubridate::year(Start),
+    "End" = lubridate::year(End)
+  )
+
+# creating table of presidential terms
+presential_terms_tbl %>% 
+  flextable() %>% 
+  align(j = 1, align = "left", part = "all") %>% 
+  colformat_double(j = 2:3, digits = 0, big.mark = "") %>%
+  autofit(add_w = 2)
+
+```
+
+\newpage
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{B\arabic{table}}
+
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{B\arabic{figure}}
+
+#  Appendix: Industry herding results
+
+## Descriptive statistics
+
+```{r}
+#| label: tbl-desc
+#| tbl-cap: "Descriptive statistics"
+#| cache: true
+
+descriptives <- read_rds(here("Outputs", "artifacts_descriptives.rds"))
+descriptives_tbl <- 
+  descriptives$descriptives_tbl %>% 
+  ungroup()
+
+
+descriptives_tbl %>%
+  as_grouped_data(groups = c("Category")) %>%
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  align(align = "center", part = "all") %>% 
+  align(align = "left", j = 1, part = "all") %>% 
+  align(align = "left", j = 2, part = "all") %>% 
+  merge_at(i = 1) %>% 
+  align(i = 1, align = "center") %>% 
+  merge_at(i = 12) %>%
+  align(i = 12, align = "center") %>%
+  merge_at(i = 23) %>%
+  align(i = 23, align = "center") %>%
+  merge_at(i = 34) %>% 
+  align(i = 34, align = "center") %>%
+  merge_at(i = 45) %>%
+  align(i = 45, align = "center") %>%
+  merge_at(i = 56) %>%
+  align(i = 56, align = "center") %>%
+  autofit(add_w = 0.45)
+
+```
  
+\newpage
+##  General industry herding
+
 ```{r}
 #| label: tbl-ols
 #| tbl-cap: "Industry herding ols results"
-#| cache: false
+#| cache: true
 
 equation <-  as_equation(c("CSAD_{t} = \\alpha + \\gamma_1|R_{m, t}| +  \\gamma_2R_{m, t}^2 +  \\epsilon_{t}"))
 estimates <- c(
@@ -181,7 +437,7 @@ CSAD_model_rol_gg
 ```{r}
 #| label: tbl-ols_crisis
 #| tbl-cap: "Industry herding in crisis periods"
-#| cache: false
+#| cache: true
 #| include: true
 #| eval: true
 
@@ -264,13 +520,12 @@ CSAD_model_rol_crisis$graphs$rol_cv_gg
 
 \newpage
 
-
 ## Industry herding on fundamental information
 
 ```{r}
 #| label: tbl-ols_fund
 #| tbl-cap: "Industry herding on fundamental information"
-#| cache: false
+#| cache: true
 #| include: true
 #| eval: true
 
@@ -309,9 +564,10 @@ CSAD_model_fundamental_tbl %>%
 #| fig-cap: "Industry herding on fundamental information using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
-CSAD_model_fundmamental$ols_graphs$rol_fundamental_gg
+CSAD_model_fundmamental$ols_rol_graphs$rol_fundamental_gg
+
 ```
 
 
@@ -320,9 +576,10 @@ CSAD_model_fundmamental$ols_graphs$rol_fundamental_gg
 #| fig-cap: "Industry herding on non-fundamental information using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
-CSAD_model_fundmamental$ols_graphs$rol_nonfundamental_gg
+CSAD_model_fundmamental$ols_rol_graphs$rol_nonfundamental_gg
+
 ```
 
 \newpage
@@ -331,7 +588,7 @@ CSAD_model_fundmamental$ols_graphs$rol_nonfundamental_gg
 ```{r}
 #| label: tbl-ols_crisis_fund
 #| tbl-cap: "Industry herding on fundamental information in crisis periods"
-#| cache: false
+#| cache: true
 #| include: true
 #| eval: true
 
@@ -381,15 +638,13 @@ CSAD_model_rol_crisis_fund_tbl %>%
 ```
 
 
-### Timevarying industry herding on fundamental information in crisis periods
-
 
 ```{r}
 #| label: fig-rol_fundamental_gd
 #| fig-cap: "Industry herding on fundamental information during the Great depression using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 crisis_fundamental <- read_rds(here("Outputs", "artifacts_crisis_fundamental.rds"))
 
@@ -402,11 +657,10 @@ crisis_fundamental$fundamental$rol_fund_gd_gg
 #| fig-cap: "Industry herding on fundamental information during the Dot-com bubble using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 crisis_fundamental$fundamental$rol_fund_db_gg
 ```
-
 
 
 ```{r}
@@ -414,7 +668,7 @@ crisis_fundamental$fundamental$rol_fund_db_gg
 #| fig-cap: "Industry herding on fundamental information during the Financial crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 crisis_fundamental$fundamental$rol_fund_fc_gg
 ```
@@ -425,19 +679,18 @@ crisis_fundamental$fundamental$rol_fund_fc_gg
 #| fig-cap: "Industry herding on fundamental information during the Covid crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 crisis_fundamental$fundamental$rol_fund_cv_gg
 ```
 
-### Timevarying herding on non-fundamental information in crisis periods
 
 ```{r}
 #| label: fig-rol_nonfundamental_gd
 #| fig-cap: "Industry herding on non-fundamental information during the Great depression using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 crisis_fundamental$nonfundamental$rol_nonfund_gd_gg
 ```
@@ -448,11 +701,10 @@ crisis_fundamental$nonfundamental$rol_nonfund_gd_gg
 #| fig-cap: "Industry herding on non-fundamental information during the Dot-com bubble using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 crisis_fundamental$nonfundamental$rol_nonfund_db_gg
 ```
-
 
 
 ```{r}
@@ -460,7 +712,7 @@ crisis_fundamental$nonfundamental$rol_nonfund_db_gg
 #| fig-cap: "Industry herding on non-fundamental information during the Financial crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 crisis_fundamental$nonfundamental$rol_nonfund_fc_gg
 ```
@@ -471,208 +723,13 @@ crisis_fundamental$nonfundamental$rol_nonfund_fc_gg
 #| fig-cap: "Industry herding on non-fundamental information during the Covid crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
 #| fig-height: 6
 #| fig-width: 8
-#| cache: false
+#| cache: true
 
 crisis_fundamental$nonfundamental$rol_nonfund_cv_gg
 ```
 
-
-
-
-# Conclusion
-
 \newpage
 
-
-
-
-# References {.unnumbered}
-::: {#refs}
-:::
-
-
-\setcounter{section}{0}
-\renewcommand{\thesection}{\Alph{section}}
-
-\setcounter{table}{0}
-\renewcommand{\thetable}{A\arabic{table}}
-
-\setcounter{figure}{0}
-\renewcommand{\thefigure}{A\arabic{figure}}
-
-\newpage
-
-# Appendix
-
-## Data
-
-```{r}
-#| label: fig-cons
-#| fig-cap: "Consumables returns"
-#| fig-height: 6
-#| fig-width: 6
-#| cache: true
-
-returns_data <- read_rds(here("Outputs", "artifacts_returns_data.rds"))
-returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg
-```
-
-```{r}
-#| label: fig-health
-#| fig-cap: "Health returns"
-#| fig-height: 3
-#| fig-width: 6
-#| cache: true
-
-returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
-```
-
-```{r}
-#| label: fig-manufacturing
-#| fig-cap: "Manufacturing returns"
-#| fig-height: 6
-#| fig-width: 6
-#| cache: true
-
-returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
-```
-
-```{r}
-#| label: fig-business
-#| fig-cap: "Business services returns"
-#| fig-height: 4
-#| fig-width: 6
-#| cache: true
-
-returns_data$graphs$business_equipment_telephone_and_television_transmission_group_equal_gg
-```
-
-```{r}
-#| label: fig-mines
-#| fig-cap: "Other returns"
-#| fig-height: 8
-#| fig-width: 8
-#| cache: true
-
-returns_data$graphs$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg
-```
-\newpage
-
-## Industry grouping
-
-```{r}
-#| label: tbl-grouping
-#| tbl-cap: "Industry grouping using CRSP SICs"
-#| tbl-colwidths: auto
-#| cache: true
-
-aggregation_scheme_tbl <- returns_data$full_data$aggregation_scheme_tbl
-aggregation_scheme_tbl %>% 
-  flextable() %>% 
-  align(align = "left", part = "all") %>% 
-  autofit(add_w = -0.1)
-```
-
-\newpage
-## Descriptive statistics
-
-```{r}
-#| label: tbl-desc
-#| tbl-cap: "Descriptive statistics"
-#| cache: true
-
-descriptives <- read_rds(here("Outputs", "artifacts_descriptives.rds"))
-descriptives_tbl <- 
-  descriptives$descriptives_tbl %>% 
-  ungroup()
-
-
-descriptives_tbl %>%
-  as_grouped_data(groups = c("Category")) %>%
-  as_flextable(hide_grouplabel = TRUE) %>% 
-  align(align = "center", part = "all") %>% 
-  align(align = "left", j = 1, part = "all") %>% 
-  align(align = "left", j = 2, part = "all") %>% 
-  merge_at(i = 1) %>% 
-  align(i = 1, align = "center") %>% 
-  merge_at(i = 12) %>%
-  align(i = 12, align = "center") %>%
-  merge_at(i = 23) %>%
-  align(i = 23, align = "center") %>%
-  merge_at(i = 34) %>% 
-  align(i = 34, align = "center") %>%
-  merge_at(i = 45) %>%
-  align(i = 45, align = "center") %>%
-  merge_at(i = 56) %>%
-  align(i = 56, align = "center") %>%
-  autofit(add_w = 0.45)
-
-```
- 
-\newpage
-## Crises periods
-
-```{r}
-#| label: tbl-crises_description
-#| tbl-cap: "Crises periods. Source: Wikipedia (2023)"
-#| cache: true
-
-crisis_tbl <- 
-  tibble(
-  "Crisis" = c("Great Depression", "Dot-com Bubble", "Financial Crisis", "Covid Crisis"),
-  "Start" = c("1929-01-01", "1997-01-01", "2007-01-01", "2020-01-01"),
-  "End" = c("1939-12-31", "2003-12-31", "2009-12-31", "2021-12-31")
-) 
-
-crisis_tbl %>% 
-  flextable() %>% 
-  align(j = 1, align = "left", part = "all") %>% 
-  autofit(add_w = 1.5)
-
-```
-
-\newpage
-## Fama-French Factors
-
-```{r}
-#| label: fig-famafrench
-#| fig-cap: "Fama-French Factors"
-#| cache: true
-
-famafrench <- read_rds(here("Outputs", "artifacts_fama_french.rds"))
-famafrench$graphs$fama_french_gg
-
-```
-
-\newpage
-## Presidential terms
-
-```{r}
-#| label: tbl-terms
-#| tbl-cap: "Presidential terms"
-#| cache: false
-
-# importing presidential terms
-presidential_terms <- read_rds(here("Outputs", "artifacts_presidential_terms.rds"))
-presential_terms_tbl <- 
-  presidential_terms$terms_tbl %>% 
-  filter(Term_start >= "1920-01-01") %>%
-  rename(
-    "Start" = "Term_start",
-    "End" = "Term_end") %>% 
-  mutate(
-    "Start" = lubridate::year(Start),
-    "End" = lubridate::year(End)
-  )
-
-# creating table of presidential terms
-presential_terms_tbl %>% 
-  flextable() %>% 
-  align(j = 1, align = "left", part = "all") %>% 
-  colformat_double(j = 2:3, digits = 0, big.mark = "") %>%
-  autofit(add_w = 2)
-
-```
 
 
 # References
