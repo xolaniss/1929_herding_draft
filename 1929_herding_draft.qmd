@@ -8,7 +8,7 @@ format:
     cite-method: natbib
     include-in-header: preamble.tex
     include-before-body: title.tex
-pdf-engine: xelatex
+pdf-engine: lualatex
 monofont: "DejaVu Sans Mono"
 mainfont: "Times New Roman"
 execute: 
@@ -36,7 +36,7 @@ knitr::opts_chunk$set(
                       ft.align = "left",
                       ft.tabcolsep= 0, 
                       ft.latex.float = "none",
-                      ft.arraystretch = 0.3
+                      ft.arraystretch = 0.4
                       )
 library(tidyverse)
 library(readr)
@@ -76,9 +76,6 @@ set_flextable_defaults(font.size = 7,
                        line_spacing = 0)
 ```
 
-# TO DO
-- change the footers for all tables
-
 
 # Introduction
 
@@ -97,18 +94,11 @@ We create 5 industry groups from the 49 industries in order to calculate the cro
 
 In addition, we focus on herding behaviour in periods of financial crisis. Therefore, we use Wikipedia  to identify 5 crises periods.^[\url{https://en.wikipedia.org/wiki/List_of_economic_crises}] That is, the Great Depression, Dot-com Bubble, Great Financial Crisis and the recent Covid-Crisis. The crises periods are shown in @tbl-crises_description. 
 
+Lastly, in order to understand the effect of political cycles on industry herding we estimate the relationship between the time-varying herding coefficient and US presidential terms as outlined in @eq-political below.^[The US presidential terms can be found at \url{https://en.wikipedia.org/wiki/List_of_United_States_presidential_election_dates}] The US presidential terms are shown in @tbl-terms. In order to match with the industry herding coefficients, the terms  are converted to a daily frequency.
 
 ## Testing for industry herding 
 
-Empirically herding is defined in line with @chang2000examination. Herding is measured by first calculating returns:
-
-$$R_{t} = \left(\dfrac{E_t}{E_{t-1}} - 1\right) \times 100,$$ {#eq-returns}
-
-
-where $R_{t}$ is a return at time $t$, $E_t$ and $E_{t-1}$ is index value at time $t$ and $t-1$. Returns form the foundation of the analysis as they contain all information on the market, including shocks and investor sentiment. 
-
-Then following @christie1995following and @chang2000examination we calculate the  cross-sectional absolute standard deviations ($CSAD_{t}$) for each industry group. The $CSAD_{t}$ is calculated for all markets as follows:
-
+Following @christie1995following and @chang2000examination we calculate the  cross-sectional absolute standard deviations ($CSAD_{t}$) for each industry group. The $CSAD_{t}$ is calculated for all markets as follows:
 
 $$CSAD_{t} = \frac{1}{N}\sum_{i =1}^{N}{|R_{i,t} - R_{m,t}|},$$ {#eq-csad}
 
@@ -119,12 +109,12 @@ The rationale behind the testing methodology is that, if herding is present, the
 
 $$CSAD_{t} = \gamma_0 +  \gamma_1|R_{m, t}| +  \gamma_2R_{m, t}^2 + \epsilon_{t},$$ {#eq-csad2}
 
-where $\gamma_2$ is the herding coefficient. The expectation is that $\gamma_1 > 0$ and $\gamma_2 < 0$ if herding is present. $R_{m, t}^2$, therefore, is a non-linear term which captures the herding effect. This non-linear effect implies no herding when $\gamma_2 = 0$, anti-herding when $\gamma_2 > 0$ and, obviously, herding when $\gamma_2 < 0$. We estimate $CSAD_{t}$ with heteroskedastic and autocorrelation consistent (HAC) standard errors [See @newey1987simple].^[We utilise the Newey-West estimator for all estimations in this paper.] Furthermore, for all testing equations, we estimate changes in herding behaviour over time using a rolling-window approach with a 250 day.^[This is a commonly used window in the literature.]  
+where $\gamma_2$ is the herding coefficient. The expectation is that $\gamma_1 > 0$ and $\gamma_2 < 0$ if herding is present. $R_{m, t}^2$, therefore, is a non-linear term which captures the herding effect. This non-linear effect implies no herding when $\gamma_2 = 0$, anti-herding when $\gamma_2 > 0$ and, obviously, herding when $\gamma_2 < 0$. We estimate $CSAD_{t}$ with heteroskedastic and autocorrelation consistent (HAC) standard errors [See @newey1987simple].^[We utilise the Newey-West estimator for all estimations in this paper.] Furthermore, for all testing equations, we estimate changes in herding behaviour over time using a rolling-window approach with a 250 day.^[This is a commonly used window in the literature. We do this throughout the herding analysis]  
  
 
 ##  Industry herding in periods of financial crisis
 
-We use a dummy variable approach to test whether herding is more pronounced during periods of financial crisis. We adjust @eq-csad2 to include the dummy variable ($D^{crisis}$) as follows:
+Herding is known to be more pronounced in times of market crisis. To test for this we use a dummy variable approach to test whether herding is more pronounced during periods of financial crisis. @eq-csad2 is adjusted to include the $D^{crisis}$, which is an crisis period indicator, as follows:
 
 $$
 \begin{aligned}
@@ -132,18 +122,32 @@ CSAD_{t} = \gamma_0 +  \gamma_1D^{crisis}|R_{m, t}| + \gamma_2(1 - D^{crisis})|R
 \end{aligned}
 $$ {#eq-csad3}
 
-where $D_{crisis}$ is a dummy variable which takes the value of 1 during periods of financial crisis and 0 otherwise. In @eq-csad3 herding is present if $\gamma_3 < 0$ and is significant. **add**
+where $D_{crisis}$ is a dummy variable which takes the value of 1 during periods of financial crisis and 0 otherwise. That is, to isolate the herding effect ($\gamma_3D^{crisis}R_{m, t}^2$) only to periods of market crisis. Therefore,  in @eq-csad3 herding is present if $\gamma_3 < 0$ and is significant. 
 
 ## Industry herding and fundamental information
+Herding can be considered either a rational response to public information by investors, or an accumulation of irrational behaviour by investors due to, for example, fear of under performance or fear of missing out on a market run [see @Bikhchandani2001]. In order to test for the rationality of herding, we test whether herding is related to fundamental information. We use the following equations to test for the relationship between herding and fundamental information, and herding and non-fundamental information. First we isolate the non-fundamental component of herding as follows:
 
 $$CSAD_t = \alpha + \beta_1(R_{m,t} - Rf_t) + \beta_2HML_t + \beta_3SMB_t + \xi_t,$${#eq-info}
 
-$$CSAD_{NONFUND, t} = \xi_t, $${#eq-nonfunda}
+where $Rf_t$ is the risk-free rate, $HML_t$ is the high-minus-low portfolio and $SMB_t$ is the small-minus-big portfolio. The $Rf_t$, $HML_t$ and $SMB_t$ are all from the Fama-French 3 factor model [see @fama1993common] and are shown in @fig-famafrench. 
+
+The non-fundamental component of herding is then:
+$$CSAD_{NONFUND, t} = \xi_t. $${#eq-nonfunda}
+
+It stands to reason that the fundamental component of herding is then:
 $$CSAD_{FUND, t} = CSAD_t - CSAD_{NONFUND, t},$${#eq-funda}
+
+where $CSAD_{FUND, t}$ is the fundamental component of herding. 
+
+We then test the relationship between $CSAD_{NONFUND, t}$ and $CSAD_{FUND, t}$ and herding  as follows:
 
 $$CSAD_{NONFUND,t} = \gamma_0 +  \gamma_1|R_{m, t}| +  \gamma_2R_{m, t}^2 + \epsilon_{t},$$ {#eq-nonfundaherd}
 
 $$CSAD_{FUND,t} = \gamma_0 +  \gamma_1|R_{m, t}| +  \gamma_2R_{m, t}^2 + \epsilon_{t},$$ {#eq-fundaherd}
+
+where $\gamma_2$ is the herding coefficient. Again, the expectation is that $\gamma_1 > 0$ and $\gamma_2 < 0$ if herding is present.
+
+Extending the analysis further, we test if the rational and irrational components of herding are more pronounced during periods of financial crisis. We use the following equations to test for the relationship between herding and fundamental information, and herding and non-fundamental information during periods of financial crisis:
 
 $$
 \begin{aligned}
@@ -158,20 +162,25 @@ CSAD_{FUND, t} = \gamma_0 +  \gamma_1D^{crisis}|R_{m, t}| + \gamma_2(1 - D^{cris
 \end{aligned}
 $$ {#eq-fundacrisis}
 
+where, again, to isolate the herding effect ($\gamma_3D^{crisis}R_{m, t}^2$) to periods of market crisis. $D_{crisis}$ is a dummy variable which takes the value of 1 during periods of financial crisis and 0 otherwise. Therefore, both in  @eq-nonfundacrisis and @eq-fundacrisis herding is present if $\gamma_3 < 0$ and is significant.
+
 ## Industry herding and political cycles
+ 
+Inspired by the resent findings that risk aversion is a determinant of herding [@nath2020investor], we construct a somewhat novel test to ask whether herding is related to political cycles. After taking market volatility into account, we estimate the following equations:
 
-$$D^{herd} = \lambda_0 +  \lambda_1D^{party} + \lambda_2\Gamma_t + \epsilon_{t},$$ {#eq-political}
+$$D^{herd} = \lambda_0 +  \lambda_1D^{party} + \lambda_2(1-D^{party}) + \lambda_3\Gamma_t + \epsilon_{t},$$ {#eq-political}
 
-where $D^{herd}$ is dummy variable with value 1 when herding is present and 0 otherwise.$D^{party}$ is a dummy variable which takes the value of 1 during periods of a particular political party in power and 0 otherwise. $\Gamma_t$ is the market volatility from a $GARCH(1,1)$ model of the overall market returns of the industry portfolios as described above. **add**
+where $D^{herd}$ is dummy variable with value 1 when herding is present and 0 otherwise. $D^{party}$ is a dummy variable which takes the value of 1 during periods of a particular political party in power and 0 otherwise. $\Gamma_t$ is the market volatility from a $GARCH(1,1)$ model of the overall market returns (CSRP) of the industry portfolios as described above. 
 
-A similar analysis is conducted using herding related to fundamental and non-fundamental information in the following manner:
+A natural question which follows is if the political cycle is a determinant herding, how is this affected by the rational or irrational herding. A similar analysis is conducted using herding related to fundamental and non-fundamental information in the following manner:
 
 $$
-D^{herd}_{NONFUND} = \lambda_0 +  \lambda_1D^{party} + \lambda_2\Gamma_t + \epsilon_{t},
+D^{herd}_{NONFUND} = \lambda_0 +  \lambda_1D^{party} + \lambda_2(1-D^{party}) + \lambda_3\Gamma_t + \epsilon_{t},
 $$ {#eq-politicalnonfund}
 
-$$D^{herd}_{FUND} = \lambda_0 +  \lambda_1D^{party} + \lambda_2\Gamma_t + \epsilon_{t},$$ {#eq-politicalfund}
+$$D^{herd}_{FUND} = \lambda_0 +  \lambda_1D^{party} + \lambda_2(1-D^{party}) + \lambda_3\Gamma_t + \epsilon_{t},$$ {#eq-politicalfund}
 
+where $D^{herd}_{NONFUND}$ and $D^{herd}_{FUND}$ are dummy variables with value 1 when non-fundamental and fundamental herding is present and 0 otherwise. 
 
 
 
@@ -228,6 +237,7 @@ results_all_gg <- cross_sectionals$graphs$results_all_gg
 results_all_gg
 ```
 
+\newpage
 ## Evidence of industry herding in the US 
 
 ```{r}
@@ -249,7 +259,7 @@ general_herding$models$ols_combined_tbl %>%
  as_flextable(hide_grouplabel = TRUE) %>%
   mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
   mk_par(i =, j = c(2, 3, 4), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
-    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 4) %>% 
+    add_footer_row(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.", " ", " The regressions are based on ", equation), colwidths = 4) %>% 
   hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1)) %>% 
   align(j = 1, align = "left", part = "all") %>% 
   merge_at(i = 1) %>% 
@@ -274,7 +284,7 @@ CSAD_model_rol_gg <- general_herding$graphs$rol_gg
 CSAD_model_rol_gg
 ```
 
-
+\newpage
 ## US industry herding in periods of financial crises
 
 ```{r}
@@ -303,7 +313,7 @@ CSAD_model_rol_crisis_tbl %>%
     as_flextable(hide_grouplabel = TRUE) %>%  
    mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
    mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
-    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 6) %>% 
+    add_footer_row(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1."," ", " The regressions are based on ", equation), colwidths = 6) %>% 
   hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1)) %>% 
   align(j = 1, align = "left", part = "all") %>% 
   merge_at(i = 1) %>% 
@@ -362,7 +372,7 @@ CSAD_model_rol_crisis$graphs$rol_cv_gg
 ```
 
 
-
+\newpage
 ## The role of fundamental information in US industry herding 
 
 ### In normal times
@@ -374,7 +384,8 @@ CSAD_model_rol_crisis$graphs$rol_cv_gg
 #| include: true
 #| eval: true
 
-equation <-  as_equation(c("CSAD_{t} = \\gamma + \\gamma_1R_{m, t}| + \\gamma_2R_{m, t}^2 + \\epsilon_{t}"))
+equation_1 <-  as_equation(c("CSAD_{NONFUND, t} = \\gamma + \\gamma_1R_{m, t}| + \\gamma_2R_{m, t}^2 + \\epsilon_{t}"))
+equation_2 <-  as_equation(c("CSAD_{FUND, t} = \\gamma + \\gamma_1R_{m, t}| + \\gamma_2R_{m, t}^2 + \\epsilon_{t}"))
 estimates <- c(
   "\\gamma",
   "\\gamma_1 ",
@@ -391,7 +402,7 @@ CSAD_model_fundamental_tbl %>%
     as_flextable(hide_grouplabel = TRUE) %>% 
    mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
    mk_par(i =, j = c(2, 3, 4), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
-    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation), colwidths = 4) %>% 
+    add_footer_row(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.", " ", " The regressions are based on ", equation_1, " and ", equation_2), colwidths = 4) %>% 
   hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1)) %>% 
   align(j = 1, align = "left", part = "all") %>% 
   merge_at(i = 1) %>% 
@@ -429,6 +440,8 @@ CSAD_model_fundmamental$ols_rol_graphs$rol_nonfundamental_gg
 
 ### During crisis periods
 
+\newpage
+
 ```{r}
 #| label: tbl-ols_crisis_fund
 #| tbl-cap: "Industry herding on fundamental information in crisis periods"
@@ -457,7 +470,7 @@ CSAD_model_rol_crisis_fund_tbl %>%
     as_flextable(hide_grouplabel = TRUE) %>%  
    mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
    mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
-    add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation, " and ", equation_2), colwidths = 6) %>% 
+    add_footer_row(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.", " ", " The regressions are based on ", equation, " and ", equation_2), colwidths = 6) %>% 
   hline_bottom(part = "footer", border = fp_border(color = "black", style = "solid", width = 1)) %>% 
   align(j = 1, align = "left", part = "all") %>% 
   merge_at(i = 1) %>% 
@@ -572,28 +585,42 @@ crisis_fundamental$nonfundamental$rol_nonfund_fc_gg
 crisis_fundamental$nonfundamental$rol_nonfund_cv_gg
 ```
 
-
-## Changes in industry herding overtime
-
-
-
-## The influence of political cycles on industry herding
+\newpage
+##  Industry herding and political cycles
 
 ```{r}
 #| label: tbl-political
 #| tbl-cap: "Herding and political cycles."
 #| cache: true
 
-equation <-  as_equation(c("CSAD_{FUND, t} = \\gamma + \\gamma_1D^{crisis}|R_{m, t}| + \\gamma_2(1-D^{crisis})|R_{m, t}| + \\gamma_3D^{crisis}R_{m, t}^2 +  \\gamma_4(1-D^{crisis})R_{m, t}^2 +  \\epsilon_{t}"))
+equation_1 <-
+  as_equation(
+    c(
+      "D^{herd} = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2(1-D^{party}) + \\lambda_3\\Gamma_{t} + \\epsilon_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
 
-equation_2 <-  as_equation(c("CSAD_{NONFUND, t} = \\gamma + \\gamma_1D^{crisis}|R_{m, t}| + \\gamma_2(1-D^{crisis})|R_{m, t}| + \\gamma_3D^{crisis}R_{m, t}^2 +  \\gamma_4(1-D^{crisis})R_{m, t}^2 +  \\epsilon_{t}"))
-estimates <- c(
-  "\\gamma",
-  "\\gamma_1 ",
-  "\\gamma_2",
-  "\\gamma_3 ",
-  "\\gamma_4"
-)
+equation_2 <-
+  as_equation(
+    c(
+      "D^{herd}_{FUND} = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2(1-D^{party}) + \\lambda_3\\Gamma_{t} + \\epsilon_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+equation_3 <-
+  as_equation(
+    c(
+      "D^{herd}_{NONFUND} = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2(1-D^{party}) + \\lambda_3\\Gamma_{t} + \\epsilon_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+estimates <- c("\\lambda_2", "\\lambda_3", "\\Gamma_t")
 
 political <- read_rds(here("Outputs", "artifacts_party_dummy.rds"))
 political$ols_party_dummy_model_tbl %>% 
@@ -601,9 +628,14 @@ political$ols_party_dummy_model_tbl %>%
   as_grouped_data(groups = c("Group")) %>% 
     as_flextable(hide_grouplabel = TRUE) %>% 
   mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
-  # mk_par(i =, j = c(2, 3, 4, 5, 6), part = "header", value = as_paragraph(as_equation(estimates))) %>% 
-  add_footer_row(values = as_paragraph("Note: The numbers in brackets are p-values. A p-value of less than 0.1 is significant", " ", ". The regressions are based on ", equation, " and ", equation_2), colwidths = 4) %>%
-  hline_bottom(part = "footer",
+  mk_par(i =, j = c(2, 3, 4), part = "header", value = as_paragraph(as_equation(estimates))) %>%
+  add_footer_lines(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.", 
+                                       " The regressions are based on ", equation_1,
+                                       " , ",
+                                       equation_2,
+                                       " and ",
+                                       equation_3)) %>%
+  hline_bottom(part = "footer",  
                border = fp_border(
                  color = "black",
                  style = "solid",
@@ -616,7 +648,7 @@ political$ols_party_dummy_model_tbl %>%
   align(i = 8, align = "center") %>% 
   merge_at(i = 15) %>% 
   align(i = 15, align = "center") %>%
-  autofit(add_w = 1)
+  autofit(add_w = 0.6)
   
 ```
 
@@ -641,7 +673,7 @@ political$ols_party_dummy_model_tbl %>%
 
 \newpage
 
-# Appendix: Data
+# Appendix
 
 ## Industry data
 
@@ -774,7 +806,7 @@ presential_terms_tbl %>%
   flextable() %>% 
   align(j = 1, align = "left", part = "all") %>% 
   colformat_double(j = 2:3, digits = 0, big.mark = "") %>%
-  autofit(add_w = 2)
+  autofit(add_w = 1.8)
 
 ```
 
