@@ -168,17 +168,17 @@ where, again, to isolate the herding effect ($\gamma_3D^{crisis}R_{m, t}^2$) to 
  
 Inspired by the resent findings that risk aversion is a determinant of herding [@nath2020investor], we construct a somewhat novel test to ask whether herding is related to political cycles. After taking market volatility into account, we estimate the following equations:
 
-$$D^{herd} = \lambda_0 +  \lambda_1D^{party} + \lambda_2(1-D^{party}) + \lambda_3\Gamma_t + \epsilon_{t},$$ {#eq-political}
+$$D^{herd} = \lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t + \epsilon_{t},$$ {#eq-political}
 
-where $D^{herd}$ is dummy variable with value 1 when herding is present and 0 otherwise. $D^{party}$ is a dummy variable which takes the value of 1 during periods of a particular political party in power and 0 otherwise. $\Gamma_t$ is the market volatility from a $GARCH(1,1)$ model of the overall market returns (CSRP) of the industry portfolios as described above. 
+where $D^{herd}$ is dummy variable with value 1 when herding is present and 0 otherwise. $D^{party}$ is a dummy variable which takes the value of 1 for the Democratic party, and 0 for the Republican party.^[@eq-political, @eq-politicalnonfund and @eq-politicalfund were estimated using OLS, logit, and probit methods. Given the large number of observations the OLS estimates are the same as the logit and probit marginal effects. For simplicity we use the OLS estimates.] $\lambda_0$ is the Republican party estimate. $\Gamma_t$ is the market volatility from a $GARCH(1,1)$ model of the overall market returns (CSRP) of the industry portfolios as described above, and is shown in @fig-volatility. 
 
 A natural question which follows is if the political cycle is a determinant herding, how is this affected by the rational or irrational herding. A similar analysis is conducted using herding related to fundamental and non-fundamental information in the following manner:
 
 $$
-D^{herd}_{NONFUND} = \lambda_0 +  \lambda_1D^{party} + \lambda_2(1-D^{party}) + \lambda_3\Gamma_t + \epsilon_{t},
+D^{herd}_{NONFUND} = \lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t + \epsilon_{t},
 $$ {#eq-politicalnonfund}
 
-$$D^{herd}_{FUND} = \lambda_0 +  \lambda_1D^{party} + \lambda_2(1-D^{party}) + \lambda_3\Gamma_t + \epsilon_{t},$$ {#eq-politicalfund}
+$$D^{herd}_{FUND} = \lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t + \epsilon_{t},$$ {#eq-politicalfund}
 
 where $D^{herd}_{NONFUND}$ and $D^{herd}_{FUND}$ are dummy variables with value 1 when non-fundamental and fundamental herding is present and 0 otherwise. 
 
@@ -596,7 +596,7 @@ crisis_fundamental$nonfundamental$rol_nonfund_cv_gg
 equation_1 <-
   as_equation(
     c(
-      "D^{herd} = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2(1-D^{party}) + \\lambda_3\\Gamma_{t} + \\epsilon_{t}"
+      "D^{herd} = \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t} + \\epsilon_{t}"
     ),
     height = 0.05,
     unit = "cm"
@@ -605,7 +605,7 @@ equation_1 <-
 equation_2 <-
   as_equation(
     c(
-      "D^{herd}_{FUND} = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2(1-D^{party}) + \\lambda_3\\Gamma_{t} + \\epsilon_{t}"
+      "D^{herd}_{FUND} = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t} + \\epsilon_{t}"
     ),
     height = 0.05,
     unit = "cm"
@@ -614,16 +614,17 @@ equation_2 <-
 equation_3 <-
   as_equation(
     c(
-      "D^{herd}_{NONFUND} = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2(1-D^{party}) + \\lambda_3\\Gamma_{t} + \\epsilon_{t}"
+      "D^{herd}_{NONFUND} = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t} + \\epsilon_{t}"
     ),
     height = 0.05,
     unit = "cm"
   )
 
-estimates <- c("\\lambda_2", "\\lambda_3", "\\Gamma_t")
+estimates <- c("\\lambda_0", "\\lambda_1", "\\lambda_2")
 
 political <- read_rds(here("Outputs", "artifacts_party_dummy.rds"))
 political$ols_party_dummy_model_tbl %>% 
+  relocate(3, .before  = 2) %>% 
   ungroup() %>% 
   as_grouped_data(groups = c("Group")) %>% 
     as_flextable(hide_grouplabel = TRUE) %>% 
@@ -810,7 +811,19 @@ presential_terms_tbl %>%
 
 ```
 
+\newpage
+## Market volatility
 
+```{r}    
+#| label: fig-volatility
+#| fig-cap: "Market volatility"
+#| cache: true
+
+volatility <- read_rds(here("Outputs", "artifacts_volatility.rds"))
+volatility$graphs$volatility_gg
+
+
+```
 
 
 
