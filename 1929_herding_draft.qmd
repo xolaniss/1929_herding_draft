@@ -168,17 +168,17 @@ where, again, to isolate the herding effect ($\gamma_3D^{crisis}R_{m, t}^2$) to 
  
 Inspired by the resent findings that risk aversion is a determinant of herding [@nath2020investor], we construct a somewhat novel test to ask whether herding is related to political cycles. After taking market volatility into account, we estimate the following equations:
 
-$$D^{herd} = \lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t + \epsilon_{t},$$ {#eq-political}
+$$Pr(D^{herd} = 1 |\lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t) = \lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t,$$ {#eq-political}
 
-where $D^{herd}$ is dummy variable with value 1 when herding is present and 0 otherwise. $D^{party}$ is a dummy variable which takes the value of 1 for the Democratic party, and 0 for the Republican party.^[@eq-political, @eq-politicalnonfund and @eq-politicalfund were estimated using OLS, logit, and probit methods. Given the large number of observations the OLS estimates are the same as the logit and probit marginal effects. For simplicity we use the OLS estimates.] $\lambda_0$ is the Republican party estimate. $\Gamma_t$ is the market volatility from a $GARCH(1,1)$ model of the overall market returns (CSRP) of the industry portfolios as described above, and is shown in @fig-volatility. 
+where $D^{herd}$ is dummy variable with value 1 when herding is present and 0 otherwise. $D^{party}$ is a dummy variable which takes the value of 1 for the Democratic party, and 0 for the Republican party.^[@eq-political, @eq-politicalnonfund and @eq-politicalfund were estimated using OLS (linear probability model) and probit methodologies. The estimates of the linear probability model are the same as the probit marginal effects. For simplicity we use the linear probability model estimates.] $\lambda_0$ is the Republican party estimate. $\Gamma_t$ is the market volatility from a $GARCH(1,1)$ model of the overall market returns (CSRP) of the industry portfolios as described above, and is shown in @fig-volatility. 
 
 A natural question which follows is if the political cycle is a determinant herding, how is this affected by the rational or irrational herding. A similar analysis is conducted using herding related to fundamental and non-fundamental information in the following manner:
 
 $$
-D^{herd}_{NONFUND} = \lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t + \epsilon_{t},
+Pr(D^{herd}_{NONFUND} = 1 |\lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t) = \lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t,
 $$ {#eq-politicalnonfund}
 
-$$D^{herd}_{FUND} = \lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t + \epsilon_{t},$$ {#eq-politicalfund}
+$$Pr(D^{herd}_{FUND}= 1 |\lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t) = \lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t,$$ {#eq-politicalfund}
 
 where $D^{herd}_{NONFUND}$ and $D^{herd}_{FUND}$ are dummy variables with value 1 when non-fundamental and fundamental herding is present and 0 otherwise. 
 
@@ -596,7 +596,7 @@ crisis_fundamental$nonfundamental$rol_nonfund_cv_gg
 equation_1 <-
   as_equation(
     c(
-      "D^{herd} = \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t} + \\epsilon_{t}"
+      "Pr(D^{herd} = 1 | \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}"
     ),
     height = 0.05,
     unit = "cm"
@@ -605,7 +605,7 @@ equation_1 <-
 equation_2 <-
   as_equation(
     c(
-      "D^{herd}_{FUND} = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t} + \\epsilon_{t}"
+      "Pr(D^{herd}_{FUND} = 1 | \\lambda_0 + \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
     ),
     height = 0.05,
     unit = "cm"
@@ -614,7 +614,7 @@ equation_2 <-
 equation_3 <-
   as_equation(
     c(
-      "D^{herd}_{NONFUND} = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t} + \\epsilon_{t}"
+      "Pr(D^{herd}_{NONFUND} = 1 | \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
     ),
     height = 0.05,
     unit = "cm"
@@ -825,5 +825,73 @@ volatility$graphs$volatility_gg
 
 ```
 
+\newpage
+
+## Probit estimation
+
+```{r}
+#| label: tbl-probit
+#| tbl-cap: "Probit estimation (Marginal Effects)"
+#| cache: true
+
+equation_1 <-
+  as_equation(
+    c(
+      "Pr(D^{herd} = 1 | \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+equation_2 <-
+  as_equation(
+    c(
+      "Pr(D^{herd}_{FUND} = 1 | \\lambda_0 + \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+equation_3 <-
+  as_equation(
+    c(
+      "Pr(D^{herd}_{NONFUND} = 1 | \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+estimates <- c("\\lambda_1", "\\lambda_2")
+
+political$probit_party_dummy_model_tbl %>% 
+  relocate(3, .before  = 2) %>% 
+  ungroup() %>% 
+  as_grouped_data(groups = c("Group")) %>% 
+    as_flextable(hide_grouplabel = TRUE) %>% 
+  mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
+  mk_par(i =, j = c(2, 3), part = "header", value = as_paragraph(as_equation(estimates))) %>%
+  add_footer_lines(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.", 
+                                       " The marginal effects are based on probit estimations of ", equation_1,
+                                       " , ",
+                                       equation_2,
+                                       " and ",
+                                       equation_3)) %>%
+  hline_bottom(part = "footer",  
+               border = fp_border(
+                 color = "black",
+                 style = "solid",
+                 width = 1
+               )) %>% 
+  align(j = 1, align = "left", part = "all") %>% 
+  merge_at(i = 1) %>% 
+  align(i = 1, align = "center") %>% 
+  merge_at(i = 8) %>% 
+  align(i = 8, align = "center") %>% 
+  merge_at(i = 15) %>% 
+  align(i = 15, align = "center") %>%
+  autofit(add_w = 1)
+
+
+```
 
 
