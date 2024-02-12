@@ -84,6 +84,111 @@ set_flextable_defaults(font.size = 7,
 
 # Literature Review
 
+## Introduction
+* Provide an overview of the concept of herding behavior in the context of financial markets.
+
+Herding behavior in financial markets is a significant and pervasive phenomenon, leading to informational inefficiencies and driving asset prices away from their fundamental value (Cipriani, 2010). It is a key concern due to its potential to increase market volatility, destabilize the market, and make it more fragile (Dewan, 2019). This behavior is often influenced by external factors such as market conditions, volatility, and liquidity (Dewan, 2019). The presence of herd behavior in the Chinese stock market has been confirmed, with investors being particularly susceptible to it (Zhang, 2016). The efficiency of herd behavior is closely linked to the market's ability to absorb new information (Tian-rong, 2005).
+
+@Tianrong2005HerdBI
+@Zhang2016ASO
+@Dewan2019HerdingBI
+@Cipriani2010EstimatingAS
+
+* Introduce the specific focus on industry-level herding behavior.
+
+Industry herding is a significant phenomenon in the stock market, with implications for both individual and institutional investors. Ganesh (2016) found that industry herding can influence stock market behavior, while Demirer (2019) and Yan (2012) both highlighted the potential for enhanced momentum profits through the use of industry herding. Camara (2017) further explored the impact of industry herding on financing decision making, identifying significant evidence of herding in specific industries during different market conditions. These studies collectively underscore the importance of industry herding in shaping market dynamics and investment strategies.
+
+@Ganesh2016IndustryHB
+@Demirer2019IndustryHA
+@camara2017industry
+
+
+* State the importance of understanding industry herding behavior for investors, policymakers, and academics.
+
+Understanding industry herding behavior is crucial for investors, policymakers, and academics due to its potential impact on market stability and efficiency. Ganesh (2016) found that industry herding behavior was not a significant factor in the Indian stock market, while Zhang (2016) identified clear evidence of herding in the Chinese stock market. Dewan (2019) provided a comprehensive review of herding behavior, including its types, significance, and determinants, and highlighted the need for further research in this area. Jiang (2018) explored the role of platform attributes and regulations in moderating herding behavior in the context of online peer-to-peer lending, suggesting that these factors can influence the magnitude of the herding effect. These studies collectively underscore the importance of understanding industry herding behavior for various stakeholders, as it can have significant implications for investment decision-making, market stability, and regulatory interventions.
+
+@Ganesh2016IndustryHB
+@Dewan2019HerdingBI
+@Zhang2016ASO
+
+* Outline the objectives and structure of the literature review.
+
+## Theoretical Framework
+* Discuss the theoretical foundations of herding behavior, drawing from behavioral finance, information cascades, and related theories.
+* Explain how these theories apply to industry-level dynamics and how they shape herding behavior among investors and market participants.
+
+Theoretical foundations of herding behavior, as discussed by Hirshleifer (2001, 2003, 2008) and Zhang (2016), draw from behavioral finance, information cascades, and related theories. These theories explain how industry-level dynamics are shaped by herding behavior among investors and market participants. Behavioral finance, for instance, incorporates psychology and sociology to understand how investors handle information and make decisions. Information cascades theory, on the other hand, explores how individuals follow the actions of others, leading to herding behavior. These theories are particularly relevant in the Chinese stock market, where Zhang (2016) found evidence of herd behavior among institutional investors.
+
+@boortz2013herding
+@Spyrou2013HerdingIF
+@Hirshleifer2003HerdBA
+
+
+## Empirical Evidence on Industry Herding
+* Review empirical studies that have examined industry herding behavior.
+* Organize the review chronologically or thematically, depending on the literature.
+* Summarize key findings regarding the prevalence, determinants, and consequences of industry herding.
+* Highlight any inconsistencies or gaps in the literature.
+
+Empirical studies have consistently found that industry herding behavior is more pronounced in down markets, with investors tending to herd more during bearish periods (Bouzid, 2020; Zheng, 2017; Zheng, 2016). This behavior is particularly strong in the Technology and Financial industries, and weaker in the Utility industry (Zheng, 2017; Zheng, 2016). However, the Fast Moving Consumer Goods (FMCG) sector, which is non-cyclical, does not display herding behavior, possibly due to investors relying more on fundamentals (Bharti, 2020). The presence of industry herding is also influenced by market conditions, with it being more pronounced in low trading volume markets (Zheng, 2017; Zheng, 2016).
+
+@Babalos2015DoCI
+@Demirer2019IndustryHA
+@shrotryia2021analysis
+@Liu2014HerdingBI
+@cakan2016sectoral
+@Yan2012IndustryHA
+@Lee2013IndustryHA
+@Choi2008InstitutionalIH
+@Camara2017IndustryHB
+@zheng2017herding
+@bharti2020herding
+@bouzid2020industry
+@zhao2022industry
+
+### Determinants of Industry Herding
+* Discuss factors that influence industry herding behavior, including market conditions, investor characteristics, and information environment.
+* Explore the role of institutional investors, market sentiment, and industry-specific factors in driving herding tendencies.
+* Analyze how macroeconomic variables, regulatory changes, and technological advancements impact industry-level herding behavior.
+
+Research on the determinants of industry herding behavior has yielded mixed results. Ukpong (2021) found that herding is more prevalent at the industry level, with significant evidence of anti-herding behavior. This is further supported by Ukpong (2019), who identified low trading volatility and volume as key factors in industry herding, particularly during market crises. Camara (2017) and Zheng (2017) both found evidence of industry herding, with Camara highlighting the role of economic conditions and industry-specific factors, and Zheng noting the influence of market conditions and industry characteristics. These studies collectively suggest that industry herding behavior is influenced by a complex interplay of market and industry-specific factors.
+
+@madaan2023determinants
+@ukpong2021determinants
+@allam2020determinants
+
+
+
+## Consequences of Industry Herding
+* Examine the consequences of industry herding for market efficiency, volatility, and stability.
+* Discuss the implications of industry herding for asset pricing, market liquidity, and systemic risk.
+* Consider the effects of herding on industry competition, corporate decision-making, and resource allocation.
+
+Industry herding, particularly by hedge funds, can lead to long-term return reversals and a failure to react to good news (Çaglayan, 2019, 2021). However, it can also impact the performance of winner and loser industries, with a potential for enhanced momentum profits (Demirer, 2019). The interaction between herding and momentum can magnify the momentum effect, with low levels of herding potentially enhancing market efficiency (Yan, 2012).
+
+
+## Methodological Approaches
+* Review the methodologies used to measure and analyze industry herding behavior.
+* Compare different approaches, such as statistical tests, modeling techniques, and data sources.
+* Evaluate the strengths and limitations of existing methodologies and suggest potential improvements.
+
+A range of methodological approaches have been used in industry herding studies. Frey (2012) proposed a structural approach to measure mutual fund herding, which was found to be unbiased and statistically superior. Mand (2020) and Mand (2021) both demonstrated the effectiveness of a dynamic regime-sensitive approach in uncovering herding behavior, particularly in the financial sector and large- and mid-capitalization segments. These studies collectively highlight the importance of methodological rigor and the potential for dynamic models to provide deeper insights into herding behavior.
+
+@frey2014measuring
+@mand2021static
+
+## Future Directions and Research Challenges
+* Identify gaps in the literature and areas for future research on industry herding behavior.
+* Propose theoretical extensions, empirical investigations, and methodological advancements.
+* Discuss the challenges and limitations of studying industry herding and suggest strategies to overcome them.
+
+Herding behavior, where individuals act collectively without centralized direction, is a significant factor in financial markets, driving asset prices away from their fundamental value and potentially destabilizing the market (Dewan, 2019). This behavior is particularly pronounced in the Technology and Financial industries in Asian markets, especially during down markets and low trading volume periods (Zheng, 2017). However, the Indian stock market does not appear to be influenced by industry herding behavior (Ganesh, 2016). Despite the extensive research on herding behavior, there are still open issues and areas with inconclusive evidence, particularly in markets other than equity markets (Spyrou, 2013). Future research should focus on addressing these gaps and limitations.
+
+## Conclusion
+* Summarize the key findings and insights from the literature review.
+* Reiterate the significance of understanding industry herding behavior.
+* Offer concluding remarks on the state of the literature and opportunities for further research.
+
 #  Data and Methodology
 
 ## Data
