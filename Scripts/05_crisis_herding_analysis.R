@@ -39,6 +39,7 @@ library(quantreg)
 options(scipen = 999)
 # Functions ---------------------------------------------------------------
 source(here("Functions", "fx_plot.R"))
+source(here("Functions", "group_ols_functions.R"))
 source(here("Functions", "group_ols_crisis_functions.R"))
 source(here("Functions", "group_ols_slidify_functions.R"))
 dummy_crisis <- function(data_date, start_date, end_date){

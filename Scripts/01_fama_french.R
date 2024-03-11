@@ -38,7 +38,7 @@ options(scipen = 999)
 source(here("Functions", "fx_plot.R"))
 
 # Import -------------------------------------------------------------
-fama_french <- read_csv(here("Data", "F-F_Research_Data_Factors_daily.csv"), skip = 4)
+fama_french <- read_csv(here("Data", "F_F_Research_Data_Factors_daily.csv"), skip = 4)
 
 # Cleaning -----------------------------------------------------------------
 fama_french_tbl <- 

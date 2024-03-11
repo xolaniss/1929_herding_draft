@@ -100,7 +100,7 @@ Industry herding is a significant phenomenon in the stock market, with implicati
 
 @Ganesh2016IndustryHB
 @Demirer2019IndustryHA
-@camara2017industry
+
 
 
 * State the importance of understanding industry herding behavior for investors, policymakers, and academics.
@@ -183,6 +183,25 @@ A range of methodological approaches have been used in industry herding studies.
 * Discuss the challenges and limitations of studying industry herding and suggest strategies to overcome them.
 
 Herding behavior, where individuals act collectively without centralized direction, is a significant factor in financial markets, driving asset prices away from their fundamental value and potentially destabilizing the market (Dewan, 2019). This behavior is particularly pronounced in the Technology and Financial industries in Asian markets, especially during down markets and low trading volume periods (Zheng, 2017). However, the Indian stock market does not appear to be influenced by industry herding behavior (Ganesh, 2016). Despite the extensive research on herding behavior, there are still open issues and areas with inconclusive evidence, particularly in markets other than equity markets (Spyrou, 2013). Future research should focus on addressing these gaps and limitations.
+
+
+# Industry herding and US political cycles
+Research on the connection between industry behavior and US political cycles yields mixed results. Stangl (2005) found no consistent underperformance of industries under Republican presidents or during presidential election years. However, Yonce (2015) observed a reduction in corporate investment during Republican presidential administrations and periods of single-party government. Mizruchi (1988) suggested that economic concentration in industries can lead to cohesive political behavior, while Baleiras (2000) highlighted the role of institutional and behavioral determinants in political business cycles. These studies collectively suggest that while some industry behaviors may be influenced by political cycles, the relationship is complex and multifaceted.
+
+## Herding and crisis
+
+@ferreruela2021herding
+@ghorbel2023does
+@chang2020herding
+@lee2021covid
+@jiang2022investor
+@bouri2021covid
+@wu2020herding
+@mandaci2022herding
+@wen2022herding
+@youssef2022herding
+@rubesam2022covid
+@dhall2020covid
 
 ## Conclusion
 * Summarize the key findings and insights from the literature review.

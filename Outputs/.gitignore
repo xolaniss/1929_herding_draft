@@ -6,3 +6,7 @@ artifacts_herding_dot_crisis.rds
 artifacts_herding_gd_crisis.rds
 artifacts_returns_graphs_weighted_part_2.rds
 artifacts_returns_graphs_weighted_part_1.rds
+artifacts_crisis_fundamental.rds
+artifacts_fama_french.rds
+artifacts_fundamental_herding.rds
+artifacts_general_herding.rds

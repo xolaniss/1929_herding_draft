@@ -40,7 +40,7 @@ source(here("Functions", "fx_plot.R"))
 
 # Import -------------------------------------------------------------
 par <- read_excel(here("Data", "PAR.xlsx"))
-pear <-  read_excel(here("Data", "PEAR (5).xlsx"), sheet = 2)
+pear <-  read_excel(here("Data", "PEAR.xlsx"), sheet = 2)
 
 # Cleaning -----------------------------------------------------------------
 par_tbl <- 
