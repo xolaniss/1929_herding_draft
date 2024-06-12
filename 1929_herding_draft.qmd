@@ -85,7 +85,7 @@ As previously stated, market efficiency is achieved when markets are perfect whi
 Financial markets that are dominated by agents’ actions have been a perfect setting to study human behavior and in particular the occurrence of various biases since the seminal study of @tversky1974judgment. Literature on the behavioral effects on decision making has flourished in recent decades [see @aggarwal2014animal for a detailed review]. Behavioral economics that lie in the intersection of psychology and economics attempt to shed more light on these biases and how they affect decisions made by agents acting under cognitive and emotional constraints [@mullainathan2000behavioral]. Human behavior that is by nature prone to heuristics, emotional biases and framing effects [@aggarwal2014animal] might result in sub-optimal decisions that in turn cause market inefficiencies and market failures.  
 Under this context, market participants and financial economists provide increasingly convincing evidence that imitative behavior is widespread in financial markets [@devenow1996rational]. This correlated trading behavior of investors at large scale could pose significant threats to financial stability since they might increase volatility and create headaches for policymakers and supervisory authorities [@demirer2015commodity].
 
-Therefore, the concept of herding behavior started to gain the attention of researchers and academics not earlier than the 1990s, when the studies of @banerjee1992simple and @bikhchandani1992theory appeared. Literature on herding is voluminous but still remains inconclusive. @spyrou2013herding and @komalasari2022herding provide some excellent reviews of the relevant studies. Herding studies have expanded across the behavior of individual investors across all financial markets namely stock markets [see inter alia @demirer2006does; @chiang2010empirical; @ukpong2021determinants], bond markets [see inter alia @galariotis2016herd], commodities’ markets [@demirer2015commodity; @babalos2015herding; @babalos2015commodity; @junior2020analyzing; @youssef2022oil], real estate markets [see inter alia @philippas2013herding; @lesame2024herding] using returns data. Another strand of literature focus on herding behavior of institutional investors such as money managers [@jiang2018does], financial analysts [@leece2017effects] and FX market forecasters [@tsuchiya2015herding] employing mostly information from transactions data. Most recently, herding behavior of investors in cryptocurrency markets has received the attention of literature [see inter alia @bouri2019herding].
+Therefore, the concept of herding behavior started to gain the attention of researchers and academics early in the 1990s, when the studies of @banerjee1992simple and @bikhchandani1992theory appeared. Literature on herding is voluminous but still remains inconclusive. Herding behavior can be distinguished between unintentional and intentional. In the former case investors respond to a common set of information that refers to market developments and in the latter case investors discard their own beliefs and decide to follow the decisions of other leading to intentional herding [@bikchandani2000herd].  @spyrou2013herding and @komalasari2022herding provide some excellent reviews of the relevant studies. Herding studies have expanded across the behavior of individual investors across all financial markets namely stock markets [see inter alia @demirer2006does; @chiang2010empirical; @ukpong2021determinants], bond markets [see inter alia @galariotis2016herd], commodities’ markets [@demirer2015commodity; @babalos2015herding; @babalos2015commodity; @junior2020analyzing; @youssef2022oil], real estate markets [see inter alia @philippas2013herding; @lesame2024herding] using returns data. Another strand of literature focus on herding behavior of institutional investors such as money managers [@jiang2018does], financial analysts [@leece2017effects] and FX market forecasters [@tsuchiya2015herding] employing mostly information from transactions data. Most recently, herding behavior of investors in cryptocurrency markets has received the attention of literature [see inter alia @bouri2019herding].
 
 Herding has been in the epicenter of a heated discussion that seeks robust empirical evidence in an attempt to confirm that correlated actions of investors at a large scale could induce market instability and volatility. Likewise, the above argument could work the other way around that is herding is more intense during market turmoil or increased volatility. @welch2000herding points out: "Herding in financial markets, in particular, is often presumed to be pervasive, even though the extant empirical evidence is surprisingly sparse". Studies on herding examine the behavior of investors towards market as a whole or at a sector level. Researchers have been concerned with herding activity across sectors in the US or in an international context with contradictory results [see inter alia @christie1995following; @choi2009institutional; @litimi2016herding]. Herding behavior might vary across sectors probably because of the specific style of the industry, the economic conditions that might affect each sector or the trading patterns of investors in certain industries. @henker2006investors find that herding is more prevalent in industries such as materials, consumer staples and financials. @gkebka2013international employing data for 32 countries find that herding is more intense in sectors such as basic materials, consumer services, and oil and gas and this behavior might be the result of a group of investors that follow each other in and out of markets, overconfidence, or excessive flight to quality. They also stressed that testing herding towards market could underestimate the real effect of herding behavior and research should try to shed light on the behavior of investors at sector level. In the Malaysian market, @dehghani2014sectoral find that herding behavior is only constrained to technology sector.  Nine Asian markets were investigated by @zheng2017herding for herding at sector level. They provided evidence in favor of herding in the Technology and Financial industries, but weaker in the Utility industry. Moreover, herding in certain industries was more intense during bear markets and low trading volumes.  Returning to US, @bensaida2017herding confirmed the presence of herding behavior for 10 out of 12 sectors of US stock market during periods of financial crises and bubbles. @ukpong2021determinants document weak evidence of herding especially in the Financials, Real Estate, Telecoms and Utilities sectors for US market.
 
@@ -195,57 +195,12 @@ where $D^{herd}_{NONFUND}$ and $D^{herd}_{FUND}$ are dummy variables with value 
 
 ## Descriptive analysis
 
-\newpage
-```{r}
-#| label: tbl-desc
-#| tbl-cap: "Descriptive statistics"
-#| cache: true
+@tbl-desc presents the descriptive statistics namely median, standard deviation, minimum and maximum, IQR and total number of observations of the employed variables for the whole US market and for every industry separately during normal times and during the pre-defined crisis periods. @tbl-desc is built on the daily industry data in @fig-cons to @fig-mines, the industry grouping scheme in @tbl-grouping, and the crises periods in @tbl-crises_description. With over 25000 observations in the sample, these form the basis of the empirical analysis. The reader will note the low to zero returns in some industries in the earlier crisis periods influenced by the high volatility of returns in the market. These also explain some of the low estimates in the forthcoming results.
 
-descriptives <- read_rds(here("Outputs", "artifacts_descriptives.rds"))
-descriptives_tbl <- 
-  descriptives$descriptives_tbl %>% 
-  ungroup()
-
-
-descriptives_tbl %>%
-  as_grouped_data(groups = c("Category")) %>%
-  as_flextable(hide_grouplabel = TRUE) %>% 
-  align(align = "center", part = "all") %>% 
-  align(align = "left", j = 1, part = "all") %>% 
-  align(align = "left", j = 2, part = "all") %>% 
-  merge_at(i = 1) %>% 
-  align(i = 1, align = "center") %>% 
-  merge_at(i = 12) %>%
-  align(i = 12, align = "center") %>%
-  merge_at(i = 23) %>%
-  align(i = 23, align = "center") %>%
-  merge_at(i = 34) %>% 
-  align(i = 34, align = "center") %>%
-  merge_at(i = 45) %>%
-  align(i = 45, align = "center") %>%
-  merge_at(i = 56) %>%
-  align(i = 56, align = "center") %>%
-  autofit(add_w = 0.45)
-
-```
- 
-
-```{r}
-#| label: fig-results-all
-#| fig-cap: "Cross sectional deviations."
-#| fig-height: 14
-#| fig-width: 10
-#| cache: true
-#| include: false
-#| eval: false
-
-cross_sectionals <- read_rds(here("Outputs", "artifacts_csad_cssd.rds"))
-results_all_gg <- cross_sectionals$graphs$results_all_gg  
-results_all_gg
-```
-
-\newpage
 ## Evidence of industry herding in the US 
+
+@tbl-ols reports the ordinary least squares results of @eq-csad2 employing the US industry returns both at aggregate level and at an industry level. @tbl-ols is divided into three separate panels: the top panel presents estimated coefficients of @eq-csad2 employing all days for the whole period of analysis while the middle panel presents the estimation results only for the top market returns and the bottom panel the relevant estimates during the down markets. Herding is detected examining the statistical significance and the sign of coefficient $\gamma_2$ that can be found at the last column. When herding is present, $\gamma_2$ assumes negative sign and appears statistically significant. A quick look of the results in @tbl-ols reveals no herding behavior when we use all day returns but significant herding effects for the whole sample and for separate sectors such as Consumables, Health and Other only during up markets. For example, in the middle panel and at the last column for Consumables we see a herding coefficient $\gamma_2$ of -0.00016 that is highly significant. If we turn our attention to the bottom panel we document weak evidence of herding effects in the Manufacturing sector, an estimated value of $\gamma_2$ coefficient -0.00006 that is statistically significant at 1%. 
+
 
 ```{r}
 #| label: tbl-ols
@@ -282,7 +237,7 @@ general_herding$models$ols_combined_tbl %>%
 ```{r}
 #| label: fig-rol_gen
 #| fig-cap: "Industry herding rolling regressions with 250 day window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 5.5
 #| fig-width: 8
 #| cache: true
 
@@ -291,8 +246,13 @@ CSAD_model_rol_gg <- general_herding$graphs$rol_gg
 CSAD_model_rol_gg
 ```
 
-\newpage
+Following previous studies that highlight the dynamic nature of herding effect [@babalos2015commodity; @klein2013time; @mohamad2022birds] we have estimated @eq-csad2 using a rolling window estimation period of 250 days for the whole period of analysis. @fig-rol_gen presents the graphical illustration of the results. In particular, we can see the time evolution of the t-statistic of the estimated coefficients with the t statistic of $\gamma_2$ being at the epicenter of our focus. Contrary to previous findings using the static approach, the rolling window analysis reveals substantial anti-herding effects for the whole market (all industries) and for a number of industries, with periods of herding being present only during the crisis periods. The results are in line with the findings of previous studies that document the dynamic nature of herding effects, that herding is closely related to crisis periods. We focus on this point in the next section.
+
+
 ## US industry herding in periods of financial crises
+
+@tbl-ols_crisis reports the ordinary least squares results of @eq-csad2 employing the US industry returns both at aggregate level and at an industry level during the pre-defined four crises periods: the Great Depression, Dot-com Bubble, Great Financial Crisis and the health crisis of covid. The estimation of the crisis periods is according to @eq-csad3. As stated earlier, herding during crisis periods is verified by means of the negative sign of the estimated coefficient $\gamma_3$. The results point to the existence of significant herding effects for all industries employed during the four crisis periods. In particular, during the Great Depression herding is present when we employ all industries while across industries we document herding in three out of five industries namely Business services, Consumables and Other display strong herding effects. Health industry displays weak evidence of positive or anti-herding behavior. Therefore, herding persists for all industries during the other four crisis periods.
+
 
 ```{r}
 #| label: tbl-ols_crisis
@@ -339,7 +299,7 @@ CSAD_model_rol_crisis_tbl %>%
 ```{r}
 #| label: fig-rol_crisis_gd
 #| fig-cap: "Industry herding during the Great Depression using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
@@ -351,7 +311,7 @@ CSAD_model_rol_crisis$graphs$rol_gd_gg
 ```{r}
 #| label: fig-rol_crisis_db
 #| fig-cap: "Industry herding during the Dot-com Bubble using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
@@ -361,7 +321,7 @@ CSAD_model_rol_crisis$graphs$rol_db_gg
 ```{r}
 #| label: fig-rol_crisis_fc
 #| fig-cap: "Industry herding during the Financial Crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
@@ -371,18 +331,23 @@ CSAD_model_rol_crisis$graphs$rol_fc_gg
 ```{r}
 #| label: fig-rol_crisis_cv
 #| fig-cap: "Industry herding during the Covid Crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
 CSAD_model_rol_crisis$graphs$rol_cv_gg
 ```
 
-
 \newpage
-## The role of fundamental information in US industry herding 
 
+@fig-rol_crisis_gd to @fig-rol_crisis_cv plot the results of the rolling window estimation of 250 days for @eq-csad3 during the above mentioned crisis periods. These plots confirm the herding effects observed in the static results above, that herding was mainly present during crisis periods. 
+
+
+## The role of fundamental information in US industry herding 
 ### In normal times
+
+Following relevant literature that attempts to isolate intentional from spurious herding [@holmes2013herding for institutional investors; @galariotis2015herding for stock market investors] we estimate @eq-nonfundaherd and @eq-fundaherd for the non-fundamental related and fundamental related Cross Sectional Absolute Deviation during non-crisis period. @tbl-ols_fund presents the results of the estimated coefficients that capture the existence of intentional and spurious herding through the coefficient $\gamma_2$ that is presented in the last column of @tbl-ols_fund. It is worth mentioning that herding on fundamentals is evident for the whole market and for three out of five industries namely Consumables, Manufacturing and Other. However, if we turn our attention to intentional herding, we observe no significant herding behavior across no industry or the market whatsoever. @fig-rol_fundamental and @fig-rol_nonfundamental plot the time evolution of coefficients of interest along with the t-statistic using a 250-day rolling window analysis for fundamental and non-fundamental herding during non-crisis period.  
+
 
 ```{r}
 #| label: tbl-ols_fund
@@ -447,6 +412,8 @@ CSAD_model_fundmamental$ols_rol_graphs$rol_nonfundamental_gg
 
 ### During crisis periods
 
+@tbl-ols_crisis_fund presents the results of herding on fundamental and non-fundamental information for US industries during the four crisis periods. The coefficient of interest is $\gamma_3$ which in cases of negative and statistically significant reflects herding behavior. Observing the results of @tbl-ols_crisis_fund some interesting findings emerge. Firstly, during the Great Depression investors appear to herd both on fundamental and non-fundamental information at market level. 
+
 \newpage
 
 ```{r}
@@ -501,12 +468,15 @@ CSAD_model_rol_crisis_fund_tbl %>%
 
 ```
 
+\newpage
+For industries, we document a unintentional herding across all industries during the Great Depression where intentional herding is evident only for Business Services, Consumable and Other. Secondly, a striking result refers to the behavior of investors in US industries during Dot-com bubble. According to the estimated results, investors appear to herd only intentionally since the coefficient of interest $\gamma_3$ appears negative and strongly statistically significant across all industries and the market as a whole. Moving more recently to the Global Financial Crisis (GFC), our results highlight substantial evidence of spurious and intentional herding for all industries and for the market as a whole. 
 
+The only exception is the Business sector that displays no spurious herding during GFC. Our results are partly consistent with those reported by @galariotis2015herding who documented only non-fundamental herding during sub-prime crisis for the whole market. However, we must be cautious with the comparison since the defined crisis periods might vary. Spurious and intentional herding of investors is also present during covid crisis period except for the Health industry that under the non-fundamental formulation we document an anti-herding behavior [@nath2020investor]. @fig-rol_fundamental_gd to @fig-rol_fundamental_cv  plot the time evolution of the estimated coefficients of @eq-fundaherd during the four crisis periods while @fig-rol_nonfundamental_gd to @fig-rol_nonfundamental_fc present the behavior of the rolling window estimated coefficients for the non-fundamental herding equation.
 
 ```{r}
 #| label: fig-rol_fundamental_gd
 #| fig-cap: "Industry herding on fundamental information during the Great depression using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
@@ -519,7 +489,7 @@ crisis_fundamental$fundamental$rol_fund_gd_gg
 ```{r}
 #| label: fig-rol_fundamental_db
 #| fig-cap: "Industry herding on fundamental information during the Dot-com bubble using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
@@ -530,7 +500,7 @@ crisis_fundamental$fundamental$rol_fund_db_gg
 ```{r}
 #| label: fig-rol_fundamental_fc
 #| fig-cap: "Industry herding on fundamental information during the Financial crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
@@ -541,7 +511,7 @@ crisis_fundamental$fundamental$rol_fund_fc_gg
 ```{r}
 #| label: fig-rol_fundamental_cv
 #| fig-cap: "Industry herding on fundamental information during the Covid crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
@@ -552,7 +522,7 @@ crisis_fundamental$fundamental$rol_fund_cv_gg
 ```{r}
 #| label: fig-rol_nonfundamental_gd
 #| fig-cap: "Industry herding on non-fundamental information during the Great depression using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
@@ -563,7 +533,7 @@ crisis_fundamental$nonfundamental$rol_nonfund_gd_gg
 ```{r}
 #| label: fig-rol_nonfundamental_db
 #| fig-cap: "Industry herding on non-fundamental information during the Dot-com bubble using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
@@ -574,7 +544,7 @@ crisis_fundamental$nonfundamental$rol_nonfund_db_gg
 ```{r}
 #| label: fig-rol_nonfundamental_fc
 #| fig-cap: "Industry herding on non-fundamental information during the Financial crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
@@ -585,15 +555,18 @@ crisis_fundamental$nonfundamental$rol_nonfund_fc_gg
 ```{r}
 #| label: fig-rol_nonfundamental_cv
 #| fig-cap: "Industry herding on non-fundamental information during the Covid crisis using a 250-day rolling window. Note: The perforated lines represents a 5% level of significance."
-#| fig-height: 6
+#| fig-height: 4
 #| fig-width: 8
 #| cache: true
 
 crisis_fundamental$nonfundamental$rol_nonfund_cv_gg
 ```
 
-\newpage
+
 ##  Industry herding and political cycles
+
+Lastly, Table 6 presents the results of the estimated @eq-political, @eq-politicalnonfund and @eq-politicalfund in an attempt to answer the question whether herding behavior across US industries is related to political cycles. The coefficient of interest $\lambda_1$ assumes a positive and a statistically significant value when we measure overall herding for All Industries and three other industries namely Consumables, Health and Other. This finding reflects a tendency of herding to be stronger when Democrats are in power while herding seems to diminish when Democrats are in power only for Business services. 
+
 
 ```{r}
 #| label: tbl-political
@@ -659,6 +632,10 @@ political$ols_party_dummy_model_tbl %>%
   autofit(add_w = 0.6)
   
 ```
+
+
+As an attempt to isolate overall to herding due to fundamentals and non-fundamentals we find that in the former case herding becomes stronger during Democratic administration for three out of five industries and for fundamental herding while in the latter case herding tends to be smaller when democratic party is in power for Business services, Manufacturing and Other. @pastor2020political state convincingly: ‘when risk aversion is high, as during economic crises, voters are more likely to elect a Democratic president because they demand more social insurance. When risk aversion is low, voters are more likely to elect a Republican because they want to take more business risk. Therefore, risk aversion is higher under Democrats.
+
 
 # Conclusion
 
@@ -776,6 +753,59 @@ crisis_tbl %>%
 ```
 
 \newpage
+
+## Descriptive statistics
+
+```{r}
+#| label: tbl-desc
+#| tbl-cap: "Descriptive statistics"
+#| cache: true
+
+descriptives <- read_rds(here("Outputs", "artifacts_descriptives.rds"))
+descriptives_tbl <- 
+  descriptives$descriptives_tbl %>% 
+  ungroup()
+
+
+descriptives_tbl %>%
+  as_grouped_data(groups = c("Category")) %>%
+  as_flextable(hide_grouplabel = TRUE) %>% 
+  align(align = "center", part = "all") %>% 
+  align(align = "left", j = 1, part = "all") %>% 
+  align(align = "left", j = 2, part = "all") %>% 
+  merge_at(i = 1) %>% 
+  align(i = 1, align = "center") %>% 
+  merge_at(i = 12) %>%
+  align(i = 12, align = "center") %>%
+  merge_at(i = 23) %>%
+  align(i = 23, align = "center") %>%
+  merge_at(i = 34) %>% 
+  align(i = 34, align = "center") %>%
+  merge_at(i = 45) %>%
+  align(i = 45, align = "center") %>%
+  merge_at(i = 56) %>%
+  align(i = 56, align = "center") %>%
+  autofit(add_w = 0.45)
+
+```
+ 
+
+```{r}
+#| label: fig-results-all
+#| fig-cap: "Cross sectional deviations."
+#| fig-height: 14
+#| fig-width: 10
+#| cache: true
+#| include: false
+#| eval: false
+
+cross_sectionals <- read_rds(here("Outputs", "artifacts_csad_cssd.rds"))
+results_all_gg <- cross_sectionals$graphs$results_all_gg  
+results_all_gg
+```
+
+
+
 ## Fama-French factors
 
 ```{r}

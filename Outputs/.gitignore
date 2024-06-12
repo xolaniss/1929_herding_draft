@@ -10,3 +10,4 @@ artifacts_crisis_fundamental.rds
 artifacts_fama_french.rds
 artifacts_fundamental_herding.rds
 artifacts_general_herding.rds
+artifacts_csad_cssd.rds
