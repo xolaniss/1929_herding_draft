@@ -105,6 +105,8 @@ replace_vec <- c(
   "Trading" = "Fin"
 )
 
+equal_returns_tbl %>% skim()
+
 equal_returns_tbl <-
   equal_returns %>%
   rename(replace_vec) %>%
