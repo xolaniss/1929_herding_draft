@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2023.1.5)  18 JUN 2024 10:12
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2023.1.5)  18 JUN 2024 10:49
  restricted system commands enabled.
  file:line:error style messages enabled.
 **1929_herding_draft.tex
@@ -1884,7 +1884,7 @@ Here is how much of LuaTeX's memory you used:
    7 hlist, 2 vlist, 2 rule, 1 local_par, 16 glue, 4 kern, 1 penalty, 1 margin_kern, 3 glyph, 52 attribute, 74 glue_spec, 52 attribute_list, 1 write, 1 user_defined, 5 pdf_action nodes
    avail lists: 1:7,2:11721,3:2139,4:2142,5:267,6:1054,7:14524,8:123,9:9820,10:33,11:700,12:1
  49373 multiletter control sequences out of 65536+600000
- 168 fonts using 58502103 bytes
+ 168 fonts using 58502327 bytes
  108i,13n,128p,10612b,947s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </System/Library/Fonts/Helvetica.ttc></System/Library/Fonts/Supplemental/Times New Roman Italic.ttf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></System/Library/Fonts/Supplemental/Times New Roman Bold.ttf></System/Library/Fonts/Supplemental/Times New Roman.ttf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf>
 Output written on 1929_herding_draft.pdf (37 pages, 36124351 bytes).
