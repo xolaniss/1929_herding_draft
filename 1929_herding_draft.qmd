@@ -8,6 +8,7 @@ format:
     cite-method: natbib
     include-in-header: preamble.tex
     include-before-body: title.tex
+    keep-tex: true
 pdf-engine: lualatex
 monofont: "DejaVu Sans Mono"
 mainfont: "Times New Roman"
@@ -247,8 +248,10 @@ general_herding$models$ols_combined_tbl %>%
 #| cache: true
 
 
-CSAD_model_rol_gg <- general_herding$graphs$rol_gg
-CSAD_model_rol_gg
+rol_gg <- general_herding$graphs$rol_gg
+rol_gg
+
+ggsave(here("Riza", "fig-rol_gen-1.pdf"), plot = rol_gg, width = 8, height = 4, dpi = 300)
 ```
 
 Following previous studies that highlight the dynamic nature of herding effect [@babalos2015commodity; @klein2013time; @mohamad2022birds] we have estimated @eq-csad2 using a rolling window estimation period of 250 days for the whole period of analysis. @fig-rol_gen presents the graphical illustration of the results. In particular, we can see the time evolution of the t-statistic of the estimated coefficients with the t statistic of $\gamma_2$ being at the epi-center of our focus. Contrary to previous findings using the static approach, the rolling window analysis reveals substantial anti-herding effects for the whole market (all industries) and for a number of industries, with periods of herding being present only during the crisis periods. The results are in line with the findings of previous studies that document the dynamic nature of herding effects, that herding is closely related to crisis periods. We focus on this point in the next section.
@@ -311,8 +314,10 @@ CSAD_model_rol_crisis_tbl %>%
 #| fig-width: 8
 #| cache: true
 
-CSAD_model_rol_crisis$graphs$rol_gd_gg
+rol_gd_gg <- CSAD_model_rol_crisis$graphs$rol_gd_gg
+rol_gd_gg
 
+ggsave(here("Riza", "fig-rol_crisis_gd-1.pdf"), plot = rol_gd_gg, width = 8, height = 4)
 
 ```
 
@@ -323,7 +328,10 @@ CSAD_model_rol_crisis$graphs$rol_gd_gg
 #| fig-width: 8
 #| cache: true
 
-CSAD_model_rol_crisis$graphs$rol_db_gg
+rol_db_gg <- CSAD_model_rol_crisis$graphs$rol_db_gg
+rol_db_gg
+
+ggsave(here("Riza", "fig-rol_crisis_db-1.pdf"), plot = rol_db_gg, width = 8, height = 4)
 ```
 
 ```{r}
@@ -333,7 +341,10 @@ CSAD_model_rol_crisis$graphs$rol_db_gg
 #| fig-width: 8
 #| cache: true
 
-CSAD_model_rol_crisis$graphs$rol_fc_gg
+rol_fc_gg <- CSAD_model_rol_crisis$graphs$rol_fc_gg
+rol_fc_gg
+
+ggsave(here("Riza", "fig-rol_crisis_fc-1.pdf"), plot = rol_fc_gg, width = 8, height = 4)
 ```
 
 ```{r}
@@ -343,7 +354,10 @@ CSAD_model_rol_crisis$graphs$rol_fc_gg
 #| fig-width: 8
 #| cache: true
 
-CSAD_model_rol_crisis$graphs$rol_cv_gg
+rol_cv_gg <- CSAD_model_rol_crisis$graphs$rol_cv_gg
+rol_cv_gg
+
+ggsave(here("Riza", "fig-rol_crisis_cv-1.pdf"), plot = rol_cv_gg, width = 8, height = 4)
 ```
 
 
@@ -397,7 +411,10 @@ CSAD_model_fundamental_tbl %>%
 #| fig-width: 8
 #| cache: true
 
-CSAD_model_fundmamental$ols_rol_graphs$rol_fundamental_gg
+rol_fundamental_gg <- CSAD_model_fundmamental$ols_rol_graphs$rol_fundamental_gg
+rol_fundamental_gg
+
+ggsave(here("Riza", "fig-rol_fundamental-1.pdf"), plot = rol_fundamental_gg, width = 8, height = 4)
 
 ```
 
@@ -408,8 +425,10 @@ CSAD_model_fundmamental$ols_rol_graphs$rol_fundamental_gg
 #| fig-width: 8
 #| cache: true
 
-CSAD_model_fundmamental$ols_rol_graphs$rol_nonfundamental_gg
+rol_nonfundamental_gg <- CSAD_model_fundmamental$ols_rol_graphs$rol_nonfundamental_gg
+rol_nonfundamental_gg
 
+ggsave(here("Riza", "fig-rol_nonfundamental-1.pdf"), plot = rol_nonfundamental_gg, width = 8, height = 4)
 ```
 
 ### During crisis periods
@@ -484,7 +503,10 @@ The only exception is the Business sector that displays no spurious herding duri
 
 crisis_fundamental <- read_rds(here("Outputs", "artifacts_crisis_fundamental.rds"))
 
-crisis_fundamental$fundamental$rol_fund_gd_gg
+rol_fund_gd_gg <- crisis_fundamental$fundamental$rol_fund_gd_gg
+rol_fund_gd_gg
+
+ggsave(here("Riza", "fig-rol_fundamental_gd-1.pdf"), plot = rol_fund_gd_gg, width = 8, height = 4)
 ```
 
 
@@ -495,7 +517,10 @@ crisis_fundamental$fundamental$rol_fund_gd_gg
 #| fig-width: 8
 #| cache: true
 
-crisis_fundamental$fundamental$rol_fund_db_gg
+rol_fund_db_gg <- crisis_fundamental$fundamental$rol_fund_db_gg
+rol_fund_db_gg
+
+ggsave(here("Riza", "fig-rol_fundamental_db-1.pdf"), plot = rol_fund_db_gg, width = 8, height = 4)
 ```
 
 
@@ -506,7 +531,10 @@ crisis_fundamental$fundamental$rol_fund_db_gg
 #| fig-width: 8
 #| cache: true
 
-crisis_fundamental$fundamental$rol_fund_fc_gg
+rol_fund_fc_gg <- crisis_fundamental$fundamental$rol_fund_fc_gg
+rol_fund_fc_gg
+
+ggsave(here("Riza", "fig-rol_fundamental_fc-1.pdf"), plot = rol_fund_fc_gg, width = 8, height = 4)
 ```
 
 
@@ -517,7 +545,10 @@ crisis_fundamental$fundamental$rol_fund_fc_gg
 #| fig-width: 8
 #| cache: true
 
-crisis_fundamental$fundamental$rol_fund_cv_gg
+rol_fund_cv_gg <- crisis_fundamental$fundamental$rol_fund_cv_gg
+rol_fund_cv_gg
+
+ggsave(here("Riza", "fig-rol_fundamental_cv-1.pdf"), plot = rol_fund_cv_gg, width = 8, height = 4)
 ```
 
 
@@ -528,7 +559,10 @@ crisis_fundamental$fundamental$rol_fund_cv_gg
 #| fig-width: 8
 #| cache: true
 
-crisis_fundamental$nonfundamental$rol_nonfund_gd_gg
+rol_nonfund_gd_gg <- crisis_fundamental$nonfundamental$rol_nonfund_gd_gg
+rol_nonfund_gd_gg
+
+ggsave(here("Riza", "fig-rol_nonfundamental_gd-1.pdf"), plot = rol_nonfund_gd_gg, width = 8, height = 4)
 ```
 
 
@@ -539,7 +573,10 @@ crisis_fundamental$nonfundamental$rol_nonfund_gd_gg
 #| fig-width: 8
 #| cache: true
 
-crisis_fundamental$nonfundamental$rol_nonfund_db_gg
+rol_nonfund_db_gg <- crisis_fundamental$nonfundamental$rol_nonfund_db_gg
+rol_nonfund_db_gg
+
+ggsave(here("Riza", "fig-rol_nonfundamental_db-1.pdf"), plot = rol_nonfund_db_gg, width = 8, height = 4)
 ```
 
 
@@ -550,7 +587,10 @@ crisis_fundamental$nonfundamental$rol_nonfund_db_gg
 #| fig-width: 8
 #| cache: true
 
-crisis_fundamental$nonfundamental$rol_nonfund_fc_gg
+rol_nonfund_fc_gg <- crisis_fundamental$nonfundamental$rol_nonfund_fc_gg
+rol_nonfund_fc_gg
+
+ggsave(here("Riza", "fig-rol_nonfundamental_fc-1.pdf"), plot = rol_nonfund_fc_gg, width = 8, height = 4)
 ```
 
 
@@ -561,7 +601,11 @@ crisis_fundamental$nonfundamental$rol_nonfund_fc_gg
 #| fig-width: 8
 #| cache: true
 
-crisis_fundamental$nonfundamental$rol_nonfund_cv_gg
+rol_nonfund_cv_gg <- crisis_fundamental$nonfundamental$rol_nonfund_cv_gg
+rol_nonfund_cv_gg
+
+ggsave(here("Riza", "fig-rol_nonfundamental_cv-1.pdf"), plot = rol_nonfund_cv_gg, width = 8, height = 4)
+
 ```
 
 
@@ -676,7 +720,13 @@ The study focuses on the US market, and the results may not be generalizable to 
 #| cache: true
 
 returns_data <- read_rds(here("Outputs", "artifacts_returns_data.rds"))
-returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg
+Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg <- returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg
+
+Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg
+
+ggsave(here("Riza", "fig-cons-1.pdf"), 
+       plot = Consumer_durables_nondurables_wholesale_retail_some_services_group_equal_gg,
+       width = 6, height = 4)
 ```
 
 ```{r}
@@ -686,7 +736,13 @@ returns_data$graphs$Consumer_durables_nondurables_wholesale_retail_some_services
 #| fig-width: 6
 #| cache: true
 
-returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
+healthcare_medical_equipment_and_drugs_group_equal_gg <- returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
+
+healthcare_medical_equipment_and_drugs_group_equal_gg
+
+ggsave(here("Riza", "fig-health-1.pdf"), 
+       plot = healthcare_medical_equipment_and_drugs_group_equal_gg,
+       width = 6, height = 2)
 ```
 
 ```{r}
@@ -696,7 +752,14 @@ returns_data$graphs$healthcare_medical_equipment_and_drugs_group_equal_gg
 #| fig-width: 6
 #| cache: true
 
-returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
+manufacturing_energy_utilities_group_equal_gg <- 
+  returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
+
+manufacturing_energy_utilities_group_equal_gg
+
+ggsave(here("Riza", "fig-manufacturing-1.pdf"), 
+       plot = manufacturing_energy_utilities_group_equal_gg,
+       width = 6, height = 4)
 ```
 
 ```{r}
@@ -706,7 +769,13 @@ returns_data$graphs$manufacturing_energy_utilities_group_equal_gg
 #| fig-width: 6
 #| cache: true
 
-returns_data$graphs$business_equipment_telephone_and_television_transmission_group_equal_gg
+business_equipment_telephone_and_television_transmission_group_equal_gg <- returns_data$graphs$business_equipment_telephone_and_television_transmission_group_equal_gg
+
+business_equipment_telephone_and_television_transmission_group_equal_gg
+
+ggsave(here("Riza", "fig-business-1.pdf"), 
+       plot = business_equipment_telephone_and_television_transmission_group_equal_gg,
+       width = 6, height = 4)
 ```
 
 ```{r}
@@ -716,7 +785,14 @@ returns_data$graphs$business_equipment_telephone_and_television_transmission_gro
 #| fig-width: 8
 #| cache: true
 
-returns_data$graphs$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg
+mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg <- returns_data$graphs$mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg
+
+mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg
+
+ggsave(here("Riza", "fig-mines-1.pdf"), 
+       plot = mines_constr_bldmt_trans_hotels_bus_serv_entertainment_finance__group_equal_gg,
+       width = 8, height = 6)
+
 ```
 
 ## Industry groupings
@@ -810,9 +886,17 @@ results_all_gg
 #| label: fig-famafrench
 #| fig-cap: "Fama-French Factors"
 #| cache: true
+#| fig-height: 4
+#| fig-width: 8
 
 famafrench <- read_rds(here("Outputs", "artifacts_fama_french.rds"))
-famafrench$graphs$fama_french_gg
+fama_french_gg <- famafrench$graphs$fama_french_gg
+fama_french_gg
+
+ggsave(here("Riza", "fig-famafrench-1.pdf"), 
+       plot = fama_french_gg,
+       width = 8, height = 4)
+
 
 ```
 
@@ -853,11 +937,15 @@ presential_terms_tbl %>%
 #| fig-cap: "Market volatility"
 #| cache: true
 #| fig-height: 2
+#| fig-width: 8
 
 volatility <- read_rds(here("Outputs", "artifacts_volatility.rds"))
-volatility$graphs$volatility_gg
+volatility_gg <- volatility$graphs$volatility_gg
+volatility_gg
 
-
+ggsave(here("Riza", "fig-volatility-1.pdf"), 
+       plot = volatility_gg,
+       width = 8, height = 2)
 ```
 
 
