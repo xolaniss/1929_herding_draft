@@ -661,6 +661,134 @@ As an attempt to isolate overall to herding due to fundamentals and non-fundamen
 
 \newpage
 
+```{r}
+#| label: tbl-par
+#| tbl-cap: "Herding and presidential approval ratings."
+#| cache: true
+
+equation_1 <-
+  as_equation(
+    c(
+      "Pr(D^{herd} = 1 | \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+equation_2 <-
+  as_equation(
+    c(
+      "Pr(D^{herd}_{FUND} = 1 | \\lambda_0 + \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+equation_3 <-
+  as_equation(
+    c(
+      "Pr(D^{herd}_{NONFUND} = 1 | \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+estimates <- c("\\theta_0", "\\theta_1")
+
+par <- read_rds(here("Outputs", "artifacts_par_models.rds"))
+par$models$par_ols_tbl %>% 
+  ungroup() %>% 
+  as_grouped_data(groups = c("Extreme")) %>% 
+    as_flextable(hide_grouplabel = TRUE) %>% 
+  mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
+  mk_par(i =, j = c(2, 3), part = "header", value = as_paragraph(as_equation(estimates))) %>%
+  # add_footer_lines(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.", 
+  #                                      " The regressions are based on ", equation_1,
+  #                                      " , ",
+  #                                      equation_2,
+  #                                      " and ",
+  #                                      equation_3)) %>%
+  hline_bottom(part = "footer",  
+               border = fp_border(
+                 color = "black",
+                 style = "solid",
+                 width = 1
+               )) %>% 
+  align(j = 1, align = "left", part = "all") %>% 
+  merge_at(i = 1) %>% 
+  align(i = 1, align = "center") %>% 
+  merge_at(i = 8) %>% 
+  align(i = 8, align = "center") %>% 
+  merge_at(i = 15) %>% 
+  align(i = 15, align = "center") %>%
+  autofit(add_w = 1.2)
+  
+```
+
+
+```{r}
+#| label: tbl-pear
+#| tbl-cap: "Herding and presidential economic approval ratings."
+#| cache: true
+
+equation_1 <-
+  as_equation(
+    c(
+      "Pr(D^{herd} = 1 | \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+equation_2 <-
+  as_equation(
+    c(
+      "Pr(D^{herd}_{FUND} = 1 | \\lambda_0 + \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+equation_3 <-
+  as_equation(
+    c(
+      "Pr(D^{herd}_{NONFUND} = 1 | \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
+    ),
+    height = 0.05,
+    unit = "cm"
+  )
+
+estimates <- c("\\theta_0", "\\theta_1")
+
+par$models$pear_ols_tbl %>% 
+  ungroup() %>% 
+  as_grouped_data(groups = c("Extreme")) %>% 
+    as_flextable(hide_grouplabel = TRUE) %>% 
+  mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
+  mk_par(i =, j = c(2, 3), part = "header", value = as_paragraph(as_equation(estimates))) %>%
+  # add_footer_lines(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.", 
+  #                                      " The regressions are based on ", equation_1,
+  #                                      " , ",
+  #                                      equation_2,
+  #                                      " and ",
+  #                                      equation_3)) %>%
+  hline_bottom(part = "footer",  
+               border = fp_border(
+                 color = "black",
+                 style = "solid",
+                 width = 1
+               )) %>% 
+  align(j = 1, align = "left", part = "all") %>% 
+  merge_at(i = 1) %>% 
+  align(i = 1, align = "center") %>% 
+  merge_at(i = 8) %>% 
+  align(i = 8, align = "center") %>% 
+  merge_at(i = 15) %>% 
+  align(i = 15, align = "center") %>%
+  autofit(add_w = 1.2)
+  
+```
+
 # Conclusion 
 The study investigates herding behaviour in the US market across different periods and industries using static and rolling-window models. The results suggest that herding behaviour is more pronounced during crisis periods, that is, in general and in industries. The findings are consistent with the literature that suggests that herding behaviour was more pronounced during periods of high uncertainty and risk aversion. The results also suggest that herding behaviour was not particular pronounced in one industry versus another. A departure from the thinking that fast moving industries such as business services which may be considered more sensitive to market conditions, would have more prevalent herding behaviour. This suggests that investors tend to herd to broader market conditions that industry specific market conditions.
 
@@ -964,4 +1092,19 @@ political$probit_party_dummy_model_tbl %>%
 
 ```
 
+## Presidential approval ratings
+
+```{r}
+#| label: fig-approval
+#| fig-cap: "Presidential approval ratings (Daily). "
+#| cache: false
+#| fig-height: 4
+#| fig-width: 8
+
+approval <- read_rds(here("Outputs", "artifacts_presidential_ratings.rds"))
+approval_gg <- approval$graph$combined_gg
+
+approval_gg
+
+```
 

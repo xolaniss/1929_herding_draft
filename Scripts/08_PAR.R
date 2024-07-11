@@ -41,6 +41,8 @@ source(here("Functions", "fx_plot.R"))
 # Import -------------------------------------------------------------
 par <- read_excel(here("Data", "PAR.xlsx"))
 pear <-  read_excel(here("Data", "PEAR.xlsx"), sheet = 2)
+general_herding <- read_rds(here("Outputs", "artifacts_general_herding.rds"))
+general_herding_tbl <- general_herding$models$models_rol
 
 # Cleaning -----------------------------------------------------------------
 par_tbl <- 
@@ -58,10 +60,33 @@ pear_tbl <-
 par_tbl %>% skim()
 pear_tbl %>% skim()
 
+# Converting to daily ---------------------------------------------------------------
+par_daily_tbl <- 
+  general_herding_tbl %>% 
+  filter(Date >= ymd("1941-07-01")) %>%
+  ungroup() %>%
+  filter(Category == "All industries") %>% 
+  left_join(par_tbl, by = c("Date" = "Date")) %>% 
+  fill(PAR, .direction = "downup") %>% 
+  dplyr::select(Date, PAR) %>% 
+  rename('Presidential Approval Rating' = PAR)
+  
+par_daily_tbl %>% skim()  
+
+pear_daily_tbl <- 
+  general_herding_tbl %>% 
+  filter(Date >= ymd("1981-04-01")) %>%
+  ungroup() %>%
+  filter(Category == "All industries") %>%
+  left_join(pear_tbl, by = c("Date" = "Date")) %>% 
+  fill(PEAR, .direction = "downup") %>%
+  dplyr::select(Date, PEAR) %>% 
+  rename('Presidential Economic Approval Rating' = PEAR)
+
 # Graphing ---------------------------------------------------------------
 combined_tbl <- 
-  par_tbl %>% 
-  left_join(pear_tbl, by = c("Date" = "Date"))
+  par_daily_tbl %>% 
+  left_join(pear_daily_tbl, by = c("Date" = "Date"))
 
 combined_gg <- 
   combined_tbl %>% fx_plot(variables_color = 2)
@@ -72,7 +97,9 @@ combined_gg
 artifacts_presidential_ratings <- list (
   data = list(
     par_tbl = par_tbl,
-    pear_tbl = pear_tbl
+    pear_tbl = pear_tbl,
+    par_daily_tbl = par_daily_tbl,
+    pear_daily_tbl = pear_daily_tbl
   ),
   graph = list(
     combined_gg = combined_gg

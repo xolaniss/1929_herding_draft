@@ -23,7 +23,7 @@ ols_pretty_full_results <-
         stars = ifelse(p.value < 0.001, "***", ifelse(p.value < 0.01, "**", ifelse(p.value < 0.05, "*", "")))
       ) %>% 
       mutate(across(2, ~strtrim(., 8))) %>%
-      mutate(across(3, ~strtrim(., 4))) %>% 
+      mutate(across(3, ~strtrim(., 3))) %>% 
       dplyr::select(Category,  term, estimate, p.value, stars) %>%
       mutate(Estimate = paste0(estimate, stars)) %>%
       dplyr::select(-estimate, -p.value, -stars) %>% 
