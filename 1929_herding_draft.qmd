@@ -105,7 +105,7 @@ We create 5 industry groups from the 49 industries in order to calculate the cro
 
 In addition, we focus on herding behaviour in periods of financial crisis. Therefore, we use Wikipedia  to identify 5 crises periods.^[\url{https://en.wikipedia.org/wiki/List_of_economic_crises}] That is, the Great Depression, Dot-com Bubble, Great Financial Crisis and the recent Covid-Crisis. The crises periods are shown in @tbl-crises_description. 
 
-Lastly, in order to understand the effect of political cycles on industry herding we estimate the relationship between the time-varying herding coefficient and US presidential terms as outlined in @eq-political below.^[The US presidential terms can be found at \url{https://en.wikipedia.org/wiki/List_of_United_States_presidential_election_dates}] The US presidential terms are shown in @tbl-terms. In order to match with the industry herding coefficients, the terms  are converted to a daily frequency. We then estimate the relationship between presidential approval ratings (general and economic) and industry herding coefficients. The approval ratings unlike the presidential term data focuses on the performance of specific presidents and not just party terms. This analysis, therefore, adds to presidential term results which focused on party affiliation and industry herding. The approval ratings  are obtained from the Roper Center for Public Opinion Research and are shown in @fig-approval.^[\url{https://ropercenter.cornell.edu/}] The general approval ratings data are available from 1941 to 2022 and the economic approval ratings data are available from 1981 to 2022, both at a monthly frequency. We converted these to a daily frequency^[Essentially repeating the monthly value for all the days of that specific month] to match the industry herding data.
+Lastly, in order to understand the effect of political cycles on industry herding we estimate the relationship between the time-varying herding coefficient and US presidential terms as outlined in @eq-political below.^[The US presidential terms can be found at \url{https://en.wikipedia.org/wiki/List_of_United_States_presidential_election_dates}] The US presidential terms are shown in @tbl-terms. In order to match with the industry herding coefficients, the terms  are converted to a daily frequency. We then estimate the relationship between presidential approval ratings (general and economic) and industry herding coefficients. The approval ratings unlike the presidential term data focuses on the performance of specific presidents and not just party terms. This analysis, therefore, adds to presidential term results which focused on party affiliation and industry herding. The approval ratings are shown in @fig-approval.^[The data can be accessed from: \url{http://www.presidency.ucsb.edu/data/popularity.php.}] The presidential approval ratings (PAR) are compiled from the Gallup Poll by the American Presidency Project. The respondents answer the same question since 1941, "Do you approve or disapprove of the way [enter President name] is handling his job as President?". Then the percentage of respondents to the affirmative (or approval) forms the popularity or public approval rating. The presidential economic approval ratings (PEAR) data collected by several organisations^[These include ABC News, American Research Group, CNN, and Fox News, amongst others.] overtime based on the question, "Do you approve or disprove of the way (name of the president) is handling the economy?".^[The PEAR data can be accessed at \url{https://ropercenter.cornell.edu/presidential-approval/}]  The PAR data are available from 1941 to 2022 and the economic approval ratings data are available from , a monthly frequency. Whilst the PEAR data is from 1981 to 2022, also at a monthly frequency. We converted these to a daily frequency^[Essentially repeating the monthly value for all the days of that specific month] to match the industry herding data.
 
 ## Testing for industry herding 
 
@@ -197,10 +197,15 @@ where $D^{herd}_{NONFUND}$ and $D^{herd}_{FUND}$ are dummy variables with value 
 To further understand the relationship between industry herding and political cycles, we turn our attention to the effect of the performance of specific US presidents on industry herding using the following equation:
 
 $$
-\gamma_2^{herd} = \theta_0 + \theta_1APPROVAL + \epsilon_{t}, 
+\gamma_2^{herd} = \theta_0 + \theta_1PAR_t + \epsilon_{t}, 
 $$ {#eq-approval}
 
-where $\gamma_2^{herd}$ is the industry herding coefficient when it is negative (that is, when herding is present), $APPROVAL$ is the presidential approval rating or the presidential economic approval rating, and $\epsilon_{t}$ is the error term. The expectation is that $\theta_1 < 0$, that is, industry herding is negatively related to approval ratings. This is in line with @pastor2020political who suggests that herding is high when uncertainty in high (which occurs when presidential ratings are low). @eq-approval was estimated with OLS and HAC standard errors.
+
+$$
+\gamma_2^{herd} = \theta_0 + \theta_1PEAR_t + \epsilon_{t}, 
+$$ {#eq-approval_econ}
+
+where $\gamma_2^{herd}$ is the industry herding coefficient when it is negative (that is, when herding is present), $PAR_t$  is the presidential approval rating and the presidential economic approval rating ($PEAR_t$), and $\epsilon_{t}$ is the error term. The expectation is that $\theta_1 < 0$, that is, industry herding is negatively related to approval ratings. This is in line with @pastor2020political who suggests that herding is high when uncertainty in high (which occurs when presidential ratings are low). @eq-approval and @eq-approval_econ was estimated with OLS and HAC standard errors.
 
 
 # Results
@@ -213,6 +218,7 @@ where $\gamma_2^{herd}$ is the industry herding coefficient when it is negative 
 
 @tbl-ols reports the ordinary least squares results of @eq-csad2 employing the US industry returns both at aggregate level and at an industry level. @tbl-ols is divided into three separate panels: the top panel presents estimated coefficients of @eq-csad2 employing all days for the whole period of analysis while the middle panel presents the estimation results only for the top market returns and the bottom panel the relevant estimates during the down markets. Herding is detected examining the statistical significance and the sign of coefficient $\gamma_2$ that can be found at the last column. When herding is present, $\gamma_2$ assumes negative sign and appears statistically significant. A quick look of the results in @tbl-ols reveals no herding behaviour when we use all day returns but significant herding effects for the whole sample and for separate sectors such as Consumables, Health and Other only during up markets. For example, in the middle panel and at the last column for Consumables we see a herding coefficient $\gamma_2$ of -0.00016 that is highly significant. If we turn our attention to the bottom panel we document weak evidence of herding effects in the Manufacturing sector, an estimated value of $\gamma_2$ coefficient -0.00006 that is statistically significant at 1%. 
 
+\newpage
 
 ```{r}
 #| label: tbl-ols
@@ -267,7 +273,7 @@ Following previous studies that highlight the dynamic nature of herding effect [
 
 @fig-rol_crisis_gd to @fig-rol_crisis_cv plot the results of the rolling window estimation of 250 days for @eq-csad3 during the above mentioned crisis periods. These plots confirm the herding effects observed in the static results above, that herding was mainly present during crisis periods. 
 
-
+\newpage
 
 ```{r}
 #| label: tbl-ols_crisis
@@ -671,16 +677,14 @@ As an attempt to isolate overall to herding due to fundamentals and non-fundamen
 
 ```{r}
 #| label: tbl-par
-#| tbl-cap: "Herding and presidential approval ratings."
+#| tbl-cap: "Herding and PAR"
 #| cache: false
 
 equation_1 <-
   as_equation(
     c(
-      "\\gamma_2^{herd} = \\theta_0 + \\theta_1APPROVAL + \\epsilon_{t}"
-    ),
-    height = 0.05,
-    unit = "cm"
+      "\\gamma_2^{herd} = \\theta_0 + \\theta_1PAR_t + \\epsilon_{t}"
+    )
   )
 
 estimates <- c("\\theta_0", "\\theta_1")
@@ -693,7 +697,8 @@ par$models$par_ols_tbl %>%
   mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
   mk_par(i =, j = c(2, 3), part = "header", value = as_paragraph(as_equation(estimates))) %>%
   add_footer_lines(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.",
-                                       " The regressions are based on ", equation_1
+                                       " The regressions are based on ", equation_1,
+                                       ". PAR is the presidential approval rating as described in the data section above. ", equation_1, " was estimated using OLS with robust standard errors."
                                       )) %>%
   hline_bottom(part = "footer",  
                border = fp_border(
@@ -715,16 +720,14 @@ par$models$par_ols_tbl %>%
 
 ```{r}
 #| label: tbl-pear
-#| tbl-cap: "Herding and presidential economic approval ratings."
+#| tbl-cap: "Herding and PEAR."
 #| cache: false
 
 equation_1 <-
   as_equation(
     c(
-      "\\gamma_2^{herd} = \\theta_0 + \\theta_1APPROVAL + \\epsilon_{t}"
-    ),
-    height = 0.05,
-    unit = "cm"
+      "\\gamma_2^{herd} = \\theta_0 + \\theta_1PEAR_t + \\epsilon_{t}"
+    )
   )
 
 
@@ -737,7 +740,8 @@ par$models$pear_ols_tbl %>%
   mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
   mk_par(i =, j = c(2, 3), part = "header", value = as_paragraph(as_equation(estimates))) %>%
   add_footer_lines(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.",
-                                       " The regressions are based on ", equation_1
+                                       " The regressions are based on ", equation_1,
+                                       ". PEAR is the presidential economic approval rating as described in the data section above. ", equation_1, " was estimated using OLS with robust standard errors."
                                    )) %>%
   hline_bottom(part = "footer",  
                border = fp_border(

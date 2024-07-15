@@ -68,8 +68,7 @@ par_daily_tbl <-
   filter(Category == "All industries") %>% 
   left_join(par_tbl, by = c("Date" = "Date")) %>% 
   fill(PAR, .direction = "downup") %>% 
-  dplyr::select(Date, PAR) %>% 
-  rename('Presidential Approval Rating' = PAR)
+  dplyr::select(Date, PAR)
   
 par_daily_tbl %>% skim()  
 
@@ -80,8 +79,7 @@ pear_daily_tbl <-
   filter(Category == "All industries") %>%
   left_join(pear_tbl, by = c("Date" = "Date")) %>% 
   fill(PEAR, .direction = "downup") %>%
-  dplyr::select(Date, PEAR) %>% 
-  rename('Presidential Economic Approval Rating' = PEAR)
+  dplyr::select(Date, PEAR) 
 
 # Graphing ---------------------------------------------------------------
 combined_tbl <- 
