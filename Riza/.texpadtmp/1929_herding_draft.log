@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2023.1.5)  18 JUN 2024 10:49
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2023.1.5)  15 JUL 2024 09:51
  restricted system commands enabled.
  file:line:error style messages enabled.
 **1929_herding_draft.tex
@@ -1400,219 +1400,695 @@ LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
 [1
 
 
-{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 7.665pt on input line 355.
- [4] [5] [6] [7] [8] [9] [10]
+(Font)              scaled to size 7.665pt on input line 360.
+ [5] [6] [7] [8] [9] [10]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 629.
+(Font)              scaled to size 7.0pt on input line 662.
 
-Overfull \hbox (21.54924pt too wide) in alignment at lines 621--631
+Overfull \hbox (21.54924pt too wide) in alignment at lines 654--664
 [][][][] 
  []
 
 
-Overfull \hbox (21.54924pt too wide) in alignment at lines 631--637
+Overfull \hbox (21.54924pt too wide) in alignment at lines 664--670
 [][][][] 
  []
 
 
-Overfull \hbox (21.54924pt too wide) in alignment at lines 637--772
+Overfull \hbox (21.54924pt too wide) in alignment at lines 670--805
 [][][][] 
  []
 
-<1929_herding_draft_files/figure-pdf/fig-rol_gen-1.pdf, id=302, 578.16pt x 289.08pt>
+<1929_herding_draft_files/figure-pdf/fig-rol_gen-1.pdf, id=316, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_gen-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_gen-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_gen-1.pdf  used on input line 786.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_gen-1.pdf  used on input line 819.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
-[11<./1929_herding_draft_files/figure-pdf/fig-rol_gen-1.pdf>] [12]
-Overfull \hbox (7.09764pt too wide) in alignment at lines 852--862
+[11] [12<./1929_herding_draft_files/figure-pdf/fig-rol_gen-1.pdf>]
+Overfull \hbox (7.09764pt too wide) in alignment at lines 883--893
 [][][][][][] 
  []
 
 
-Overfull \hbox (7.09764pt too wide) in alignment at lines 862--868
+Overfull \hbox (7.09764pt too wide) in alignment at lines 893--899
 [][][][][][] 
  []
 
 
-Overfull \hbox (7.09764pt too wide) in alignment at lines 868--1045
+Overfull \hbox (7.09764pt too wide) in alignment at lines 899--1076
 [][][][][][] 
  []
 
-<1929_herding_draft_files/figure-pdf/fig-rol_crisis_gd-1.pdf, id=340, 578.16pt x 289.08pt>
+[13]
+<1929_herding_draft_files/figure-pdf/fig-rol_crisis_gd-1.pdf, id=360, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_gd-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_crisis_gd-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_gd-1.pdf  used on input line 1059.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_gd-1.pdf  used on input line 1092.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
-<1929_herding_draft_files/figure-pdf/fig-rol_crisis_db-1.pdf, id=341, 578.16pt x 289.08pt>
+<1929_herding_draft_files/figure-pdf/fig-rol_crisis_db-1.pdf, id=361, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_db-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_crisis_db-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_db-1.pdf  used on input line 1073.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_db-1.pdf  used on input line 1106.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
-[13<./1929_herding_draft_files/figure-pdf/fig-rol_crisis_gd-1.pdf>]
-<1929_herding_draft_files/figure-pdf/fig-rol_crisis_fc-1.pdf, id=351, 578.16pt x 289.08pt>
+<1929_herding_draft_files/figure-pdf/fig-rol_crisis_fc-1.pdf, id=362, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_fc-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_crisis_fc-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_fc-1.pdf  used on input line 1087.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_fc-1.pdf  used on input line 1120.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
-<1929_herding_draft_files/figure-pdf/fig-rol_crisis_cv-1.pdf, id=352, 578.16pt x 289.08pt>
+ [14<./1929_herding_draft_files/figure-pdf/fig-rol_crisis_gd-1.pdf><./1929_herding_draft_files/figure-pdf/fig-rol_crisis_db-1.pdf>]
+<1929_herding_draft_files/figure-pdf/fig-rol_crisis_cv-1.pdf, id=378, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_cv-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_crisis_cv-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_cv-1.pdf  used on input line 1101.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_crisis_cv-1.pdf  used on input line 1134.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
- [14<./1929_herding_draft_files/figure-pdf/fig-rol_crisis_db-1.pdf><./1929_herding_draft_files/figure-pdf/fig-rol_crisis_fc-1.pdf>] [15<./1929_herding_draft_files/figure-pdf/fig-rol_crisis_cv-1.pdf>]
-<1929_herding_draft_files/figure-pdf/fig-rol_fundamental-1.pdf, id=396, 578.16pt x 289.08pt>
+ [15<./1929_herding_draft_files/figure-pdf/fig-rol_crisis_fc-1.pdf><./1929_herding_draft_files/figure-pdf/fig-rol_crisis_cv-1.pdf>]
+<1929_herding_draft_files/figure-pdf/fig-rol_fundamental-1.pdf, id=405, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_fundamental-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental-1.pdf  used on input line 1272.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental-1.pdf  used on input line 1305.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
-<1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental-1.pdf, id=397, 578.16pt x 289.08pt>
+ [16]
+<1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental-1.pdf, id=417, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental-1.pdf  used on input line 1286.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental-1.pdf  used on input line 1319.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
- [16<./1929_herding_draft_files/figure-pdf/fig-rol_fundamental-1.pdf>] [17<./1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental-1.pdf>]
-Overfull \hbox (7.09764pt too wide) in alignment at lines 1333--1344
+ [17<./1929_herding_draft_files/figure-pdf/fig-rol_fundamental-1.pdf><./1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental-1.pdf>] [18]
+Overfull \hbox (7.09764pt too wide) in alignment at lines 1366--1377
 [][][][][][] 
  []
 
 
-Overfull \hbox (7.09764pt too wide) in alignment at lines 1344--1350
+Overfull \hbox (7.09764pt too wide) in alignment at lines 1377--1383
 [][][][][][] 
  []
 
 
-Overfull \hbox (7.09764pt too wide) in alignment at lines 1350--1695
+Overfull \hbox (7.09764pt too wide) in alignment at lines 1383--1728
 [][][][][][] 
  []
 
-[18]
-<1929_herding_draft_files/figure-pdf/fig-rol_fundamental_gd-1.pdf, id=433, 578.16pt x 289.08pt>
+[19]
+<1929_herding_draft_files/figure-pdf/fig-rol_fundamental_gd-1.pdf, id=453, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_gd-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_gd-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_gd-1.pdf  used on input line 1726.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_gd-1.pdf  used on input line 1759.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
-<1929_herding_draft_files/figure-pdf/fig-rol_fundamental_db-1.pdf, id=434, 578.16pt x 289.08pt>
+<1929_herding_draft_files/figure-pdf/fig-rol_fundamental_db-1.pdf, id=454, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_db-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_db-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_db-1.pdf  used on input line 1740.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_db-1.pdf  used on input line 1773.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
- [19<./1929_herding_draft_files/figure-pdf/fig-rol_fundamental_gd-1.pdf>]
-<1929_herding_draft_files/figure-pdf/fig-rol_fundamental_fc-1.pdf, id=449, 578.16pt x 289.08pt>
+ [20<./1929_herding_draft_files/figure-pdf/fig-rol_fundamental_gd-1.pdf>]
+<1929_herding_draft_files/figure-pdf/fig-rol_fundamental_fc-1.pdf, id=469, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_fc-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_fc-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_fc-1.pdf  used on input line 1754.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_fc-1.pdf  used on input line 1787.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
-<1929_herding_draft_files/figure-pdf/fig-rol_fundamental_cv-1.pdf, id=450, 578.16pt x 289.08pt>
+<1929_herding_draft_files/figure-pdf/fig-rol_fundamental_cv-1.pdf, id=470, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_cv-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_cv-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_cv-1.pdf  used on input line 1768.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_fundamental_cv-1.pdf  used on input line 1801.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
- [20<./1929_herding_draft_files/figure-pdf/fig-rol_fundamental_db-1.pdf><./1929_herding_draft_files/figure-pdf/fig-rol_fundamental_fc-1.pdf>]
-<1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_gd-1.pdf, id=467, 578.16pt x 289.08pt>
+ [21<./1929_herding_draft_files/figure-pdf/fig-rol_fundamental_db-1.pdf><./1929_herding_draft_files/figure-pdf/fig-rol_fundamental_fc-1.pdf>]
+<1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_gd-1.pdf, id=488, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_gd-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_gd-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_gd-1.pdf  used on input line 1782.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_gd-1.pdf  used on input line 1815.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
-<1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_db-1.pdf, id=468, 578.16pt x 289.08pt>
+<1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_db-1.pdf, id=489, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_db-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_db-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_db-1.pdf  used on input line 1797.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_db-1.pdf  used on input line 1830.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
- [21<./1929_herding_draft_files/figure-pdf/fig-rol_fundamental_cv-1.pdf><./1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_gd-1.pdf>]
-<1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_fc-1.pdf, id=484, 578.16pt x 289.08pt>
+ [22<./1929_herding_draft_files/figure-pdf/fig-rol_fundamental_cv-1.pdf><./1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_gd-1.pdf>]
+<1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_fc-1.pdf, id=504, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_fc-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_fc-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_fc-1.pdf  used on input line 1812.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_fc-1.pdf  used on input line 1845.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
-<1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_cv-1.pdf, id=485, 578.16pt x 289.08pt>
+<1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_cv-1.pdf, id=505, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_cv-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_cv-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_cv-1.pdf  used on input line 1827.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_cv-1.pdf  used on input line 1860.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
- [22<./1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_db-1.pdf><./1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_fc-1.pdf>] [23<./1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_cv-1.pdf>] [24] [25] (/Users/xolanisibande/Papers/1929_herding_draft/Riza/.texpadtmp/1929_herding_draft.bbl
+ [23<./1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_db-1.pdf><./1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_fc-1.pdf>] [24<./1929_herding_draft_files/figure-pdf/fig-rol_nonfundamental_cv-1.pdf>] [25]
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Overfull \hbox (7.09546pt too wide) in alignment at lines 2088--2098
+[][][] 
+ []
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Overfull \hbox (7.09546pt too wide) in alignment at lines 2098--2104
+[][][] 
+ []
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
+
+Package fontspec Info: Helvetica scale = 0.8552718784518873.
+
+
+Package fontspec Info: Helvetica scale = 0.8552718784518873.
+
+
+Package fontspec Info: Helvetica/B scale = 0.8403635306211886.
+
+
+Package fontspec Info: Helvetica/I scale = 0.8552718784518873.
+
+
+Package fontspec Info: Helvetica/BI scale = 0.828955926971853.
+
+
+Package fontspec Info: Font family 'Helvetica(0)' created for font 'Helvetica'
+(fontspec)             with options
+(fontspec)             [Scale=MatchLowercase,Ligatures=TeX,Scale=1].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[1]"Helvetica:mode=node;language=dflt;+tlig;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[1]"Helvetica/B:mode=node;language=dflt;+tlig;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->s*[1]"Helvetica/I:mode=node;language=dflt;+tlig;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[1]"Helvetica/BI:mode=node;language=dflt;+tlig;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
+
+LaTeX Font Info:    Font shape `TU/Helvetica(0)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 2234.
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
+
+Package fontspec Info: Helvetica scale = 0.8552718784518873.
+
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
+
+Package fontspec Info: Helvetica scale = 0.8552718784518873.
+
+
+Overfull \hbox (7.09546pt too wide) in alignment at lines 2104--2239
+[][][] 
+ []
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Overfull \hbox (7.09546pt too wide) in alignment at lines 2261--2272
+[][][] 
+ []
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Overfull \hbox (7.09546pt too wide) in alignment at lines 2272--2278
+[][][] 
+ []
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+
+Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
+
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
+
+Package fontspec Info: Helvetica scale = 0.8552718784518873.
+
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
+
+Package fontspec Info: Helvetica scale = 0.8552718784518873.
+
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
+
+Package fontspec Info: Helvetica scale = 0.8552718784518873.
+
+
+Overfull \hbox (7.09546pt too wide) in alignment at lines 2278--2413
+[][][] 
+ []
+
+[26] [27] [28] (/Users/xolanisibande/Papers/1929_herding_draft/Riza/.texpadtmp/1929_herding_draft.bbl
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
 (Font)              scaled to size 10.95pt on input line 7.
- [26] [27] [28]) [29]
+ [29] [30] [31]) [32]
 warning  (pdf backend): ignoring duplicate destination with the name 'section.1'
-<1929_herding_draft_files/figure-pdf/fig-cons-1.pdf, id=550, 433.62pt x 289.08pt>
+<1929_herding_draft_files/figure-pdf/fig-cons-1.pdf, id=589, 433.62pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-cons-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-cons-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-cons-1.pdf  used on input line 2101.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-cons-1.pdf  used on input line 2504.
 (luatex.def)             Requested size: 433.63878pt x 289.09251pt.
-<1929_herding_draft_files/figure-pdf/fig-health-1.pdf, id=551, 433.62pt x 144.54pt>
+<1929_herding_draft_files/figure-pdf/fig-health-1.pdf, id=590, 433.62pt x 144.54pt>
 File: 1929_herding_draft_files/figure-pdf/fig-health-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-health-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-health-1.pdf  used on input line 2113.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-health-1.pdf  used on input line 2516.
 (luatex.def)             Requested size: 433.63878pt x 144.54623pt.
-<1929_herding_draft_files/figure-pdf/fig-manufacturing-1.pdf, id=552, 433.62pt x 289.08pt>
+<1929_herding_draft_files/figure-pdf/fig-manufacturing-1.pdf, id=591, 433.62pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-manufacturing-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-manufacturing-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-manufacturing-1.pdf  used on input line 2125.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-manufacturing-1.pdf  used on input line 2528.
 (luatex.def)             Requested size: 433.63878pt x 289.09251pt.
-[30<./1929_herding_draft_files/figure-pdf/fig-cons-1.pdf><./1929_herding_draft_files/figure-pdf/fig-health-1.pdf>]
-<1929_herding_draft_files/figure-pdf/fig-business-1.pdf, id=567, 433.62pt x 289.08pt>
+[33<./1929_herding_draft_files/figure-pdf/fig-cons-1.pdf><./1929_herding_draft_files/figure-pdf/fig-health-1.pdf>]
+<1929_herding_draft_files/figure-pdf/fig-business-1.pdf, id=606, 433.62pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-business-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-business-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-business-1.pdf  used on input line 2137.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-business-1.pdf  used on input line 2540.
 (luatex.def)             Requested size: 433.63878pt x 289.09251pt.
- [31<./1929_herding_draft_files/figure-pdf/fig-manufacturing-1.pdf>]
-<1929_herding_draft_files/figure-pdf/fig-mines-1.pdf, id=578, 578.16pt x 433.62pt>
+ [34<./1929_herding_draft_files/figure-pdf/fig-manufacturing-1.pdf>]
+<1929_herding_draft_files/figure-pdf/fig-mines-1.pdf, id=616, 578.16pt x 433.62pt>
 File: 1929_herding_draft_files/figure-pdf/fig-mines-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-mines-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-mines-1.pdf  used on input line 2149.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-mines-1.pdf  used on input line 2552.
 (luatex.def)             Requested size: 446.75488pt x 335.06616pt.
- [32<./1929_herding_draft_files/figure-pdf/fig-business-1.pdf>]
+ [35<./1929_herding_draft_files/figure-pdf/fig-business-1.pdf>]
 warning  (pdf backend): ignoring duplicate destination with the name 'table.1'
-[33<./1929_herding_draft_files/figure-pdf/fig-mines-1.pdf>]
+[36<./1929_herding_draft_files/figure-pdf/fig-mines-1.pdf>]
 warning  (pdf backend): ignoring duplicate destination with the name 'table.2'
 
-Overfull \hbox (3.4817pt too wide) in alignment at lines 2390--2400
+Overfull \hbox (3.4817pt too wide) in alignment at lines 2793--2803
 [][][][][][][][] 
  []
 
 
-Overfull \hbox (3.4817pt too wide) in alignment at lines 2400--2406
+Overfull \hbox (3.4817pt too wide) in alignment at lines 2803--2809
 [][][][][][][][] 
  []
 
 
-Overfull \hbox (3.4817pt too wide) in alignment at lines 2406--2805
+Overfull \hbox (3.4817pt too wide) in alignment at lines 2809--3208
 [][][][][][][][] 
  []
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.3'
-[34]
-<1929_herding_draft_files/figure-pdf/fig-famafrench-1.pdf, id=604, 578.16pt x 289.08pt>
+[37]
+<1929_herding_draft_files/figure-pdf/fig-famafrench-1.pdf, id=641, 578.16pt x 289.08pt>
 File: 1929_herding_draft_files/figure-pdf/fig-famafrench-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-famafrench-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-famafrench-1.pdf  used on input line 2821.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-famafrench-1.pdf  used on input line 3224.
 (luatex.def)             Requested size: 446.75488pt x 223.37744pt.
 
-Overfull \hbox (2.76053pt too wide) in alignment at lines 2843--2853
+Overfull \hbox (2.76053pt too wide) in alignment at lines 3246--3256
 [][][] 
  []
 
 
-Overfull \hbox (2.76053pt too wide) in alignment at lines 2853--2859
+Overfull \hbox (2.76053pt too wide) in alignment at lines 3256--3262
 [][][] 
  []
 
 
-Overfull \hbox (2.76053pt too wide) in alignment at lines 2859--2970
+Overfull \hbox (2.76053pt too wide) in alignment at lines 3262--3373
 [][][] 
  []
 
-[35<./1929_herding_draft_files/figure-pdf/fig-famafrench-1.pdf>]
+[38<./1929_herding_draft_files/figure-pdf/fig-famafrench-1.pdf>]
 warning  (pdf backend): ignoring duplicate destination with the name 'table.4'
-[36]
-<1929_herding_draft_files/figure-pdf/fig-volatility-1.pdf, id=619, 578.16pt x 144.54pt>
+[39]
+<1929_herding_draft_files/figure-pdf/fig-volatility-1.pdf, id=656, 578.16pt x 144.54pt>
 File: 1929_herding_draft_files/figure-pdf/fig-volatility-1.pdf Graphic file (type pdf)
 <use 1929_herding_draft_files/figure-pdf/fig-volatility-1.pdf>
-Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-volatility-1.pdf  used on input line 2988.
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-volatility-1.pdf  used on input line 3391.
 (luatex.def)             Requested size: 446.75488pt x 111.6887pt.
 
 Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
@@ -1803,94 +2279,64 @@ Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
 
 Package fontspec Info: TimesNewRoman scale = 0.9999951263493922.
 
-luaotfload | aux : font no 160 (nil) defines no feature for script latn
-luaotfload | aux : font no 160 (nil) defines no feature for script dflt
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
 
 Package fontspec Info: Helvetica scale = 0.8552718784518873.
 
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
 
 Package fontspec Info: Helvetica scale = 0.8552718784518873.
 
-
-Package fontspec Info: Helvetica/B scale = 0.8403635306211886.
-
-
-Package fontspec Info: Helvetica/I scale = 0.8552718784518873.
-
-
-Package fontspec Info: Helvetica/BI scale = 0.828955926971853.
-
-
-Package fontspec Info: Font family 'Helvetica(0)' created for font 'Helvetica'
-(fontspec)             with options
-(fontspec)             [Scale=MatchLowercase,Ligatures=TeX,Scale=1].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[1]"Helvetica:mode=node;language=dflt;+tlig;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[1]"Helvetica/B:mode=node;language=dflt;+tlig;"
-(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[1]"Helvetica/I:mode=node;language=dflt;+tlig;"
-(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[1]"Helvetica/BI:mode=node;language=dflt;+tlig;"
-(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
-
-LaTeX Font Info:    Font shape `TU/Helvetica(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 3156.
-luaotfload | aux : font no 160 (nil) defines no feature for script latn
-luaotfload | aux : font no 160 (nil) defines no feature for script dflt
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
 
 Package fontspec Info: Helvetica scale = 0.8552718784518873.
 
-luaotfload | aux : font no 160 (nil) defines no feature for script latn
-luaotfload | aux : font no 160 (nil) defines no feature for script dflt
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
 
 Package fontspec Info: Helvetica scale = 0.8552718784518873.
 
-luaotfload | aux : font no 160 (nil) defines no feature for script latn
-luaotfload | aux : font no 160 (nil) defines no feature for script dflt
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
 
 Package fontspec Info: Helvetica scale = 0.8552718784518873.
 
-luaotfload | aux : font no 160 (nil) defines no feature for script latn
-luaotfload | aux : font no 160 (nil) defines no feature for script dflt
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
 
 Package fontspec Info: Helvetica scale = 0.8552718784518873.
 
-luaotfload | aux : font no 160 (nil) defines no feature for script latn
-luaotfload | aux : font no 160 (nil) defines no feature for script dflt
-
-Package fontspec Info: Helvetica scale = 0.8552718784518873.
-
-luaotfload | aux : font no 160 (nil) defines no feature for script latn
-luaotfload | aux : font no 160 (nil) defines no feature for script dflt
+luaotfload | aux : font no 159 (nil) defines no feature for script latn
+luaotfload | aux : font no 159 (nil) defines no feature for script dflt
 
 Package fontspec Info: Helvetica scale = 0.8552718784518873.
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.5'
-[37<./1929_herding_draft_files/figure-pdf/fig-volatility-1.pdf>] (/Users/xolanisibande/Papers/1929_herding_draft/Riza/.texpadtmp/1929_herding_draft.aux))
+<1929_herding_draft_files/figure-pdf/fig-approval-1.pdf, id=657, 578.16pt x 289.08pt>
+File: 1929_herding_draft_files/figure-pdf/fig-approval-1.pdf Graphic file (type pdf)
+<use 1929_herding_draft_files/figure-pdf/fig-approval-1.pdf>
+Package luatex.def Info: 1929_herding_draft_files/figure-pdf/fig-approval-1.pdf  used on input line 3581.
+(luatex.def)             Requested size: 446.75488pt x 223.37744pt.
+[40<./1929_herding_draft_files/figure-pdf/fig-volatility-1.pdf>] [41<./1929_herding_draft_files/figure-pdf/fig-approval-1.pdf>] (/Users/xolanisibande/Papers/1929_herding_draft/Riza/.texpadtmp/1929_herding_draft.aux))
 
 Here is how much of LuaTeX's memory you used:
- 29910 strings out of 477785
- 305237,1373583 words of node,token memory allocated
- 946 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 1 local_par, 16 glue, 4 kern, 1 penalty, 1 margin_kern, 3 glyph, 52 attribute, 74 glue_spec, 52 attribute_list, 1 write, 1 user_defined, 5 pdf_action nodes
-   avail lists: 1:7,2:11721,3:2139,4:2142,5:267,6:1054,7:14524,8:123,9:9820,10:33,11:700,12:1
- 49373 multiletter control sequences out of 65536+600000
- 168 fonts using 58502327 bytes
+ 29942 strings out of 477785
+ 305239,1373583 words of node,token memory allocated
+ 986 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 1 local_par, 18 glue, 4 kern, 1 penalty, 1 margin_kern, 3 glyph, 57 attribute, 74 glue_spec, 57 attribute_list, 1 write, 1 user_defined, 6 pdf_action nodes
+   avail lists: 1:5,2:11721,3:2139,4:2142,5:244,6:1054,7:14524,8:123,9:9820,10:33,11:700,12:1
+ 49387 multiletter control sequences out of 65536+600000
+ 168 fonts using 58586583 bytes
  108i,13n,128p,10612b,947s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</System/Library/Fonts/Helvetica.ttc></System/Library/Fonts/Supplemental/Times New Roman Italic.ttf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></System/Library/Fonts/Supplemental/Times New Roman Bold.ttf></System/Library/Fonts/Supplemental/Times New Roman.ttf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf>
-Output written on 1929_herding_draft.pdf (37 pages, 36124351 bytes).
+</System/Library/Fonts/Supplemental/Times New Roman Italic.ttf></System/Library/Fonts/Helvetica.ttc></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></System/Library/Fonts/Supplemental/Times New Roman Bold.ttf></System/Library/Fonts/Supplemental/Times New Roman.ttf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf>
+Output written on 1929_herding_draft.pdf (41 pages, 36194052 bytes).
 
-PDF statistics: 770 PDF objects out of 1000 (max. 8388607)
- 656 compressed objects within 7 object streams
- 171 named destinations out of 1000 (max. 131072)
- 209 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 820 PDF objects out of 1000 (max. 8388607)
+ 700 compressed objects within 7 object streams
+ 183 named destinations out of 1000 (max. 131072)
+ 217 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -89,7 +89,7 @@ combined_tbl <-
   left_join(pear_daily_tbl, by = c("Date" = "Date"))
 
 combined_gg <- 
-  combined_tbl %>% fx_plot(variables_color = 2)
+  combined_tbl %>% fx_plot(variables_color = 2) + labs(y = "Rating (%)")
 
 combined_gg
 

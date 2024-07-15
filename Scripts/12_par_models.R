@@ -43,7 +43,6 @@ clean_combine <- function(data, filter_date, join_data, join_var){
     dplyr::select(
       -a0, -a1, -starts_with("t-statistic")
     ) %>% 
-    filter(a2 < 0) %>%
     pivot_wider(names_from = Category, values_from = a2) %>% 
     filter(Date >= ymd({{ filter_date }})) %>% 
     left_join(join_data, by = "Date") %>% 
@@ -78,10 +77,12 @@ par_general_ols_tbl <-
     join_data = par_daily_tbl,
     join_var = "Presidential Approval Rating")
 
+
 formula <-  as.formula(a2 ~ `Presidential Approval Rating`)
 
 ols_full_tbl <- 
   par_general_ols_tbl %>% 
+  filter(a2 <= 0) %>% 
   ols_group_full_workflow(formula = formula) %>% 
   mutate(Extreme = "General Herding") %>% 
   ungroup()
@@ -96,6 +97,7 @@ par_fundamental_ols_tbl <-
 
 ols_full_fundamental_tbl <- 
   par_fundamental_ols_tbl %>% 
+  filter(a2 <= 0) %>% 
   ols_group_full_workflow(formula = formula) %>% 
   mutate(Extreme = "Fundamental Herding") %>% 
   ungroup()
@@ -111,6 +113,7 @@ par_non_fundamental_ols_tbl <-
 
 ols_full_non_fundamental_tbl <- 
   par_non_fundamental_ols_tbl %>% 
+  filter(a2 <= 0) %>% 
   ols_group_full_workflow(formula = formula) %>% 
   mutate(Extreme = "Non-fundamental Herding") %>% 
   ungroup()
@@ -137,6 +140,7 @@ formula <-  as.formula(a2 ~ `Presidential Economic Approval Rating`)
 
 ols_full_tbl <- 
   pear_general_ols_tbl %>% 
+  filter(a2 <= 0) %>% 
   ols_group_full_workflow(formula = formula) %>% 
   mutate(Extreme = "General Herding") %>% 
   ungroup()
@@ -151,6 +155,7 @@ pear_fundamental_ols_tbl <-
 
 ols_full_fundamental_tbl <-
   pear_fundamental_ols_tbl %>% 
+  filter(a2 <= 0) %>% 
   ols_group_full_workflow(formula = formula) %>% 
   mutate(Extreme = "Fundamental Herding") %>% 
   ungroup()
@@ -166,6 +171,7 @@ pear_non_fundamental_ols_tbl <-
 
 ols_full_non_fundamental_tbl <-
   pear_non_fundamental_ols_tbl %>% 
+  filter(a2 <= 0) %>% 
   ols_group_full_workflow(formula = formula) %>% 
   mutate(Extreme = "Non-fundamental Herding") %>% 
   ungroup()

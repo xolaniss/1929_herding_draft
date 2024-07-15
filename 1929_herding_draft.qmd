@@ -94,7 +94,7 @@ Herding has been in the epicentre of a heated discussion that seeks robust empir
 
 Therefore, the study of herding behaviour across financial markets has become increasingly important in understanding the dynamics of investor decision-making and market stability. Herding, whether intentional or unintentional, reflects the tendency of investors to follow the crowd rather than act on independent information or analysis. This behaviour can exacerbate market volatility and pose challenges for regulators and policy-makers aiming to maintain financial stability.
 
-In summary the paper makes the following contributions to the literature. First, we provide new evidence on the presence of herding behaviour across different industry sectors in the US stock market. Second, we examine the determinants of herding behaviour across different sectors, focusing on the intersection of herding behaviour and market crisis periods. Third, we investigate the relationship between herding behaviour and political cycles, after taking market volatility into account. The paper is structured as follows. Section 2 presents the data and methodology. Section 3 presents the results and Section 4 concludes.
+In summary the paper makes the following contributions to the literature. First, we provide new evidence on the presence of herding behaviour across different industry sectors in the US stock market. We concede that the study of industry herding is not novel, however, we offer a comprehensive perspective of its evolution going back to the great depression. We argue that there is value in this. Second, this comprehensive perspective includes the examination of the determinants of herding behaviour across different sectors, focusing on the intersection of herding behaviour and market crisis periods. Inspired by @nath2020investor, we investigate the relationship between herding behaviour and political cycles and approval ratings. This is a new area in the literature that we attempt to add to. It exposes risk-aversion as one of the key determinants of herding behaviour. The paper is structured as follows. Section 2 presents the data and methodology. Section 3 presents the results and Section 4 concludes.
 
 # Data and Methodology
 ## Data
@@ -105,7 +105,7 @@ We create 5 industry groups from the 49 industries in order to calculate the cro
 
 In addition, we focus on herding behaviour in periods of financial crisis. Therefore, we use Wikipedia  to identify 5 crises periods.^[\url{https://en.wikipedia.org/wiki/List_of_economic_crises}] That is, the Great Depression, Dot-com Bubble, Great Financial Crisis and the recent Covid-Crisis. The crises periods are shown in @tbl-crises_description. 
 
-Lastly, in order to understand the effect of political cycles on industry herding we estimate the relationship between the time-varying herding coefficient and US presidential terms as outlined in @eq-political below.^[The US presidential terms can be found at \url{https://en.wikipedia.org/wiki/List_of_United_States_presidential_election_dates}] The US presidential terms are shown in @tbl-terms. In order to match with the industry herding coefficients, the terms  are converted to a daily frequency.
+Lastly, in order to understand the effect of political cycles on industry herding we estimate the relationship between the time-varying herding coefficient and US presidential terms as outlined in @eq-political below.^[The US presidential terms can be found at \url{https://en.wikipedia.org/wiki/List_of_United_States_presidential_election_dates}] The US presidential terms are shown in @tbl-terms. In order to match with the industry herding coefficients, the terms  are converted to a daily frequency. We then estimate the relationship between presidential approval ratings (general and economic) and industry herding coefficients. The approval ratings unlike the presidential term data focuses on the performance of specific presidents and not just party terms. This analysis, therefore, adds to presidential term results which focused on party affiliation and industry herding. The approval ratings  are obtained from the Roper Center for Public Opinion Research and are shown in @fig-approval.^[\url{https://ropercenter.cornell.edu/}] The general approval ratings data are available from 1941 to 2022 and the economic approval ratings data are available from 1981 to 2022, both at a monthly frequency. We converted these to a daily frequency^[Essentially repeating the monthly value for all the days of that specific month] to match the industry herding data.
 
 ## Testing for industry herding 
 
@@ -118,10 +118,11 @@ where $R_{i,t}$ observed returns from individual industry $i$ at time $t$, $R_{m
 The rationale behind the testing methodology is that, if herding is present, the correlated trades by investors will lead to greater directional similarity in industry returns, thus leading to lower dispersion in returns. This can be measured by the sign of the coefficients of the relationship between the return dispersion and $R_{m, t}$ and $R_{m, t}^2$ (or market return measures) in these equations for the general market herding:
 
 
-$$CSAD_{t} = \gamma_0 +  \gamma_1|R_{m, t}| +  \gamma_2R_{m, t}^2 + \epsilon_{t},$$ {#eq-csad2}
+$$CSAD_{t} = \gamma_0 +  \gamma_1|R_{m, t}| +  \gamma_2R_{m, t}^2 + \epsilon_{t},
+$$ {#eq-csad2}
 
 where $\gamma_2$ is the herding coefficient. The expectation is that $\gamma_1 > 0$ and $\gamma_2 < 0$ if herding is present. $R_{m, t}^2$, therefore, is a non-linear term which captures the herding effect. This non-linear effect implies no herding when $\gamma_2 = 0$, anti-herding when $\gamma_2 > 0$ and, obviously, herding when $\gamma_2 < 0$. We estimate $CSAD_{t}$ with heteroskedastic and autocorrelation consistent (HAC) standard errors [See @newey1987simple].^[We utilise the Newey-West estimator for all estimations in this paper.] Furthermore, for all testing equations, we estimate changes in herding behaviour over time using a rolling-window approach with a 250 day.^[This is a commonly used window in the literature. We do this throughout the herding analysis]  
- 
+
 
 ## Industry herding in periods of financial crisis
 
@@ -193,8 +194,14 @@ $$Pr(D^{herd}_{FUND}= 1 |\lambda_0 +  \lambda_1D^{party}  + \lambda_2\Gamma_t) =
 
 where $D^{herd}_{NONFUND}$ and $D^{herd}_{FUND}$ are dummy variables with value 1 when non-fundamental and fundamental herding is present and 0 otherwise. 
 
+To further understand the relationship between industry herding and political cycles, we turn our attention to the effect of the performance of specific US presidents on industry herding using the following equation:
 
-\newpage 
+$$
+\gamma_2^{herd} = \theta_0 + \theta_1APPROVAL + \epsilon_{t}, 
+$$ {#eq-approval}
+
+where $\gamma_2^{herd}$ is the industry herding coefficient when it is negative (that is, when herding is present), $APPROVAL$ is the presidential approval rating or the presidential economic approval rating, and $\epsilon_{t}$ is the error term. The expectation is that $\theta_1 < 0$, that is, industry herding is negatively related to approval ratings. This is in line with @pastor2020political who suggests that herding is high when uncertainty in high (which occurs when presidential ratings are low). @eq-approval was estimated with OLS and HAC standard errors.
+
 
 # Results
 
@@ -206,7 +213,6 @@ where $D^{herd}_{NONFUND}$ and $D^{herd}_{FUND}$ are dummy variables with value 
 
 @tbl-ols reports the ordinary least squares results of @eq-csad2 employing the US industry returns both at aggregate level and at an industry level. @tbl-ols is divided into three separate panels: the top panel presents estimated coefficients of @eq-csad2 employing all days for the whole period of analysis while the middle panel presents the estimation results only for the top market returns and the bottom panel the relevant estimates during the down markets. Herding is detected examining the statistical significance and the sign of coefficient $\gamma_2$ that can be found at the last column. When herding is present, $\gamma_2$ assumes negative sign and appears statistically significant. A quick look of the results in @tbl-ols reveals no herding behaviour when we use all day returns but significant herding effects for the whole sample and for separate sectors such as Consumables, Health and Other only during up markets. For example, in the middle panel and at the last column for Consumables we see a herding coefficient $\gamma_2$ of -0.00016 that is highly significant. If we turn our attention to the bottom panel we document weak evidence of herding effects in the Manufacturing sector, an estimated value of $\gamma_2$ coefficient -0.00006 that is statistically significant at 1%. 
 
-\newpage
 
 ```{r}
 #| label: tbl-ols
@@ -262,7 +268,7 @@ Following previous studies that highlight the dynamic nature of herding effect [
 @fig-rol_crisis_gd to @fig-rol_crisis_cv plot the results of the rolling window estimation of 250 days for @eq-csad3 during the above mentioned crisis periods. These plots confirm the herding effects observed in the static results above, that herding was mainly present during crisis periods. 
 
 
-\newpage
+
 ```{r}
 #| label: tbl-ols_crisis
 #| tbl-cap: "Industry herding in crisis periods"
@@ -304,6 +310,8 @@ CSAD_model_rol_crisis_tbl %>%
 
 
 ```
+
+\newpage
 
 ```{r}
 #| label: fig-rol_crisis_gd
@@ -664,30 +672,12 @@ As an attempt to isolate overall to herding due to fundamentals and non-fundamen
 ```{r}
 #| label: tbl-par
 #| tbl-cap: "Herding and presidential approval ratings."
-#| cache: true
+#| cache: false
 
 equation_1 <-
   as_equation(
     c(
-      "Pr(D^{herd} = 1 | \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}"
-    ),
-    height = 0.05,
-    unit = "cm"
-  )
-
-equation_2 <-
-  as_equation(
-    c(
-      "Pr(D^{herd}_{FUND} = 1 | \\lambda_0 + \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
-    ),
-    height = 0.05,
-    unit = "cm"
-  )
-
-equation_3 <-
-  as_equation(
-    c(
-      "Pr(D^{herd}_{NONFUND} = 1 | \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
+      "\\gamma_2^{herd} = \\theta_0 + \\theta_1APPROVAL + \\epsilon_{t}"
     ),
     height = 0.05,
     unit = "cm"
@@ -702,12 +692,9 @@ par$models$par_ols_tbl %>%
     as_flextable(hide_grouplabel = TRUE) %>% 
   mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
   mk_par(i =, j = c(2, 3), part = "header", value = as_paragraph(as_equation(estimates))) %>%
-  # add_footer_lines(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.", 
-  #                                      " The regressions are based on ", equation_1,
-  #                                      " , ",
-  #                                      equation_2,
-  #                                      " and ",
-  #                                      equation_3)) %>%
+  add_footer_lines(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.",
+                                       " The regressions are based on ", equation_1
+                                      )) %>%
   hline_bottom(part = "footer",  
                border = fp_border(
                  color = "black",
@@ -729,34 +716,17 @@ par$models$par_ols_tbl %>%
 ```{r}
 #| label: tbl-pear
 #| tbl-cap: "Herding and presidential economic approval ratings."
-#| cache: true
+#| cache: false
 
 equation_1 <-
   as_equation(
     c(
-      "Pr(D^{herd} = 1 | \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party}  + \\lambda_2\\Gamma_{t}"
+      "\\gamma_2^{herd} = \\theta_0 + \\theta_1APPROVAL + \\epsilon_{t}"
     ),
     height = 0.05,
     unit = "cm"
   )
 
-equation_2 <-
-  as_equation(
-    c(
-      "Pr(D^{herd}_{FUND} = 1 | \\lambda_0 + \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
-    ),
-    height = 0.05,
-    unit = "cm"
-  )
-
-equation_3 <-
-  as_equation(
-    c(
-      "Pr(D^{herd}_{NONFUND} = 1 | \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}) = \\lambda_0 +  \\lambda_1D^{party} + \\lambda_2\\Gamma_{t}"
-    ),
-    height = 0.05,
-    unit = "cm"
-  )
 
 estimates <- c("\\theta_0", "\\theta_1")
 
@@ -766,12 +736,9 @@ par$models$pear_ols_tbl %>%
     as_flextable(hide_grouplabel = TRUE) %>% 
   mk_par(i =, j = 1, part = "header", value = as_paragraph("Industry")) %>% 
   mk_par(i =, j = c(2, 3), part = "header", value = as_paragraph(as_equation(estimates))) %>%
-  # add_footer_lines(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.", 
-  #                                      " The regressions are based on ", equation_1,
-  #                                      " , ",
-  #                                      equation_2,
-  #                                      " and ",
-  #                                      equation_3)) %>%
+  add_footer_lines(values = as_paragraph("Note: *** = p value < 0.01, ** = 0.01 < p value < 0.05, * = 0.05 < p value < 0.1.",
+                                       " The regressions are based on ", equation_1
+                                   )) %>%
   hline_bottom(part = "footer",  
                border = fp_border(
                  color = "black",
@@ -789,8 +756,14 @@ par$models$pear_ols_tbl %>%
   
 ```
 
+
+Extending the analysis to the presidential approval ratings, @tbl-par and @tbl-pear show that in terms of the general herding behaviour no statistically significant relationship is found with the presidential approval ratings. However, when we isolate the industry herding due to fundamentals and non-fundamentals we find that the former is positively related to the presidential approval ratings for Business services and negatively related to manufacturing, and other for the economic approval ratings. That is, it seems the approval ratings are mainly significant only in 'production' industries. This results are consistent with the party term results above, suggesting that risk-aversion is a driving factor of herding behaviour in these industries.
+
+
 # Conclusion 
 The study investigates herding behaviour in the US market across different periods and industries using static and rolling-window models. The results suggest that herding behaviour is more pronounced during crisis periods, that is, in general and in industries. The findings are consistent with the literature that suggests that herding behaviour was more pronounced during periods of high uncertainty and risk aversion. The results also suggest that herding behaviour was not particular pronounced in one industry versus another. A departure from the thinking that fast moving industries such as business services which may be considered more sensitive to market conditions, would have more prevalent herding behaviour. This suggests that investors tend to herd to broader market conditions that industry specific market conditions.
+
+A novel aspect of the study is the investigation of the relationship between herding behaviour and presidential approval ratings. The results suggest that the presidential approval ratings are not significantly related to herding behaviour in general, but it seems the approval ratings are mainly significant only in 'production' industries. This results are consistent with the party term results above which showed that herding was more pronounced during Democratic administration. The results suggest, similar to @nath2020investor, that risk-aversion is a driving factor of herding behaviour in these industries.
 
 The results have important implications for policy-makers, and regulators who are interested in understanding the dynamics of herding behaviour in the US market. For example, in order to mitigate the effects of herding behaviour, regulators and policy-makers can improve market transparency, risk management requirements, and investor educational initiatives, amongst others. These initiatives are still relevant given that the results indicate similar herding behaviour in the recent Covid-crisis compared to previous market crises.
 
