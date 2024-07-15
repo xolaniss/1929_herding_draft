@@ -13,6 +13,7 @@ dir.create(here("Latex_version"))
 # Copy text files ---------------------------------------------------------
 list.files(path = ".", pattern = "tex", full.names = TRUE, ) %>%
   file.copy(to = here("Latex_version"))
+file.copy(here("references.bib"), here("Latex_version"))
 
 # Copy resources folder ---------------------------------------------
 folder_path <- list.dirs(path = ".", recursive = FALSE) %>%
